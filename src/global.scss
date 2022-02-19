@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "MyraidProSemiBold";
+  src: local("MyraidProSemiBold"),
+    url("./fonts/MYRIADPRO-SEMIBOLD.OTF") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "MyraidProReg";
+  src: local("MyraidProReg"),
+    url("./fonts/MYRIADPRO-REGULAR.OTF") format("truetype");
+  font-weight: bold;
+}
+.App {
+  font-size: 17px;
+}
+* {
+  box-sizing: border-box;
+}
+button {
+  background-color: black;
+  font-family: MyraidProSemiBold;
+  font-size: 17px !important;
+}

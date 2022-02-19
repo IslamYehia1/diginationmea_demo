@@ -1,0 +1,146 @@
+@import "../../global.scss";
+.navbar {
+  width: 100%;
+  padding: 0 45px;
+  font-family: MyraidProSemiBold;
+  font-size: 17px;
+  //   height: 4.66667rem;
+  height: 5rem;
+  position: absolute;
+  top: 0px;
+  color: black;
+  background-color: white;
+  border-bottom: 1px solid #d4e0e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .navItems {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+
+    .rightBorder {
+      border-right: 1px solid #d4e0e6;
+    }
+  }
+
+  .navItem {
+    padding: 1.4rem;
+    color: #141414;
+    height: 100%;
+    line-height: 2.1;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      color: #1c8a55;
+    }
+    svg {
+      margin-left: 5px;
+      //   margin-top: -10px;
+    }
+    // height: 78px;
+  }
+  .industry {
+    height: 90%;
+    padding-bottom: 1.9rem;
+    line-height: 28px;
+    // line-height : 55px ;
+  }
+  .logo {
+    height: 45px;
+  }
+}
+
+.modifiedMenu {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.modified {
+  font-family: MyraidProSemiBold;
+  font-size: 1.6rem;
+}
+
+.modifiedListItem {
+  padding: 1rem !important;
+  width: 33% !important;
+  &:hover {
+    color: #1c8a55 !important;
+  }
+}
+.contactButton {
+  align-items: center;
+  justify-content: center;
+  border: none !important ;
+  margin: 10px 0 10px 1.4rem;
+  display: block;
+  border-radius: 7px;
+  background: #1c8a55;
+  z-index: 2;
+  //   border: 2px solid;
+  padding: 10px;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  line-height: 3;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  svg {
+    width: 25px;
+    margin-left: 10px;
+    margin-top: -7px;
+    color: white;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: #141414;
+  }
+}
+*::before,
+*::after {
+  z-index: -1;
+}
+.contactButton {
+  color: white;
+  // transform-origin: left center
+  p {
+    margin: 0;
+  }
+  &::before {
+    height: 50px;
+    width: 200px;
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background: #54c5d2;
+    transform: translatex(-100%);
+    // z-index: -1;
+  }
+
+  &:hover {
+    &::before {
+      animation: swipe 400ms ease-in-out forwards;
+      color: black;
+    }
+  }
+}
+
+@keyframes swipe {
+  0% {
+    transform: translatex(-100%);
+  }
+  100% {
+    transform: translatex(0%);
+  }
+}
