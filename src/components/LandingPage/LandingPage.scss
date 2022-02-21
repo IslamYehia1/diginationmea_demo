@@ -3,6 +3,7 @@
   overflow: hidden;
   height: calc(100vh - 80px);
   margin-top: 80px;
+  position: relative;
 }
 
 .wrapper {
@@ -75,10 +76,13 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-family: MyraidProSemiBold;
+  // font-family: MyraidProSemiBold;
+  font-family: "Oswald", sans-serif;
   font-size: 6rem;
   color: white;
   white-space: nowrap;
+  height: 8rem;
+  overflow: visible;
 }
 .pagePart {
   width: 100%;
@@ -103,6 +107,7 @@
     }
   }
   .description {
+    color: white;
     width: 50%;
     position: relative;
     display: flex;
@@ -115,6 +120,9 @@
     padding: 108px;
     // float: left;
     // z-index: 3;
+  }
+  h3 {
+    color: white;
   }
   img {
     width: 100%;
@@ -185,4 +193,8 @@
 }
 .black {
   background-color: #141414;
+}
+
+.image img {
+  filter: brightness(0.8);
 }

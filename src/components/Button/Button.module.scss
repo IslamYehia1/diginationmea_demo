@@ -1,0 +1,71 @@
+.contactButton {
+  align-items: center;
+  justify-content: center;
+  border: none !important ;
+  margin: 10px 0 10px 1.4rem;
+  display: block;
+  border-radius: 7px;
+  background: #1c8a55;
+  z-index: 2;
+  //   border: 2px solid;
+  padding: 10px;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  line-height: 3;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  svg {
+    width: 25px;
+    margin-left: 10px;
+    margin-top: -7px;
+    color: white;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: #141414;
+  }
+}
+*::before,
+*::after {
+  z-index: -1;
+}
+.contactButton {
+  color: white;
+  // transform-origin: left center
+  p {
+    margin: 0;
+  }
+  &::before {
+    height: 50px;
+    width: 200px;
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background: #54c5d2;
+    transform: translatex(-100%);
+    // z-index: -1;
+  }
+
+  &:hover {
+    &::before {
+      animation: swipe 400ms ease-in-out forwards;
+      color: black;
+    }
+  }
+}
+
+@keyframes swipe {
+  0% {
+    transform: translatex(-100%);
+  }
+  100% {
+    transform: translatex(0%);
+  }
+}

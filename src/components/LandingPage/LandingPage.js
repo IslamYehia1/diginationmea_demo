@@ -1,11 +1,18 @@
 import style from "./LandingPage.scss";
 import { gsap } from "gsap";
-import { useCallback, useEffect, useRef, useState } from "react";
-import img1 from "../Images/Slide_2.png";
-import img2 from "../Images/carrying_stuff.png";
-import img3 from "../Images/Slide_4.png";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import img3 from "../Images/peopleStanding.jpg";
+import img2 from "../Images/pointing_to_internet.png";
+import img1 from "../Images/green_people.png";
+import img4 from "../Images/carrying_stuff2.png";
 import { ReactComponent as Loader } from "./temp.svg";
-console.clear();
+import PhaseTitle from "./PhaseTitle";
 
 function LandingPage() {
   const wrapperRef = useRef(null);
@@ -31,61 +38,59 @@ function LandingPage() {
     document.querySelector(".description").style.zIndex = "initial";
     document.querySelector(".image").style.zIndex = 2;
   };
-
+  const rightTransitionRef = useRef();
+  const leftTransitionRef = useRef();
   const tl = useRef();
   const prevColor = useRef();
   const newColor = useRef();
   const colorAfterNext = useRef();
-  const colors = ["#2196c7", "#7CB8E4", "#1c8a55", "#54c5d2"];
+
+  const colors = ["#1c8a55", "#D7C9AA", "#0066A5", , "#162521"];
+  function setBackground(ref, colorRef) {
+    if (ref.current && colorRef.current) {
+      ref.current.style.backgroundColor = colorRef.current;
+    }
+  }
   useEffect(() => {
     if (currentSectionIndex >= 0) {
       prevColor.current = colors[currentSectionIndex];
-      newColor.current = colors[(currentSectionIndex + 1) % 4];
+      newColor.current = colors[currentSectionIndex + 1];
       colorAfterNext.current = colors[(currentSectionIndex + 2) % 4];
     }
   }, [currentSectionIndex]);
-  useEffect(() => {
+  const DELAY = 4;
+  useLayoutEffect(() => {
     tl.current = gsap
-      .timeline({ repeat: -1, repeatDelay: 10, delay: 0 })
-      .set(q(".rightTransition"), {
+      .timeline({ repeat: -1, repeatDelay: DELAY, delay: DELAY })
+      .set(rightTransitionRef.current, {
         rotation: 180,
         transformOrigin: "left center",
-        backgroundColor: prevColor.current,
       })
-      .set(q(".leftTransition"), {
-        backgroundColor: newColor.current,
-      })
-      .to(q(".leftTransition"), {
-        duration: 1,
+      .add(() => setBackground(rightTransitionRef, prevColor))
+      .add(() => setBackground(leftTransitionRef, newColor))
+      .to(leftTransitionRef.current, {
+        duration: 0.5,
         rotation: 180,
         transformOrigin: "right center",
         ease: "Power2.easeIn",
-        onComplete: update,
+        onComplete: () => {
+          update();
+          setImageBehind();
+        },
       })
-      .set(q(".leftTransition"), {
-        // backgroundColor: newColor.current,
-        onComplete: setImageBehind,
-      })
-      .set(q(".rightTransition"), {
-        backgroundColor: prevColor.current,
-      })
-      .to(q(".rightTransition"), {
-        duration: 1,
+      .add(() => setBackground(rightTransitionRef, prevColor))
+
+      .to(rightTransitionRef.current, {
+        duration: 0.5,
         rotation: 360,
         transformOrigin: "left center",
       })
-      .set(q(".rightTransition"), {
-        backgroundColor: prevColor.current,
-        // onComplete: setBothBehind,
-        // onComplete: setImageBehind,
-        // onComplete: setZIndex,
-      })
-      .set(q(".leftTransition"), {
-        backgroundColor: colorAfterNext.current,
-      })
+      .add(() => setBackground(rightTransitionRef, prevColor))
+      .add(() => setBackground(leftTransitionRef, newColor))
 
-      .to(q(".leftTransition"), {
-        duration: 1,
+      .to(leftTransitionRef.current, {
+        delay: DELAY,
+        duration: 0.5,
         rotation: 360,
         transformOrigin: "right center",
         ease: "Power2.easeIn",
@@ -94,11 +99,10 @@ function LandingPage() {
           setImageBehind();
         },
       })
-      .set(".rightTransition", {
-        backgroundColor: prevColor.current,
-      })
-      .to(q(".rightTransition"), {
-        duration: 1,
+      .add(() => setBackground(rightTransitionRef, prevColor))
+
+      .to(rightTransitionRef.current, {
+        duration: 0.5,
         rotation: 540,
         transformOrigin: "left center",
       });
@@ -107,26 +111,19 @@ function LandingPage() {
   return (
     <div className="landingPage">
       <Loader />
-      <h1 className="phaseHeading"> FIRST PHASE </h1>
+      <PhaseTitle className="phaseHeading" />
       <div class="wrapper" ref={wrapperRef}>
-        <div
-          className={`box leftTransition`}
-          // style={{ backgroundColor: leftColor }}
-        ></div>
-        <div class={`box rightTransition`}></div>
-        {/* <div class="box leftTransition blue"></div> */}
+        <div className={`box leftTransition`} ref={leftTransitionRef}></div>
+        <div class={`box rightTransition`} ref={rightTransitionRef}></div>
         {currentSectionIndex === 0 && (
           <div
-            className={`pagePart firstSection even lighBlue`}
+            className={`pagePart firstSection even`}
             ref={currentSectionIndex === 0 ? visibleRef : null}
             style={{
-              backgroundColor: "#2196c7",
+              backgroundColor: colors[0],
             }}
           >
-            <div
-              className="description"
-              // style={{ zIndex: "auto" }}
-            >
+            <div className="description">
               <div className="descriptionText">
                 <h3>Automating legacy systems</h3>
                 <p>
@@ -136,17 +133,16 @@ function LandingPage() {
               </div>
             </div>
             <div className={"image"}>
-              <img src={img2} />
+              <img src={img1} />
             </div>
           </div>
         )}
         {currentSectionIndex === 1 && (
           <div
             className={`pagePart odd`}
-            // style={currentSectionIndex === 1 ? { zIndex: 2 } : {}}
             ref={currentSectionIndex === 1 ? visibleRef : null}
             style={{
-              backgroundColor: "#7CB8E4",
+              backgroundColor: colors[1],
             }}
           >
             <div className="description">
@@ -159,7 +155,7 @@ function LandingPage() {
               </div>
             </div>
             <div className={"image"}>
-              <img src={img1} />
+              <img src={img2} />
             </div>
           </div>
         )}
@@ -167,7 +163,7 @@ function LandingPage() {
           <div
             class={`pagePart firstSection even`}
             style={{
-              backgroundColor: "#1c8a55",
+              backgroundColor: colors[2],
             }}
           >
             <div
@@ -191,7 +187,7 @@ function LandingPage() {
           <div
             class={`pagePart firstSection odd black`}
             style={{
-              backgroundColor: "#54c5d2",
+              backgroundColor: colors[3],
             }}
           >
             <div
@@ -207,16 +203,10 @@ function LandingPage() {
               </div>
             </div>
             <div className={"image"}>
-              <img src={img2} />
+              <img src={img4} />
             </div>
           </div>
         )}
-        {/* <div class="image rightImg lastImage pagePart active">
-          <img src={img2} />
-        </div> */}
-        {/* <div class="rightImg">
-          <img src={img3} />
-        </div> */}
       </div>
     </div>
   );

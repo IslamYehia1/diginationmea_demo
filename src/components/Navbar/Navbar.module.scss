@@ -6,7 +6,8 @@
   font-size: 17px;
   //   height: 4.66667rem;
   height: 5rem;
-  position: absolute;
+  position: fixed;
+  z-index: 2000;
   top: 0px;
   color: black;
   background-color: white;
@@ -54,7 +55,9 @@
     height: 45px;
   }
 }
-
+.langButton {
+  border-left: 1px solid #d4e0e6;
+}
 .modifiedMenu {
   padding: 1.5rem;
   display: flex;
@@ -69,10 +72,18 @@
 .modifiedListItem {
   padding: 1rem !important;
   width: 33% !important;
+  &:first-child {
+    padding-top: 35px !important;
+  }
+  &:last-child {
+    padding-bottom: 35px !important;
+  }
   &:hover {
     color: #1c8a55 !important;
+    background-color: transparent !important;
   }
 }
+
 .contactButton {
   align-items: center;
   justify-content: center;
@@ -80,6 +91,7 @@
   margin: 10px 0 10px 1.4rem;
   display: block;
   border-radius: 7px;
+  // background: #1c8a55;
   background: #1c8a55;
   z-index: 2;
   //   border: 2px solid;
@@ -109,6 +121,7 @@
 *::after {
   z-index: -1;
 }
+
 .contactButton {
   color: white;
   // transform-origin: left center

@@ -1,0 +1,18 @@
+.phasesList {
+  list-style: none;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  transform-style: perserve-3d;
+
+  li {
+    grid-area: 1 / 1;
+    user-select: none;
+    visibility: hidden;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+.wrap {
+  transform-style: perserve-3d;
+}

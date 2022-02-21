@@ -1,0 +1,124 @@
+.textContainer {
+  font-size: 1.07rem;
+  font-family: MyraidProSemiBold;
+  width: 70%;
+  line-height: 1.4;
+}
+.cardTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+.imgContainer {
+  width: 100%;
+  //   height: 70%;
+  max-height: 400px;
+  aspect-ratio: auto 632 / 471;
+  margin-bottom: 1.6rem;
+  position: relative;
+  .image {
+    overflow: hidden;
+    width: 100%;
+    max-height: 100%;
+  }
+  img {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale3d(1, 1, 1);
+    transition: all 0.2s linear;
+  }
+}
+.cardButtonContainer {
+  position: absolute;
+  //   width: 100%;
+  right: 20px;
+  bottom: -1.4rem;
+  z-index: 2000;
+  //   min-height: 80px;
+}
+
+.contactButton {
+  align-items: center;
+  justify-content: center;
+  border: none !important ;
+  //   margin: 10px 0 10px 1.4rem;
+  display: block;
+  border-radius: 7px;
+  position: relative;
+  background: #1c8a55;
+  z-index: 2;
+  //   border: 2px solid;
+  padding: 10px;
+  width: 200px;
+  height: 3.7rem;
+  display: flex;
+  line-height: 3;
+  overflow: hidden;
+  cursor: pointer;
+  svg {
+    width: 25px;
+    margin-left: 10px;
+    margin-top: -7px;
+    color: white;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: #141414;
+  }
+}
+*::before,
+*::after {
+  z-index: -1;
+}
+.contactButton {
+  color: white;
+  // transform-origin: left center
+
+  p {
+    margin: 0;
+  }
+  &::before {
+    height: 3.7rem;
+    width: 200px;
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background: #54c5d2;
+    transform: translatex(-100%);
+    // z-index: -1;
+  }
+}
+
+@keyframes swipe {
+  0% {
+    transform: translatex(-100%);
+  }
+  100% {
+    transform: translatex(0%);
+  }
+}
+
+.card {
+  min-height: 400px;
+  position: relative;
+  &:hover {
+    .contactButton::before {
+      animation: swipe 400ms ease-in-out forwards;
+      color: black;
+    }
+    img {
+      // transition: all 0.3s linear;
+      -webkit-transform: scale3d(1.2, 1.2, 1);
+      transform: scale3d(1.1, 1.1, 1);
+    }
+  }
+}

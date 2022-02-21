@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap");
+
+.industriesSection {
+  min-height: 720px;
+  //   padding-left: 10rem;
+}
+.industryCards {
+  //   display: flex;
+  gap: 5%;
+  width: 100%;
+}
+
+.sectionTitle {
+  padding: 14rem 10rem 2rem 10rem;
+  font-family: MyraidProSemiBold;
+  h1 {
+    color: #141414;
+    font-family: "Oswald", sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    max-width: 40%;
+    line-height: 1.1;
+  }
+}
+.card {
+  min-width: 33%;
+  width: 33%;
+  margin-right: 5%;
+  border: none;
+  &:first-child {
+    margin-left: 10rem;
+  }
+}
+.cardsSeperator {
+  width: 20px;
+}
+.rightArrow {
+  position: absolute;
+}
+.leftArrow {
+  position: absolute;
+}
