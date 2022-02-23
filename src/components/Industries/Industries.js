@@ -1,4 +1,3 @@
-import style from "./Industries.module.scss";
 import Card from "../Card/Card";
 // import { LeftArrow, RightArrow } from "./arrows";
 // import { Card } from "./card";
@@ -15,14 +14,15 @@ import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 // NOTE: for hide scrollbar
 // import "./hideScrollbar.css";
 // import "./firstItemMargin.css";
-import HealthCareImg from "./healthCare.jpg";
+import HealthCareImg from "./healthCare2.jpg";
 import EducationImg from "./education.jpg";
 import FineTechImg from "./fineTech.jpg";
 import BankingImg from "./banking.jpg";
+import style from "./Industries.module.scss";
 
 function Industries() {
   return (
-    <div className={style.industriesSection}>
+    <div className={`${style.industriesSection} industriesSection`}>
       <div className={style.sectionTitle}>
         <h3>Industries</h3>
         <h1> WE advised over 800 clients across KSA from all industries </h1>

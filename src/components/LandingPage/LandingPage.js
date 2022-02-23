@@ -79,7 +79,6 @@ function LandingPage() {
         },
       })
       .add(() => setBackground(rightTransitionRef, prevColor))
-
       .to(rightTransitionRef.current, {
         duration: 0.5,
         rotation: 360,

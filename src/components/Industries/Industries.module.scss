@@ -24,7 +24,7 @@
 }
 .card {
   min-width: 33%;
-  width: 33%;
+  width: 50%;
   margin-right: 5%;
   border: none;
   &:first-child {
@@ -39,4 +39,64 @@
 }
 .leftArrow {
   position: absolute;
+}
+@media (min-width: 700px) and (max-width: 1199px) {
+  .card {
+    min-width: 50%;
+  }
+  .card:first-child {
+    margin-left: 4rem;
+  }
+  .sectionTitle {
+    padding-right: 4rem;
+    padding-left: 4rem;
+    h1 {
+      max-width: 70%;
+    }
+  }
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+  .card:first-child {
+    margin-left: 1.3333rem;
+  }
+  .sectionTitle {
+    padding-right: 1.3333rem;
+    padding-left: 1.3333rem;
+    width: 100%;
+    max-width: 100%;
+    h1 {
+      font-size: 3.33333rem;
+      max-width: 100%;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+@media (max-width: 699px) {
+  .card {
+    min-width: 80%;
+    margin-right: 10%;
+  }
+  .sectionTitle {
+    max-width: 100%;
+    width: 100%;
+    padding-right: 1.3333rem;
+    padding-left: 1.3333rem;
+  }
+  .sectionTitle h1 {
+    max-width: 100%;
+    margin-bottom: 20%;
+    font-size: 2.66667rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 499px) {
+  .card:first-child {
+    margin-left: 1.3333rem;
+  }
+  .sectionTitle h1 {
+    font-size: 2.66667rem;
+  }
 }

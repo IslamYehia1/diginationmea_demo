@@ -1,14 +1,22 @@
-// `import { Navbar, Nav, Dropdown } from "rsuite";
-import { useState } from "react";
-import Logo from "./LogoDigination.png";
+import { useEffect, useState, useRef, useCallback } from "react";
+import NormalLogo from "./LogoDigination.png";
+import WhiteLogo from "./whiteLogo.png";
 import style from "./Navbar.module.scss";
 import { ReactComponent as ContactIcon } from "../talkIcon.svg";
+import { ReactComponent as MenuIcon } from "../../SVG/menu.svg";
 import { Menu, Dropdown } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 import Button from "../Button/Button";
-import DropdownMenu from "../Dropdown/Dropdown";
-import "./customizations.scss";
+import gsap from "gsap";
+import { CustomEase } from "gsap/CustomEase";
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import DropdownMenu from "../Dropdown/Dropdown";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import "./customizations.scss";
+gsap.registerPlugin(CustomEase);
+
+gsap.registerPlugin(ScrollTrigger);
 function MenuOverlay() {
   return (
     <Menu className={style.modifiedMenu}>
@@ -56,71 +64,233 @@ function MenuOverlay() {
     </Menu>
   );
 }
-function NavigatonBar() {
-  const [activeKey, setActiveKey] = useState(null);
+
+function NavBar({ isScrolled }) {
+  const [click, setClick] = useState(false);
+  const [isNavHighlited, setIsNavHighlited] = useState(false);
+  const handleClick = () => setClick(!click);
+  const Close = () => setClick(false);
   const overlayStyle = {
     width: "100%",
+    overflow: "auto",
   };
+  const navRef = useRef();
+  const [width, setWidth] = useState(window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+  function highlightNav() {
+    gsap.to(".navBar", {
+      // scale: 1.12,
+      backgroundColor: "white",
+      borderBottom: "1px solid #d4e0e6",
+      color: "#141414",
+      duration: 0.3,
+      paused: false,
+      ease: "power3.out",
+    });
+  }
+  function unHighlightNav() {
+    gsap.to(".navBar", {
+      backgroundColor: "transparent",
+      borderBottom: "none",
+      color: "white",
+      duration: 0.3,
+      paused: false,
+      ease: "power3.out",
+    });
+  }
+  const handleMouseEnter = useCallback(() => {
+    setIsNavHighlited(true);
+  });
+  const handleMouseLeave = useCallback(() => {
+    if (!isScrolled && !click) setIsNavHighlited(false);
+  });
+  useEffect(() => {
+    if (isNavHighlited) highlightNav();
+    if (!isNavHighlited) unHighlightNav();
+  }, [isNavHighlited]);
+  useEffect(() => {
+    if (isScrolled || click) setIsNavHighlited(true);
+    if (!isScrolled && !click) setIsNavHighlited(false);
+  }, [isScrolled, click]);
+  useEffect(() => {
+    console.log(isMobile);
+    if (click) {
+      setIsNavHighlited(true);
+      gsap.to(".nav-menu", {
+        duration: 0.5,
+        scaleY: 1,
+        rotation: 0.01,
+        transformOrigin: "50% 0%",
+        ease: CustomEase.create("custom", "M0,0 C1,-0.088 0.492,1 1,1 "),
+      });
+    }
+    if (!click && isMobile) {
+      gsap.set(".nav-menu", {
+        scaleY: 0,
+      });
+    }
+    if (!click && !isMobile) {
+      gsap.to(".nav-menu", {
+        duration: 0.5,
+        scaleY: 1,
+        rotation: 0.01,
+        transformOrigin: "50% 0%",
+        ease: CustomEase.create("custom", "M0,0 C1,-0.088 0.492,1 1,1 "),
+      });
+    }
+  }, [click, isMobile]);
 
   return (
-    <nav className={style.navbar}>
-      <div className={style.logoWrapper}>
-        <img className={style.logo} src={Logo} alt={"Digination"} />
-      </div>
-      <div className={style.navItems}>
-        {/* <Nav.Item eventKey="1" icon={<Home />}> */}
+    <div style={{ zIndex: 20 }}>
+      <nav
+        ref={navRef}
+        className={`navBar ${style.navbar}`}
+        onClick={(e) => e.stopPropagation()}
+        data-scroll-sticky
+        data-scroll-target=".App"
+        data-scroll
+        onMouseLeave={isScrolled || click ? undefined : handleMouseLeave}
+        onMouseEnter={isScrolled || click ? undefined : handleMouseEnter}
+      >
+        <div className={style.navItems}>
+          <Link to="/">
+            <img
+              src={isNavHighlited ? NormalLogo : WhiteLogo}
+              className={`${style.logo} whiteLogo`}
+            />
+          </Link>
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className={style.navItem}>
+              <Link
+                to="/"
+                // activeClassName="active"
+                // className={"nav-links"}
+                onClick={click ? handleClick : null}
+              >
+                Home
+              </Link>
+            </li>
+            <li className={style.navItem}>
+              <Link
+                to="/about"
+                // activeClassName="active"
+                // className="nav-links"
+                onClick={click ? handleClick : null}
+              >
+                About us
+              </Link>
+            </li>
+            <li className={style.navItem}>
+              <Link
+                to="/blog"
+                // activeClassName="active"
+                // className="nav-links"
+                onClick={click ? handleClick : null}
+              >
+                Services
+              </Link>
+            </li>
+            <li className={style.navItem}>
+              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+                <Link
+                  to="/"
+                  className={`${style.industry}`}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Solutions <CaretDownOutlined />
+                </Link>
+              </Dropdown>
+            </li>
+            <li className={style.navItem}>
+              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+                <Link
+                  to="/"
+                  className={`${style.industry}`}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Industries <CaretDownOutlined />
+                </Link>
+              </Dropdown>
+            </li>
+            <li className={style.navItem}>
+              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+                <Link
+                  to="/"
+                  className={`${style.industry}`}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Parteners <CaretDownOutlined />
+                </Link>
+              </Dropdown>
+            </li>
+            <li className={style.navItem}>
+              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+                <Link
+                  to="/"
+                  className={`${style.industry}`}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Clients <CaretDownOutlined />
+                </Link>
+              </Dropdown>
+            </li>
+            <li className={style.navItem}>
+              <Link
+                to="/contact"
+                // activeClassName="active"
+                // className={style.navItem}
+                onClick={click ? handleClick : null}
+              >
+                Contact Us
+              </Link>
+            </li>
+            <li className={style.navItem}>
+              <Link
+                to="/"
+                className={`${style.rightBorder} ${style.langButton}`}
+              >
+                EN
+              </Link>
+            </li>
 
-        <a className={style.navItem}>Home</a>
-        <a className={style.navItem}>About us</a>
-        <a className={style.navItem}>Services</a>
-        <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
-          <a
-            className={`${style.navItem} ${style.industry}`}
-            onClick={(e) => e.preventDefault()}
-          >
-            Solutions <CaretDownOutlined />
-          </a>
-        </Dropdown>
-        <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
-          <a
-            className={`${style.navItem} ${style.industry}`}
-            onClick={(e) => e.preventDefault()}
-          >
-            Industries <CaretDownOutlined />
-          </a>
-        </Dropdown>
-        <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
-          <a
-            className={`${style.navItem} ${style.industry}`}
-            onClick={(e) => e.preventDefault()}
-          >
-            Partners <CaretDownOutlined />
-          </a>
-        </Dropdown>
-        <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
-          <a
-            className={`${style.navItem} ${style.industry}`}
-            onClick={(e) => e.preventDefault()}
-          >
-            Clients <CaretDownOutlined />
-          </a>
-        </Dropdown>
-
-        <a
-          className={`${style.navItem} ${style.rightBorder} ${style.langButton}`}
-        >
-          EN
-        </a>
-        <Button
-          Icon={ContactIcon}
-          label="Contact Us "
-          className={`${style.contactButton} ${style.blue}`}
-        />
-      </div>
-      {/* <Nav>
-      <Nav.Item>Settings</Nav.Item>
-    </Nav> */}
-    </nav>
+            <li className={style.navItem}>
+              <Button
+                Icon={ContactIcon}
+                label="Contact Us "
+                style={{
+                  backgroundColor: isNavHighlited ? "" : "#11ffee00",
+                }}
+                className={`${isNavHighlited ? "" : style.emptyButton} ${
+                  style.contactButton
+                } ${style.blue}`}
+              />
+            </li>
+          </ul>
+          <div className="nav-icon" onClick={handleClick}>
+            {/* <i className={click ? "fa fa-times" : "fa fa-bars"}></i> */}
+            <MenuIcon />
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 }
-export default NavigatonBar;
+function App() {
+  return (
+    <BrowserRouter>
+      <NavBar />
+    </BrowserRouter>
+  );
+}
+export default NavBar;

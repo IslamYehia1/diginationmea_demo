@@ -7,10 +7,9 @@ import Splitting from "splitting";
 class PhaseTitle extends React.Component {
   constructor(props) {
     super(props);
-    // this.currentIndex = React.createRef(null);
   }
   componentDidMount() {
-    var i = 0;
+    var i = -1;
 
     const titleListSplit = Splitting({
       /* target: String selector, Element, Array of Elements, or NodeList */
@@ -102,7 +101,7 @@ class PhaseTitle extends React.Component {
           targets,
           {
             duration: 0.45,
-            opacity: 0,
+            autoAlpha: 0,
             ease: "none",
             stagger: {
               amount: 0.02,
@@ -114,33 +113,21 @@ class PhaseTitle extends React.Component {
         return tl;
       },
     });
+
+    const mainTimeline = gsap.timeline({ repeat: -1 });
     gsap.set(titleList2[0], { autoAlpha: 1 });
     gsap.effects.rotateIn(titleListSplit[0].words, {
       rotationX: 90,
       transformOrigin: "100% 0",
       ease: "back(2.3)",
-      onComplete: () => splitElements(),
     });
-
-    function splitElements() {
-      i =
-        (i + 1) % titleListSplit.length == 0
-          ? 1
-          : (i + 1) % titleListSplit.length;
-      console.log(i);
-      let length = titleListSplit.length;
-      let previousTitleIndex = i - 1 < 0 ? length - 1 : i - 1;
-      console.log(previousTitleIndex, i);
-      gsap.set(titleList2[i], { autoAlpha: 1 });
-      const titlesTl = gsap.timeline({
-        onComplete: () => {
-          splitElements();
-        },
-      });
+    titleListSplit.forEach((element, index) => {
+      gsap.set(element.el, { autoAlpha: 1 });
+      const titlesTl = gsap.timeline({});
 
       titlesTl
         .rotateOut(
-          titleListSplit[previousTitleIndex].words,
+          element.words,
           {
             y: 20,
             rotationX: -100,
@@ -149,7 +136,7 @@ class PhaseTitle extends React.Component {
           "+3.90"
         )
         .rotateIn(
-          titleListSplit[i].words,
+          titleListSplit[(index + 1) % titleListSplit.length].words,
           {
             rotationX: 90,
             transformOrigin: "100% 0",
@@ -157,9 +144,8 @@ class PhaseTitle extends React.Component {
           },
           "-=0.38"
         );
-      // }
-    }
-    splitElements();
+      mainTimeline.add(titlesTl, index * 5);
+    });
   }
   render() {
     return (
