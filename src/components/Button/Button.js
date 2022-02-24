@@ -1,7 +1,7 @@
 import style from "./Button.module.scss";
-function Button({ Icon, label, className }) {
+function Button({ id, Icon, label, className }) {
   return (
-    <button className={className}>
+    <button id={id} className={className}>
       {" "}
       <p>{label}</p>
       <Icon />

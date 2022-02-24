@@ -19,7 +19,7 @@ gsap.registerPlugin(CustomEase);
 gsap.registerPlugin(ScrollTrigger);
 function MenuOverlay() {
   return (
-    <Menu className={style.modifiedMenu}>
+    <Menu className={`${style.modifiedMenu}`}>
       <Menu.Item className={style.modifiedListItem}>
         <a
           className={style.modified}
@@ -82,12 +82,21 @@ function NavBar({ isScrolled }) {
   }
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
+    // just to fix the jitter - weird hack
+    // gsap
+    //   .timeline({ repeat: -1, repeatDelay: 3, yoyo: true })
+
+    //   .to("#contactButton", {
+    //     duration: 1.2,
+    //     scale: 1.1,
+    //     ease: "Linear.easeNone",
+    //   });
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
 
-  const isMobile = width <= 768;
+  const isMobile = width <= 999;
   function highlightNav() {
     gsap.to(".navBar", {
       // scale: 1.12,
@@ -201,7 +210,7 @@ function NavBar({ isScrolled }) {
                 Services
               </Link>
             </li>
-            <li className={style.navItem}>
+            <li className={`${style.navItem}`}>
               <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
                 <Link
                   to="/"
@@ -263,9 +272,10 @@ function NavBar({ isScrolled }) {
                 EN
               </Link>
             </li>
-
+            {/* 
             <li className={style.navItem}>
               <Button
+                id="contactButton"
                 Icon={ContactIcon}
                 label="Contact Us "
                 style={{
@@ -275,11 +285,25 @@ function NavBar({ isScrolled }) {
                   style.contactButton
                 } ${style.blue}`}
               />
-            </li>
+            </li> */}
           </ul>
-          <div className="nav-icon" onClick={handleClick}>
-            {/* <i className={click ? "fa fa-times" : "fa fa-bars"}></i> */}
-            <MenuIcon />
+          <div className="rightMost">
+            <Button
+              id="contactButton"
+              Icon={ContactIcon}
+              label="Contact Us "
+              style={{
+                backgroundColor: isNavHighlited ? "" : "#11ffee00",
+              }}
+              className={`${isNavHighlited ? "" : style.emptyButton} ${
+                style.contactButton
+              } ${style.blue}`}
+            />
+
+            <div className="nav-icon" onClick={handleClick}>
+              {/* <i className={click ? "fa fa-times" : "fa fa-bars"}></i> */}
+              <MenuIcon />
+            </div>
           </div>
         </div>
       </nav>

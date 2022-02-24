@@ -9,11 +9,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { RightCircleOutlined } from "@ant-design/icons";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-// NOTE: for arrows on bottom
-// import "./arrowsOnBottomOrTop.css";
-// NOTE: for hide scrollbar
-// import "./hideScrollbar.css";
-// import "./firstItemMargin.css";
 import HealthCareImg from "./healthCare2.jpg";
 import EducationImg from "./education.jpg";
 import FineTechImg from "./fineTech.jpg";
@@ -27,12 +22,6 @@ function Industries() {
         <h3>Industries</h3>
         <h1> WE advised over 800 clients across KSA from all industries </h1>
       </div>
-
-      {/* <div className={style.industryCards}> */}
-      {/* <Card title="Health Care"></Card>
-        <Card title="Health Care"></Card>
-        <Card title="Health Care"></Card> */}
-      {/* </div> */}
       <IndustryCards />
     </div>
   );
@@ -52,7 +41,7 @@ export function IndustryCards() {
 
   return (
     <>
-      <div style={{ height: "150vh" }}>
+      <div style={{ height: "100vh" }}>
         {/* <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}> */}
         <div>
           <ScrollMenu

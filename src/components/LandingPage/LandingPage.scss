@@ -69,7 +69,8 @@
   z-index: 1000;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  // transform: rotate(-90deg);
+  transform: translate(-50%, -50%) rotate(-90deg);
 }
 .phaseHeading {
   position: absolute;
@@ -84,6 +85,8 @@
   white-space: nowrap;
   height: 8rem;
   overflow: visible;
+  display: flex;
+  align-items: center;
 }
 .pagePart {
   width: 100%;
@@ -114,11 +117,13 @@
     display: flex;
     height: 100%;
     min-height: 100%;
-    background-color: inherit;
+    background: inherit;
     font-family: MyraidProReg;
     align-items: flex-end;
     // position: relative;
     padding: 4rem;
+
+    font-size: 1.2rem;
     // float: left;
     // z-index: 3;
   }
@@ -201,6 +206,9 @@
 }
 
 @media (max-width: 699px) {
+  .clock__dial {
+    width: 60%;
+  }
   .description {
     padding: 2rem !important;
   }
@@ -214,4 +222,68 @@
     // left: 0;
     // right: 0;
   }
+}
+
+.colors0 {
+  background: hsla(151, 66%, 33%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(151, 66%, 33%, 1) 0%,
+    hsla(151, 40%, 39%, 1) 0.5%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(151, 66%, 33%, 1) 0%,
+    hsla(151, 40%, 39%, 1) 0.5%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(151, 66%, 33%, 1) 0%,
+    hsla(151, 40%, 39%, 1) 0.5%
+  );
+
+  // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1c8a55", endColorstr="#3b8a64", GradientType=1 );
+}
+.colors1 {
+  background: #1c8a55;
+}
+.colors2 {
+  background: hsla(198, 57%, 31%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(198, 57%, 31%, 1) 0%,
+    hsla(198, 72%, 45%, 1) 0.5%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(198, 57%, 31%, 1) 0%,
+    hsla(198, 72%, 45%, 1) 0.5%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(198, 57%, 31%, 1) 0%,
+    hsla(198, 72%, 45%, 1) 0.5%
+  );
+
+  // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#22627d", endColorstr="#2196c7", GradientType=1 );
+}
+.colors3 {
+  background: #2196c7;
+}
+.colors4 {
+  background-color: #54c5d2;
+}
+
+.clock__dial__hour__circle {
+  fill-opacity: 0;
+}
+
+.transparent {
+  background-color: transparent;
 }

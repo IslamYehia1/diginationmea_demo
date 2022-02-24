@@ -1,0 +1,21 @@
+.footer {
+  background-color: #141414;
+  width: 100% !important;
+  height: 300px;
+  display: flex;
+  .columnHeading {
+    color: gray;
+  }
+  .firstColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .secondColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .thirdColumn {
+    display: flex;
+    flex-direction: column;
+  }
+}

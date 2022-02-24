@@ -8,10 +8,39 @@ class PhaseTitle extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.currentIndex === 0) {
+    }
+    if (this.props.currentIndex !== prevProps.currentIndex) {
+      gsap.set(this.titleList2[this.props.currentIndex], { autoAlpha: 1 });
+      gsap
+        .timeline({})
+        .rotateOut(this.titleListSplit[prevProps.currentIndex].words, {
+          y: 20,
+          rotationX: -100,
+          transformOrigin: "100% 100%",
+        })
+        .set(this.titleListSplit[prevProps.currentIndex].words, {
+          clearProps: "all",
+        })
+        .set(this.titleList2[prevProps.currentIndex], { autoAlpha: 0 })
+
+        .rotateIn(
+          this.titleListSplit[this.props.currentIndex].words,
+          {
+            rotationX: 90,
+            transformOrigin: "100% 0",
+            ease: "back(2.3)",
+          },
+          "-=0.38"
+        );
+    }
+  }
   componentDidMount() {
     var i = -1;
-
-    const titleListSplit = Splitting({
+    this.titleList2 = gsap.utils.toArray(`.${style.phasesList} li`);
+    gsap.set(this.titleList2[this.props.currentIndex], { autoAlpha: 1 });
+    this.titleListSplit = Splitting({
       /* target: String selector, Element, Array of Elements, or NodeList */
       target: "[data-splitting]",
       /* by: String of the plugin name */
@@ -19,7 +48,7 @@ class PhaseTitle extends React.Component {
       /* key: Optional String to prefix the CSS variables */
       key: null,
     });
-    const titleList2 = gsap.utils.toArray(`.${style.phasesList} li`);
+    // gsap.set(this.titleList2[this.props.currentIndex], { autoAlpha: 1 });
 
     gsap.registerEffect({
       name: "rotateIn",
@@ -103,6 +132,7 @@ class PhaseTitle extends React.Component {
             duration: 0.45,
             autoAlpha: 0,
             ease: "none",
+
             stagger: {
               amount: 0.02,
             },
@@ -113,45 +143,12 @@ class PhaseTitle extends React.Component {
         return tl;
       },
     });
-
-    const mainTimeline = gsap.timeline({ repeat: -1 });
-    gsap.set(titleList2[0], { autoAlpha: 1 });
-    gsap.effects.rotateIn(titleListSplit[0].words, {
-      rotationX: 90,
-      transformOrigin: "100% 0",
-      ease: "back(2.3)",
-    });
-    titleListSplit.forEach((element, index) => {
-      gsap.set(element.el, { autoAlpha: 1 });
-      const titlesTl = gsap.timeline({});
-
-      titlesTl
-        .rotateOut(
-          element.words,
-          {
-            y: 20,
-            rotationX: -100,
-            transformOrigin: "100% 100%",
-          },
-          "+3.90"
-        )
-        .rotateIn(
-          titleListSplit[(index + 1) % titleListSplit.length].words,
-          {
-            rotationX: 90,
-            transformOrigin: "100% 0",
-            ease: "back(2.3)",
-          },
-          "-=0.38"
-        );
-      mainTimeline.add(titlesTl, index * 5);
-    });
   }
   render() {
     return (
       <div className={`${this.props.className} ${style.wrap}`}>
         <ul className={style.phasesList}>
-          <li data-splitting>Digital presence?</li>
+          <li data-splitting>Digital presence</li>
           <li data-splitting>Isolated </li>
           <li data-splitting>Integrated </li>
           <li data-splitting>Synchronized </li>

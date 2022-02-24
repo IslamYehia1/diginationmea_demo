@@ -4,13 +4,14 @@
   margin: 0;
   padding: 0;
   transform-style: perserve-3d;
-
+  z-index: 1000;
   li {
     grid-area: 1 / 1;
     user-select: none;
     visibility: hidden;
     text-align: center;
     text-transform: uppercase;
+    visibility: hidden;
   }
 }
 .wrap {
