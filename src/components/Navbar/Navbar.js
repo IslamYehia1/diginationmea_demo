@@ -82,60 +82,57 @@ function NavBar({ isScrolled }) {
   }
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
-    // just to fix the jitter - weird hack
-    // gsap
-    //   .timeline({ repeat: -1, repeatDelay: 3, yoyo: true })
-
-    //   .to("#contactButton", {
-    //     duration: 1.2,
-    //     scale: 1.1,
-    //     ease: "Linear.easeNone",
-    //   });
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
 
   const isMobile = width <= 999;
-  function highlightNav() {
-    gsap.to(".navBar", {
-      // scale: 1.12,
-      backgroundColor: "white",
-      borderBottom: "1px solid #d4e0e6",
-      color: "#141414",
-      duration: 0.3,
-      paused: false,
-      ease: "power3.out",
-    });
+  // function highlightNav() {
+  //   gsap.to(".navBar", {
+  //     // scale: 1.12,
+  //     backgroundColor: "white",
+  //     borderBottom: "1px solid #d4e0e6",
+  //     color: "#333",
+  //     duration: 0.3,
+  //     paused: false,
+  //     ease: "power3.out",
+  //   });
+  // }
+  // function unHighlightNav() {
+  //   gsap.to(".navBar", {
+  //     backgroundColor: "transparent",
+  //     borderBottom: "none",
+  //     color: "white",
+  //     duration: 0.3,
+  //     paused: false,
+  //     ease: "power3.out",
+  //   });
+  // }
+  // const handleMouseEnter = useCallback(() => {
+  //   setIsNavHighlited(true);
+  // });
+  // const handleMouseLeave = useCallback(() => {
+  //   if (!isScrolled && !click) setIsNavHighlited(false);
+  // });
+  // useEffect(() => {
+  //   if (isNavHighlited) highlightNav();
+  //   if (!isNavHighlited) unHighlightNav();
+  // }, [isNavHighlited]);
+  // useEffect(() => {
+  //   if (isScrolled || click) setIsNavHighlited(true);
+  //   if (!isScrolled && !click) setIsNavHighlited(false);
+  // }, [isScrolled, click]);
+  function toggleOverlay() {
+    let overlay = document.querySelector(".overlay");
+    let overlayState = overlay.style.display;
+    if (overlay)
+      overlay.style.display = overlayState === "block" ? "none" : "block";
   }
-  function unHighlightNav() {
-    gsap.to(".navBar", {
-      backgroundColor: "transparent",
-      borderBottom: "none",
-      color: "white",
-      duration: 0.3,
-      paused: false,
-      ease: "power3.out",
-    });
-  }
-  const handleMouseEnter = useCallback(() => {
-    setIsNavHighlited(true);
-  });
-  const handleMouseLeave = useCallback(() => {
-    if (!isScrolled && !click) setIsNavHighlited(false);
-  });
-  useEffect(() => {
-    if (isNavHighlited) highlightNav();
-    if (!isNavHighlited) unHighlightNav();
-  }, [isNavHighlited]);
-  useEffect(() => {
-    if (isScrolled || click) setIsNavHighlited(true);
-    if (!isScrolled && !click) setIsNavHighlited(false);
-  }, [isScrolled, click]);
   useEffect(() => {
     console.log(isMobile);
     if (click) {
-      setIsNavHighlited(true);
+      // setIsNavHighlited(true);
       gsap.to(".nav-menu", {
         duration: 0.5,
         scaleY: 1,
@@ -169,15 +166,12 @@ function NavBar({ isScrolled }) {
         data-scroll-sticky
         data-scroll-target=".App"
         data-scroll
-        onMouseLeave={isScrolled || click ? undefined : handleMouseLeave}
-        onMouseEnter={isScrolled || click ? undefined : handleMouseEnter}
+        // onMouseLeave={isScrolled || click ? undefined : handleMouseLeave}
+        // onMouseEnter={isScrolled || click ? undefined : handleMouseEnter}
       >
         <div className={style.navItems}>
           <Link to="/">
-            <img
-              src={isNavHighlited ? NormalLogo : WhiteLogo}
-              className={`${style.logo} whiteLogo`}
-            />
+            <img src={NormalLogo} className={`${style.logo} whiteLogo`} />
           </Link>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className={style.navItem}>
@@ -211,7 +205,13 @@ function NavBar({ isScrolled }) {
               </Link>
             </li>
             <li className={`${style.navItem}`}>
-              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+              <Dropdown
+                onVisibleChange={() => {
+                  toggleOverlay();
+                }}
+                overlayStyle={overlayStyle}
+                overlay={MenuOverlay}
+              >
                 <Link
                   to="/"
                   className={`${style.industry}`}
@@ -222,7 +222,13 @@ function NavBar({ isScrolled }) {
               </Dropdown>
             </li>
             <li className={style.navItem}>
-              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+              <Dropdown
+                onVisibleChange={() => {
+                  toggleOverlay();
+                }}
+                overlayStyle={overlayStyle}
+                overlay={MenuOverlay}
+              >
                 <Link
                   to="/"
                   className={`${style.industry}`}
@@ -233,7 +239,13 @@ function NavBar({ isScrolled }) {
               </Dropdown>
             </li>
             <li className={style.navItem}>
-              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+              <Dropdown
+                onVisibleChange={() => {
+                  toggleOverlay();
+                }}
+                overlayStyle={overlayStyle}
+                overlay={MenuOverlay}
+              >
                 <Link
                   to="/"
                   className={`${style.industry}`}
@@ -244,7 +256,13 @@ function NavBar({ isScrolled }) {
               </Dropdown>
             </li>
             <li className={style.navItem}>
-              <Dropdown overlayStyle={overlayStyle} overlay={MenuOverlay}>
+              <Dropdown
+                onVisibleChange={() => {
+                  toggleOverlay();
+                }}
+                overlayStyle={overlayStyle}
+                overlay={MenuOverlay}
+              >
                 <Link
                   to="/"
                   className={`${style.industry}`}
@@ -295,9 +313,7 @@ function NavBar({ isScrolled }) {
               style={{
                 backgroundColor: isNavHighlited ? "" : "#11ffee00",
               }}
-              className={`${isNavHighlited ? "" : style.emptyButton} ${
-                style.contactButton
-              } ${style.blue}`}
+              className={` ${style.contactButton} ${style.blue}`}
             />
 
             <div className="nav-icon" onClick={handleClick}>

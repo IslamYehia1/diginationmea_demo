@@ -1,0 +1,239 @@
+// .lineContainer {
+//   height: 100vh;
+// }
+
+.services {
+  //   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1c8a55", endColorstr="#2196c7", GradientType=1 );
+  min-height: 100%;
+  // min-height: 280vh;
+  margin-bottom: 10%;
+  // padding-left: 10rem;
+  display: flex;
+  // flex-direction: column;
+  float: none;
+  img {
+    object-fit: contain;
+    // opacity: 0;
+  }
+}
+
+.servicesTitle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 10rem;
+  h1 {
+    margin-bottom: 15%;
+    color: #333;
+    font-family: "Oswald", sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    max-width: 100%;
+    line-height: 1.1;
+  }
+  //   background-color: #141414;
+  & > h3 {
+    margin-bottom: 1%;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#139c8e),
+      to(#0ce162)
+    );
+    background-image: linear-gradient(90deg, #139c8e, #0ce162);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.gradientText {
+  height: 10rem;
+  h2 {
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#139c8e),
+      to(#0ce162)
+    );
+    background-image: linear-gradient(90deg, #139c8e, #0ce162);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  // svg {
+  //   display: block;
+  // }
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    // justify-content: space-between;
+    // min-height: 250px;
+    height: 7rem;
+    overflow-y: hidden;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    h2 {
+      font-size: 1.8rem;
+      color: rgb(165, 165, 165);
+      font-family: "MyraidProSemiBold";
+    }
+    p {
+      opacity: 0;
+    }
+  }
+}
+.servicesSolid {
+  height: 100%;
+  width: 50%;
+}
+.servicesImg {
+  width: 100%;
+  height: 100%;
+  img {
+    height: 50rem;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.servicesContainer {
+  display: flex;
+  width: 100%;
+  // min-height: 150vh;
+  padding-left: 10rem;
+  height: 70rem;
+  padding-top: 16%;
+}
+.lineColumn {
+  min-height: 100%;
+  float: none;
+  margin-right: 100px;
+}
+.line {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  width: 1px;
+  //   background-color: hsla(0, 0%, 100%, 0.05);
+  background-color: #d4e0e6;
+  float: none;
+  .pinnedLine {
+    display: block;
+    margin: 0px;
+    //   inset: 0px 0px 2544px;
+    position: absolute;
+    flex-basis: auto;
+    overflow: visible;
+    box-sizing: border-box;
+    width: 1px;
+    min-height: 100%;
+  }
+}
+
+.activeLine {
+  position: absolute;
+  height: 75px;
+  //   transform: translate(0px, 187.6px);
+  margin: 0px;
+  max-width: 1px;
+  width: 2px;
+  max-height: 128px;
+  padding: 0px;
+  background-color: #1c8a55;
+  //   background-image: -webkit-gradient(
+  //     linear,
+  //     left top,
+  //     right top,
+  //     from(#139c8e),
+  //     to(#0ce162)
+  //   );
+  //   background-image: linear-gradient(90deg, #139c8e, #0ce162);
+  //   -webkit-background-clip: text;
+  //   background-clip: text;
+  //   -webkit-text-fill-color: transparent;
+  float: none;
+}
+
+@media (min-width: 700px) and (max-width: 1199px) {
+  // .card {
+  //   min-width: 50%;
+  // }
+  .card:first-child {
+    margin-left: 4rem;
+  }
+  .servicesContainer {
+    padding-left: 4rem;
+  }
+  .servicesTitle {
+    padding-right: 4rem;
+    padding-left: 4rem;
+    h1 {
+      max-width: 70%;
+    }
+  }
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+  .solutionCard:first-child {
+    margin-left: 1.3333rem;
+  }
+  .servicesTitle {
+    padding-right: 1.3333rem;
+    padding-left: 1.3333rem;
+    width: 100%;
+    max-width: 100%;
+    h1 {
+      font-size: 3.33333rem;
+      max-width: 100%;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  .servicesContainer {
+    padding-left: 3.33333rem;
+  }
+}
+@media (max-width: 699px) {
+  .solutionCard {
+    min-width: 80%;
+    // margin-right: 10%;
+  }
+  .industryCards {
+    gap: 5%;
+  }
+  .servicesTitle {
+    max-width: 100%;
+    width: 100%;
+    padding-right: 1.3333rem;
+    padding-left: 1.3333rem;
+  }
+  .servicesTitle h1 {
+    max-width: 100%;
+    margin-bottom: 20%;
+    font-size: 2.66667rem;
+    width: 100%;
+  }
+  .servicesContainer {
+    padding-left: 1.3333rem;
+  }
+}
+
+@media (max-width: 499px) {
+  .solutionCard:first-child {
+    margin-left: 1.3333rem;
+  }
+  .servicesTitle h1 {
+    font-size: 2.66667rem;
+  }
+}

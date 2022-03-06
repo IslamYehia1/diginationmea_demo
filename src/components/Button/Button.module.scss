@@ -9,7 +9,7 @@
   z-index: 2;
   //   border: 2px solid;
   padding: 10px;
-  width: 200px;
+  width: 100%;
   height: 50px;
   display: flex;
   line-height: 3;
@@ -27,7 +27,7 @@
   }
 
   &:hover {
-    color: #141414;
+    color: white;
   }
 }
 *::before,
@@ -42,7 +42,7 @@
   }
   &::before {
     height: 50px;
-    width: 200px;
+    width: 100%;
     content: "";
     position: absolute;
     left: 0px;

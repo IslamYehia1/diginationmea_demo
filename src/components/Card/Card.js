@@ -10,9 +10,13 @@ import {
   SettingOutlined,
   ArrowRightOutlined,
 } from "@ant-design/icons";
+import { VisibilityContext } from "react-horizontal-scrolling-menu";
 
 const { Meta } = Card;
-function IndustryCard({ title, description, img }) {
+function IndustryCard({ title, description, img, itemId }) {
+  const visibility = React.useContext(VisibilityContext);
+  const visible = visibility.isItemVisible(itemId);
+  // console.log(visible);
   return (
     <div className={style.card}>
       <div className={style.imgContainer}>
@@ -23,7 +27,7 @@ function IndustryCard({ title, description, img }) {
           <Button
             label="Use cases"
             Icon={ArrowRightOutlined}
-            className={`${style.contactButton} ${style.blue}`}
+            className={`${style.industryCardBtn} ${style.blue}`}
           />
         </div>
       </div>

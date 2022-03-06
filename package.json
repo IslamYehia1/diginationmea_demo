@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.4.3",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -26,6 +25,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "analyze": "cross-env REACT_APP_INTERACTIVE_ANALYZE=1 npm run build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,5 +45,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^6.4.3",
+    "cross-env": "^7.0.3",
+    "webpack-bundle-analyzer": "^4.5.0"
   }
 }
