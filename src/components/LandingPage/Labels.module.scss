@@ -1,0 +1,27 @@
+.labelsList {
+  list-style: none;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  transform-style: perserve-3d;
+  z-index: 1000;
+  & * {
+    // background-clip: text;
+    font-family: inherit;
+
+    color: #1c8a55;
+    // background-image: linear-gradient(90deg, #139c8e, #0ce162);
+    // font-size: 1rem;
+  }
+  & > * {
+    grid-area: 1 / 1;
+    user-select: none;
+    visibility: hidden;
+    text-align: left;
+    // text-transform: uppercase;
+    visibility: hidden;
+  }
+}
+.wrap {
+  transform-style: perserve-3d;
+}

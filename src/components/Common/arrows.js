@@ -30,7 +30,7 @@ function Arrow({ children, disabled, onClick }) {
   );
 }
 
-export function LeftArrow() {
+export function LeftArrow({ className }) {
   const {
     isFirstItemVisible,
     scrollPrev,
@@ -50,19 +50,21 @@ export function LeftArrow() {
 
   return (
     <Arrow disabled={disabled} onClick={() => scrollPrev()}>
-      <div class="chevron-d leftNavigationCircle">
+      <div class={`chevron-d leftNavigationCircle ${className}`}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
           <path
             d="M27.5 2C41.6 2 53 13.4 53 27.5S41.6 53 27.5 53 2 41.6 2 27.5 13.4 2 27.5 2M27.5 0C12.3 0 0 12.3 0 27.5S12.3 55 27.5 55 55 42.7 55 27.5 42.7 0 27.5 0L27.5 0z"
-            fill="#000"
+            fill="currentColor"
           />
           <polygon
             class="arrow"
-            points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7 "
+            points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7"
+            fill="currentColor"
           />
           <polygon
             class="arrow-2"
-            points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7 "
+            points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7"
+            fill="currentColor"
           />
         </svg>
       </div>
@@ -70,7 +72,7 @@ export function LeftArrow() {
   );
 }
 
-export function RightArrow() {
+export function RightArrow({ className }) {
   const { isLastItemVisible, scrollNext, visibleItemsWithoutSeparators } =
     React.useContext(VisibilityContext);
   const [disabled, setDisabled] = React.useState(
@@ -89,7 +91,7 @@ export function RightArrow() {
         scrollNext();
       }}
     >
-      <div class="chevron-d rightNavigationCircle">
+      <div class={`chevron-d rightNavigationCircle ${className}`}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
           <path
             d="M27.5 2C41.6 2 53 13.4 53 27.5S41.6 53 27.5 53 2 41.6 2 27.5 13.4 2 27.5 2M27.5 0C12.3 0 0 12.3 0 27.5S12.3 55 27.5 55 55 42.7 55 27.5 42.7 0 27.5 0L27.5 0z"

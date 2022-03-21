@@ -7,6 +7,10 @@ import { ReactComponent as Arrow } from "../../SVG/topRightArrow.svg";
 import useDrag from "../Common/useDrag";
 import { LeftArrow, RightArrow } from "../Common/arrows";
 import PlanetImg from "../Images/planet.jpg";
+import { ReactComponent as AiIcon } from "../../SVG/ai.svg";
+import { ReactComponent as ChipIcon } from "../../SVG/chip.svg";
+import { ReactComponent as ApplicationIcon } from "../../SVG/application.svg";
+import { ReactComponent as InfrastructureIcon } from "../../SVG/infrastructure.svg";
 function Solutions() {
   useEffect(() => {
     gsap.utils.toArray(`.${style.solutionCard}`).forEach((card) => {
@@ -73,8 +77,8 @@ function Solutions() {
         onMouseDown={() => dragStart}
         onMouseUp={() => dragStop}
         onMouseMove={handleDrag}
-        LeftArrow={<LeftArrow></LeftArrow>}
-        RightArrow={RightArrow}
+        LeftArrow={<LeftArrow className={style.leftArrow} />}
+        RightArrow={<RightArrow className={style.rightArrow} />}
         transitionBehavior="smooth"
         itemClassName={style.solutionCard}
         // onWheel={onWheel}
@@ -84,51 +88,72 @@ function Solutions() {
       >
         <div itemId="0" className={style.cardContainer}>
           <Arrow className={style.arrow} />
-          <ul>
-            <li>Low-Code Applications</li>
-            <li>Custom Applications</li>
-            <li>Communication-Enabled Business</li>
-            <li>Enterprise Content Management</li>
-            <li>Application Integration</li>
-          </ul>
-          <div className={style.cardTitle}>
-            <h2 className={style.normalTitle}>Business Application</h2>
-            <h3 className={style.coloredTitle}>Business Application</h3>
+          <div className={style.cardWrapper}>
+            <div className={style.cardHeading}>
+              <ApplicationIcon />
+              <div className={style.cardTitle}>
+                <h2 className={style.normalTitle}>Business Application</h2>
+                <h3 className={style.coloredTitle}>Business Application</h3>
+              </div>
+            </div>
+
+            <ul>
+              <li>Low-Code Applications</li>
+              <li>Custom Applications</li>
+              <li>Communication-Enabled Business</li>
+              <li>Enterprise Content Management</li>
+              <li>Application Integration</li>
+            </ul>
           </div>
         </div>
         <div itemId="1" className={style.cardContainer}>
           <Arrow className={style.arrow} />
-          <ul>
-            <li>Data Integration</li>
-            <li>Data Virtualization</li>
-            <li>Reporting & Analytics</li>
-          </ul>
-          <div className={style.cardTitle}>
-            <h2 className={style.normalTitle}>Business Intelligence</h2>
-            <h3 className={style.coloredTitle}>Business Intelligence</h3>
+          <div className={style.cardWrapper}>
+            <div className={style.cardHeading}>
+              <ChipIcon />
+              <div className={style.cardTitle}>
+                <h2 className={style.normalTitle}>Business Intelligence</h2>
+                <h3 className={style.coloredTitle}>Business Intelligence</h3>
+              </div>
+            </div>
+            <ul>
+              <li>Data Integration</li>
+              <li>Data Virtualization</li>
+              <li>Reporting & Analytics</li>
+            </ul>
           </div>
         </div>
         <div itemId="2" className={style.cardContainer}>
           <Arrow className={style.arrow} />
-          <ul>
-            <li>Robotic Process Automation</li>
-            <li>AI Chatbots</li>
-            <li>Advanced Analytics</li>
-          </ul>
-          <div className={style.cardTitle}>
-            <h2 className={style.normalTitle}>AI Solutions</h2>
-            <h3 className={style.coloredTitle}>AI Solutions</h3>
+          <div className={style.cardWrapper}>
+            <div className={style.cardHeading}>
+              <AiIcon />
+              <div className={style.cardTitle}>
+                <h2 className={style.normalTitle}>AI Solutions</h2>
+                <h3 className={style.coloredTitle}>AI Solutions</h3>
+              </div>
+            </div>
+            <ul>
+              <li>Robotic Process Automation</li>
+              <li>AI Chatbots</li>
+              <li>Advanced Analytics</li>
+            </ul>
           </div>
         </div>
         <div itemId="3" className={style.cardContainer}>
           <Arrow className={style.arrow} />
-          <ul>
-            <li>Desktop Virtualization</li>
-            <li>Identity Management / SSO</li>
-          </ul>
-          <div className={style.cardTitle}>
-            <h2 className={style.normalTitle}>Infrastructure</h2>
-            <h3 className={style.coloredTitle}>Infrastructure</h3>
+          <div className={style.cardWrapper}>
+            <div className={style.cardHeading}>
+              <InfrastructureIcon />
+              <div className={style.cardTitle}>
+                <h2 className={style.normalTitle}>Infrastructure</h2>
+                <h3 className={style.coloredTitle}>Infrastructure</h3>
+              </div>
+            </div>
+            <ul>
+              <li>Desktop Virtualization</li>
+              <li>Identity Management / SSO</li>
+            </ul>
           </div>
         </div>
       </ScrollMenu>

@@ -1,15 +1,15 @@
-import LandingPage from "../../components/LandingPage/LandingPage";
+import TransformationStory from "../../components/TransformationStory/TransformationStory";
 import Industries from "../../components/Industries/Industries";
 import PageFooter from "../../components/Footer/Footer";
 import Solutions from "../../components/Solutions/Solutions";
 import Services from "../../components/Services/Services";
-import TopPage from "../../components/TopPage/TopPage";
+import LandingPage from "../../components/LandingPage/LandingPage";
 function HomePage() {
   return (
     <>
       <div className="overlay" />
-      <TopPage />
       <LandingPage />
+      <TransformationStory />
       <Industries />
       <Solutions />
       <Services />

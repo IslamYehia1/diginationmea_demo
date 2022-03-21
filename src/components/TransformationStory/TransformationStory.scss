@@ -7,7 +7,8 @@
   min-height: 830px;
   // padding-top: 6.66667rem;
   padding-top: 7%;
-  top: -250px;
+  // top: -300px;
+  // top: -250px;
   box-sizing: border-box;
   background-color: transparent;
 }
@@ -21,6 +22,26 @@
   position: relative;
   border-radius: 20px;
   // z-index: 6;
+  .landingPage:before {
+    content: "";
+    position: absolute;
+    background: url(../../SVG/bg.svg) no-repeat 100% 100%;
+    background-image: url(../../SVG/bg.svg);
+    background-position-x: 100%;
+    background-position-y: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    pointer-events: none;
+    width: 900px;
+    height: 900px;
+    right: 0;
+    background-size: 100%;
+    bottom: 0;
+  }
 }
 .storyIntro {
   position: absolute;
@@ -29,9 +50,9 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-image: linear-gradient(90deg, #54c5d2, #1c8a55);
+  // background-image: linear-gradient(90deg, #54c5d2, #1c8a55);
   // background-image: linear-gradient(90deg, #139c8e, #0ce162);
-
+  background-color: #184543;
   display: flex;
   align-items: center;
   justify-content: flex-start;

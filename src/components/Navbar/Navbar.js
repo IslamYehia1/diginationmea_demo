@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useContext } from "react";
 import NormalLogo from "./LogoDigination.png";
 import WhiteLogo from "./whiteLogo.png";
 import style from "./Navbar.module.scss";
@@ -14,6 +14,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DropdownMenu from "../Dropdown/Dropdown";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "./customizations.scss";
+import { MyContext } from "../../App";
+
 gsap.registerPlugin(CustomEase);
 
 gsap.registerPlugin(ScrollTrigger);
@@ -65,10 +67,13 @@ function MenuOverlay() {
   );
 }
 
-function NavBar({ isScrolled }) {
+function NavBar() {
   const [click, setClick] = useState(false);
   const [isNavHighlited, setIsNavHighlited] = useState(false);
   const handleClick = () => setClick(!click);
+  const scrollRef = useContext(MyContext);
+  const [isScrolled, setIsScrolled] = useState();
+
   const Close = () => setClick(false);
   const overlayStyle = {
     width: "100%",
@@ -88,41 +93,41 @@ function NavBar({ isScrolled }) {
   }, []);
 
   const isMobile = width <= 999;
-  // function highlightNav() {
-  //   gsap.to(".navBar", {
-  //     // scale: 1.12,
-  //     backgroundColor: "white",
-  //     borderBottom: "1px solid #d4e0e6",
-  //     color: "#333",
-  //     duration: 0.3,
-  //     paused: false,
-  //     ease: "power3.out",
-  //   });
-  // }
-  // function unHighlightNav() {
-  //   gsap.to(".navBar", {
-  //     backgroundColor: "transparent",
-  //     borderBottom: "none",
-  //     color: "white",
-  //     duration: 0.3,
-  //     paused: false,
-  //     ease: "power3.out",
-  //   });
-  // }
-  // const handleMouseEnter = useCallback(() => {
-  //   setIsNavHighlited(true);
-  // });
-  // const handleMouseLeave = useCallback(() => {
-  //   if (!isScrolled && !click) setIsNavHighlited(false);
-  // });
-  // useEffect(() => {
-  //   if (isNavHighlited) highlightNav();
-  //   if (!isNavHighlited) unHighlightNav();
-  // }, [isNavHighlited]);
-  // useEffect(() => {
-  //   if (isScrolled || click) setIsNavHighlited(true);
-  //   if (!isScrolled && !click) setIsNavHighlited(false);
-  // }, [isScrolled, click]);
+  function highlightNav() {
+    gsap.to(".navBar", {
+      // scale: 1.12,
+      backgroundColor: "white",
+      borderBottom: "1px solid #d4e0e6",
+      color: "#333",
+      duration: 0.3,
+      paused: false,
+      ease: "power3.out",
+    });
+  }
+  function unHighlightNav() {
+    gsap.to(".navBar", {
+      backgroundColor: "transparent",
+      borderBottom: "none",
+      color: "white",
+      duration: 0.3,
+      paused: false,
+      ease: "power3.out",
+    });
+  }
+  const handleMouseEnter = useCallback(() => {
+    setIsNavHighlited(true);
+  });
+  const handleMouseLeave = useCallback(() => {
+    if (!isScrolled && !click) setIsNavHighlited(false);
+  });
+  useEffect(() => {
+    if (isNavHighlited) highlightNav();
+    if (!isNavHighlited) unHighlightNav();
+  }, [isNavHighlited]);
+  useEffect(() => {
+    if (isScrolled || click) setIsNavHighlited(true);
+    if (!isScrolled && !click) setIsNavHighlited(false);
+  }, [isScrolled, click]);
   function toggleOverlay() {
     let overlay = document.querySelector(".overlay");
     let overlayState = overlay.style.display;
@@ -132,7 +137,7 @@ function NavBar({ isScrolled }) {
   useEffect(() => {
     console.log(isMobile);
     if (click) {
-      // setIsNavHighlited(true);
+      setIsNavHighlited(true);
       gsap.to(".nav-menu", {
         duration: 0.5,
         scaleY: 1,
@@ -157,6 +162,27 @@ function NavBar({ isScrolled }) {
     }
   }, [click, isMobile]);
 
+  useEffect(() => {
+    ScrollTrigger.create({
+      trigger: ".App",
+      scroller: scrollRef,
+      start: "200px top",
+      endTrigger: ".App",
+      end: "bottom top",
+      onEnter: () => {
+        setIsScrolled(true);
+      },
+      onEnterBack: () => {
+        setIsScrolled(true);
+      },
+      onLeave: () => {
+        setIsScrolled(false);
+      },
+      onLeaveBack: () => {
+        setIsScrolled(false);
+      },
+    });
+  }, [scrollRef]);
   return (
     <div style={{ zIndex: 20 }}>
       <nav
@@ -166,12 +192,16 @@ function NavBar({ isScrolled }) {
         data-scroll-sticky
         data-scroll-target=".App"
         data-scroll
-        // onMouseLeave={isScrolled || click ? undefined : handleMouseLeave}
-        // onMouseEnter={isScrolled || click ? undefined : handleMouseEnter}
+        onMouseLeave={isScrolled || click ? undefined : handleMouseLeave}
+        onMouseEnter={isScrolled || click ? undefined : handleMouseEnter}
       >
         <div className={style.navItems}>
           <Link to="/">
+            {/* {!isNavHighlited ? ( */}
             <img src={NormalLogo} className={`${style.logo} whiteLogo`} />
+            {/* ) : ( */}
+            {/* <img src={WhiteLogo} className={`${style.logo} whiteLogo`} /> */}
+            {/* )} */}
           </Link>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className={style.navItem}>

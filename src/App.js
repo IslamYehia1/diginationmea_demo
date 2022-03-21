@@ -46,20 +46,51 @@ function App() {
       // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
       pinType: scrollRef.current.style.transform ? "transform" : "fixed",
     });
-    // temp("start");
-    // ScrollTrigger.create({
-    //   trigger: ".landingPage",
-    //   start: "top+=80px top",
-    //   // markers: true,
-    //   scroller: scrollRef.current,
-    //   onEnter: () => {
-    //     setIsNavScrolled(true);
-    //   },
+    const $img2 = document.querySelector(".image2");
+    const $logo = document.querySelector(".transition__logo");
+    const $frameBlack = document.querySelector(".page-transition__black");
+    const $frameRed = document.querySelector(".page-transition__red");
+    const $button = document.querySelector("#button");
 
-    //   onLeaveBack: () => {
-    //     setIsNavScrolled(false);
-    //   },
-    // });
+    let tltransition = gsap
+      .timeline({ paused: true })
+      .fromTo(
+        $frameRed,
+        { scaleX: 0 },
+        {
+          duration: 2.2,
+          scaleX: 1,
+          transformOrigin: "left",
+          ease: "Power4.easeInOut",
+        }
+      )
+      .fromTo(
+        $frameBlack,
+        { scaleX: 0 },
+        {
+          duration: 2.2,
+          scaleX: 1,
+          transformOrigin: "left",
+          ease: "Power4.easeInOut",
+        },
+        0.2
+      )
+      .fromTo(
+        $logo,
+        { xPercent: -100, autoAlpha: 0 },
+        { duration: 1.6, xPercent: 0, autoAlpha: 1, ease: "Power4.easeInOut" },
+        0.7
+      )
+      .set($frameRed, { scaleX: 0 })
+      .set($img2, { autoAlpha: 0 })
+      .to($frameBlack, {
+        duration: 2.2,
+        scaleX: 0,
+        transformOrigin: "right",
+        ease: "Power4.easeInOut",
+      })
+      .to($logo, { duration: 0.2, autoAlpha: 0 }, "-=1.2");
+
     setIsMounted(true);
   }, []);
 
@@ -91,6 +122,9 @@ function App() {
           </MyContext.Provider>
         </div>
       </BrowserRouter>
+      <div class="page-transition__red"></div>
+      <div class="page-transition__black"></div>
+      <div class="transition__logo">I'M LOGO</div>
     </>
   );
 }
