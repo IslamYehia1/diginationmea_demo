@@ -17,6 +17,30 @@
     url("./fonts/MyriadPro-Light.otf") format("truetype");
   font-weight: bold;
 }
+@font-face {
+  font-family: "MyraidProBold";
+  src: local("MyraidProLight"),
+    url("./fonts/MYRIADPRO-BOLD.OTF") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "GothamBold";
+  src: local("GothamBold"),
+    url("./fonts/Gotham-Font/Gotham-Black.otf") format("truetype");
+  font-weight: bold;
+}
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+.overlay {
+  z-index: 8;
+  background-color: black;
+  opacity: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: none;
+}
 .page-transition__black {
   position: absolute;
   left: 0;
@@ -48,6 +72,9 @@
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 1001;
+}
+.transitionDiv {
+  visibility: hidden;
 }
 .gradientText {
   h2 {
@@ -136,6 +163,9 @@ html.has-scroll-dragging {
 .c-scrollbar:hover {
   transform: scaleX(1.45);
 }
+[data-scroll-container] {
+  overflow-y: hidden !important;
+}
 .c-scrollbar:hover,
 .has-scroll-scrolling .c-scrollbar,
 .has-scroll-dragging .c-scrollbar {
@@ -153,17 +183,13 @@ html.has-scroll-dragging {
   margin: 2px;
   cursor: -webkit-grab;
   cursor: grab;
+  z-index: 10;
 }
 .has-scroll-dragging .c-scrollbar_thumb {
   cursor: -webkit-grabbing;
   cursor: grabbing;
 }
-.whiteLogo {
-  display: block;
-}
-.normalLogo {
-  display: none;
-}
+
 .ant-dropdown {
   box-shadow: none;
   // width: 100vw !important;
@@ -202,7 +228,7 @@ html.has-scroll-dragging {
 
 @media (min-width: 1800px) and (max-width: 1999px) {
   html {
-    font-size: 17px;
+    font-size: 16px;
   }
 }
 

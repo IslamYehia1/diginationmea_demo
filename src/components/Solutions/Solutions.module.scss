@@ -25,8 +25,8 @@
 .arrow {
   position: absolute;
   left: auto;
-  top: 30px;
-  right: 30px;
+  top: 15px;
+  right: 15px;
   bottom: auto;
 }
 .cardContainer {
@@ -35,52 +35,7 @@
   justify-content: space-between;
   height: 100%;
 }
-.solutionsHeading {
-  // padding: 5rem 0 0 10rem;
-  display: flex;
-  // min-height: 42rem;
-  // min-height: 768px;
-  height: 60vh;
 
-  .headingText {
-    // background-image: linear-gradient(90deg, #141414, #54c5d2);
-    background-color: #141414;
-    // background-color: #184543;
-    width: 80%;
-    // padding: 5rem 0 0 10rem;
-    padding: 5rem 10rem;
-  }
-  .headingImg {
-    width: 50%;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-  & h1 {
-    margin-bottom: 0;
-    font-family: "Oswald", sans-serif;
-    font-size: 4rem;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(#139c8e),
-      to(#0ce162)
-    );
-    background-image: linear-gradient(90deg, #139c8e, #0ce162);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  & h3 {
-    font-family: MyraidProSemiBold;
-    font-size: 1.4rem;
-
-    color: white;
-  }
-}
 .leftArrow {
   color: white;
   svg * {
@@ -108,11 +63,10 @@
   box-shadow: 0 2px 21px 0 rgba(0, 0, 0, 0.061);
   min-width: 23%;
   height: 80%;
-  // min-height: 275px;
-  // background-color: white;
-  // background-color: #e8f3fa;
-  // background-color: #eaf6ff;
-  background-color: #fcfcfc;
+  &:last-child {
+    margin-right: 5%;
+  }
+  background-color: #ffffff;
 
   //   border: 1px solid #e9e9e9;
   font-family: MyraidProReg;
@@ -130,7 +84,9 @@
     font-family: MyraidProReg;
     padding-left: 4px;
     margin-bottom: 0.6rem;
-    height: 80%;
+    height: 70%;
+    position: relative;
+    top: 10%;
   }
   ul li {
     margin-bottom: 3px;
@@ -155,6 +111,7 @@
     align-items: center;
     position: relative;
     padding-bottom: 2rem;
+    top: 20%;
     svg {
       width: 3.5rem;
       margin-right: 2rem;
@@ -170,17 +127,19 @@
     .coloredTitle {
       font-size: 1.4rem;
       line-height: 34px;
-      background-image: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        from(#139c8e),
-        to(#0ce162)
-      );
-      background-image: linear-gradient(90deg, #139c8e, #0ce162);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #00b295;
+      height: inherit;
+      // background-image: -webkit-gradient(
+      //   linear,
+      //   left top,
+      //   right top,
+      //   from(#139c8e),
+      //   to(#0ce162)
+      // );
+      // background-image: linear-gradient(90deg, #139c8e, #0ce162);
+      // -webkit-background-clip: text;
+      // background-clip: text;
+      // -webkit-text-fill-color: transparent;
     }
   }
 }
@@ -206,7 +165,7 @@ opacity: 1;
   .card:first-child {
     margin-left: 4rem;
   }
-  .solutionsHeading {
+  .headingText {
     padding-right: 4rem;
     padding-left: 4rem;
     h1 {
@@ -219,7 +178,7 @@ opacity: 1;
   .solutionCard:first-child {
     margin-left: 1.3333rem;
   }
-  .solutionsHeading {
+  .headingText {
     padding-right: 1.3333rem;
     padding-left: 1.3333rem;
     width: 100%;
@@ -240,13 +199,13 @@ opacity: 1;
   .industryCards {
     gap: 5%;
   }
-  .solutionsHeading {
+  .headingText {
     max-width: 100%;
     width: 100%;
     padding-right: 1.3333rem;
     padding-left: 1.3333rem;
   }
-  .solutionsHeading h1 {
+  .headingText h1 {
     max-width: 100%;
     margin-bottom: 20%;
     font-size: 2.66667rem;

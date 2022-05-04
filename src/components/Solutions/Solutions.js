@@ -10,8 +10,16 @@ import PlanetImg from "../Images/planet.jpg";
 import { ReactComponent as AiIcon } from "../../SVG/ai.svg";
 import { ReactComponent as ChipIcon } from "../../SVG/chip.svg";
 import { ReactComponent as ApplicationIcon } from "../../SVG/application.svg";
-import { ReactComponent as InfrastructureIcon } from "../../SVG/infrastructure.svg";
-function Solutions() {
+// import { ReactComponent as InfrastructureIcon } from "../../SVG/infrastructure.svg";
+import { ReactComponent as InfrastructureIcon } from "../../SVG/infrastructure_1.svg";
+import { ReactComponent as SolutionsIcon } from "../../SVG/solution.svg";
+import { ReactComponent as SolutionsIcon_1 } from "../../SVG/solution_1.svg";
+import SectionSeperator from "./SectionSeperator";
+import { ReactComponent as Software } from "../../SVG/software-development.svg";
+import { ReactComponent as BusinessIntelligenceIcon } from "../../SVG/business_application.svg";
+import { ReactComponent as AIIcon } from "../../SVG/ai_1.svg";
+
+function Solutions({ isHomeMounted }) {
   useEffect(() => {
     gsap.utils.toArray(`.${style.solutionCard}`).forEach((card) => {
       const q = gsap.utils.selector(card);
@@ -21,6 +29,14 @@ function Solutions() {
           y: -34,
           duration: 0.4,
         })
+        .fromTo(
+          q(`.${style.cardHeading}`),
+          { top: "20%", duration: 1.5 },
+          {
+            top: "10%",
+          },
+          "<"
+        )
         .to(
           q(`.${style.solutionCard} ul`),
           {
@@ -41,10 +57,18 @@ function Solutions() {
         .to(
           q(`.${style.coloredTitle}`),
           {
-            y: -40,
+            y: -45,
             duration: 0.4,
           },
           "-=0.4"
+        )
+        .to(
+          q(`.${style.cardHeading} svg`),
+          {
+            color: "#00b295",
+            // width: "2.5rem",
+          },
+          "<"
         );
       card.addEventListener("mouseenter", () => {
         hover.play();
@@ -63,16 +87,13 @@ function Solutions() {
       });
 
   return (
-    <div className={style.solutions} onMouseLeave={dragStop}>
-      <div className={style.solutionsHeading}>
-        <div className={style.headingText}>
-          <h3>Solutions</h3>
-          <h1>OUR IT SOLUTIONS</h1>
-        </div>
-        <div className={style.headingImg}>
-          <img src={PlanetImg} />
-        </div>
-      </div>
+    <div className={`${style.solutions}`} onMouseLeave={dragStop}>
+      <SectionSeperator
+        SectionImg={PlanetImg}
+        Icon={SolutionsIcon_1}
+        imgScrollTarget={style.solutions}
+        isHomeMounted={isHomeMounted}
+      />
       <ScrollMenu
         onMouseDown={() => dragStart}
         onMouseUp={() => dragStop}
@@ -86,76 +107,45 @@ function Solutions() {
         separatorClassName={style.cardsSeperator}
         scrollContainerClassName={style.cards}
       >
-        <div itemId="0" className={style.cardContainer}>
-          <Arrow className={style.arrow} />
-          <div className={style.cardWrapper}>
-            <div className={style.cardHeading}>
-              <ApplicationIcon />
-              <div className={style.cardTitle}>
-                <h2 className={style.normalTitle}>Business Application</h2>
-                <h3 className={style.coloredTitle}>Business Application</h3>
-              </div>
-            </div>
+        <SolutionCard
+          itemId="0"
+          Icon={Software}
+          title={"Business Application"}
+          listItems={[
+            "Low-Code Applications",
+            "Custom Applications",
+            "Communication-Enabled Business",
+            "Enterprise Content Management",
+            "Application Integration",
+          ]}
+        />
+        <SolutionCard
+          itemId="1"
+          Icon={BusinessIntelligenceIcon}
+          title={"Business Intelligence"}
+          listItems={[
+            "Data Integration",
+            "Data Virtualization",
+            "Reporting & Analytics",
+          ]}
+        />
 
-            <ul>
-              <li>Low-Code Applications</li>
-              <li>Custom Applications</li>
-              <li>Communication-Enabled Business</li>
-              <li>Enterprise Content Management</li>
-              <li>Application Integration</li>
-            </ul>
-          </div>
-        </div>
-        <div itemId="1" className={style.cardContainer}>
-          <Arrow className={style.arrow} />
-          <div className={style.cardWrapper}>
-            <div className={style.cardHeading}>
-              <ChipIcon />
-              <div className={style.cardTitle}>
-                <h2 className={style.normalTitle}>Business Intelligence</h2>
-                <h3 className={style.coloredTitle}>Business Intelligence</h3>
-              </div>
-            </div>
-            <ul>
-              <li>Data Integration</li>
-              <li>Data Virtualization</li>
-              <li>Reporting & Analytics</li>
-            </ul>
-          </div>
-        </div>
-        <div itemId="2" className={style.cardContainer}>
-          <Arrow className={style.arrow} />
-          <div className={style.cardWrapper}>
-            <div className={style.cardHeading}>
-              <AiIcon />
-              <div className={style.cardTitle}>
-                <h2 className={style.normalTitle}>AI Solutions</h2>
-                <h3 className={style.coloredTitle}>AI Solutions</h3>
-              </div>
-            </div>
-            <ul>
-              <li>Robotic Process Automation</li>
-              <li>AI Chatbots</li>
-              <li>Advanced Analytics</li>
-            </ul>
-          </div>
-        </div>
-        <div itemId="3" className={style.cardContainer}>
-          <Arrow className={style.arrow} />
-          <div className={style.cardWrapper}>
-            <div className={style.cardHeading}>
-              <InfrastructureIcon />
-              <div className={style.cardTitle}>
-                <h2 className={style.normalTitle}>Infrastructure</h2>
-                <h3 className={style.coloredTitle}>Infrastructure</h3>
-              </div>
-            </div>
-            <ul>
-              <li>Desktop Virtualization</li>
-              <li>Identity Management / SSO</li>
-            </ul>
-          </div>
-        </div>
+        <SolutionCard
+          itemId="2"
+          Icon={AIIcon}
+          title={"AI Solutions"}
+          listItems={[
+            "Robotic Process Automation",
+            "AI Chatbots",
+            "Advanced Analytics",
+          ]}
+        />
+        <SolutionCard
+          itemId="3"
+          Icon={InfrastructureIcon}
+          title={"Infrastructure"}
+          listItems={["Desktop Virtualization", "Identity Management / SSO"]}
+        />
       </ScrollMenu>
     </div>
   );

@@ -16,6 +16,7 @@
     "react-horizontal-scrolling-menu": "^2.7.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-transition-group": "^4.4.2",
     "rsuite": "^5.6.0",
     "sass": "^1.49.7",
     "splitting": "^1.0.6",

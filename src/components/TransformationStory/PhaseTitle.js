@@ -13,27 +13,28 @@ class PhaseTitle extends React.Component {
     }
     if (this.props.currentIndex !== prevProps.currentIndex) {
       gsap.set(this.titleList2[this.props.currentIndex], { autoAlpha: 1 });
-      gsap
-        .timeline({})
-        .rotateOut(this.titleListSplit[prevProps.currentIndex].words, {
+      const tl = gsap.timeline({});
+      if (prevProps.currentIndex >= 0) {
+        tl.rotateOut(this.titleListSplit[prevProps.currentIndex].words, {
           y: 20,
           rotationX: -100,
           transformOrigin: "100% 100%",
         })
-        .set(this.titleListSplit[prevProps.currentIndex].words, {
-          clearProps: "all",
-        })
-        .set(this.titleList2[prevProps.currentIndex], { autoAlpha: 0 })
+          .set(this.titleListSplit[prevProps.currentIndex].words, {
+            clearProps: "all",
+          })
+          .set(this.titleList2[prevProps.currentIndex], { autoAlpha: 0 });
+      }
 
-        .rotateIn(
-          this.titleListSplit[this.props.currentIndex].words,
-          {
-            rotationX: 90,
-            transformOrigin: "100% 0",
-            ease: "back(2.3)",
-          },
-          "-=0.38"
-        );
+      tl.rotateIn(
+        this.titleListSplit[this.props.currentIndex].words,
+        {
+          rotationX: 90,
+          transformOrigin: "100% 0",
+          ease: "back(2.3)",
+        },
+        "-=0.38"
+      );
     }
   }
   componentDidMount() {
@@ -148,6 +149,7 @@ class PhaseTitle extends React.Component {
     return (
       <div className={`${this.props.className} ${style.wrap}`}>
         <ul className={style.phasesList}>
+          <li data-splitting>Your journy</li>
           <li data-splitting>Digital presence</li>
           <li data-splitting>Isolated </li>
           <li data-splitting>Integrated </li>

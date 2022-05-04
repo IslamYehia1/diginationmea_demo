@@ -1,20 +1,16 @@
 import style from "./LandingPage.module.scss";
-import Button from "../Button/Button";
-import { ArrowRightOutlined } from "@ant-design/icons";
+import { ReactComponent as ArrowRightOutlined } from "../../SVG/right-arrow.svg";
 import ArrowButton from "../ArrowButton/ArrowButton";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/all";
 import { useEffect, useContext } from "react";
-import { MyContext } from "../../App";
 import { ReactComponent as Circles } from "../../SVG/circles.svg";
 gsap.registerPlugin(TextPlugin);
-
-function LandingPage() {
-  const scrollRef = useContext(MyContext);
-  var i = 0;
+function LandingPage({ isHomeMounted }) {
   const messageBodyStr = [
-    "Extensive experience of Low code",
+    // "Extensive experience of Low code",
+    "Low code",
     "Business Intelligence",
     "Business Processes",
     "Enterprise Content Management",
@@ -24,15 +20,6 @@ function LandingPage() {
   const mainTimeline = gsap.timeline({ repeat: -1 });
   // mainTimeline.timeScale(2);
   useEffect(() => {
-    // ScrollTrigger.create({
-    //   trigger: `.firstPage`,
-    //   start: "top top",
-    //   end: "bottom+=60% bottom",
-    //   pin: true,
-    //   pinSpacing: false,
-    //   scroller: scrollRef,
-    //   // scroller: scrollRef,
-
     const speed = 10;
     const endFlashSpeed = 0.3;
     const character = "|";
@@ -76,54 +63,93 @@ function LandingPage() {
 
     // });
   }, []);
+  useEffect(() => {
+    if (!isHomeMounted) return;
+    gsap.set(`.${style.landingBackground}`, {
+      autoAlpha: 1,
+    });
+    const tween1 = gsap.to(`.backgroundCircles`, {
+      rotation: 90,
+      scrollTrigger: {
+        id: "backgroundCircles",
+        trigger: `.${style.landingBackground}`,
+        start: () => "top top",
+        end: () => "bottom top",
+        scrub: true,
+      },
+    });
+
+    const tween2 = gsap.to(`.landingBackground`, {
+      autoAlpha: 0,
+      scrollTrigger: {
+        id: "landingBackground",
+        trigger: `.${style.landingBackground}`,
+        start: () => "top top",
+        end: () => "+=80%",
+        scrub: true,
+        pin: ".landingBackground",
+        // markers: true,
+        pinSpacing: false,
+      },
+    });
+    return () => {
+      ScrollTrigger.getById("backgroundCircles").kill();
+      ScrollTrigger.getById("landingBackground").kill();
+    };
+  }, [isHomeMounted]);
   return (
-    <div className={`${style.landingPage} firstPage`}>
-      <div className={style.topGradient}>
-        {/* <canvas></canvas> */}
-        <Circles />
-      </div>
-      <div className={style.landingHeading}>
-        <h1>Your partner for digital transformation</h1>
-        {/* <h1>Digital transformation</h1> */}
-        <div className={`${style.titleRow} ${style.labels}`}>
-          <h1 className={style.changingTextLabel}>With our</h1>
-          {/* <svg viewBox="0 0 495 10" xmlns="http://www.w3.org/2000/svg">
-            <defs></defs> */}
-          <div className={style.changingTextWrapper}>
-            <h1
-              // height="100%"
-              // fill="#000"
-              // x="50%"
-              // y="50%"
-              // dominant-baseline="middle"
-              // text-anchor="start"
-              id="myText"
-              className={style.changingText}
-            ></h1>
-          </div>
-
-          {/* </svg> */}
-          {/* <Labels /> */}
+    <div className={`${style.landingPageWrapper} firstPage`}>
+      <div
+        className={`${style.landingBackground} landingBackground`}
+        // data-scroll-sticky
+        // data-scroll-target="[data-scroll-container]"
+        // data-scroll
+      ></div>
+      <div className={style.landingPage}>
+        <div className={style.topGradient}>
+          {/* <canvas></canvas> */}
+          <Circles className="backgroundCircles" />
         </div>
-        <p className={style.description}>
-          We are a regional technology enterprise specialized in providing
-          Digital Transformation
-        </p>
-        <p className={style.description}>
-          and complex technology solutions to a wide array of industries and
-          businesses.
-        </p>
+        <div className={style.landingHeading}>
+          <h1>Your partner for digital transformation</h1>
+          {/* <h1>Digital transformation</h1> */}
+          <div className={`${style.titleRow} ${style.labels}`}>
+            <h1 className={style.changingTextLabel}>With our</h1>
+            {/* <svg viewBox="0 0 495 10" xmlns="http://www.w3.org/2000/svg">
+            <defs></defs> */}
+            <div className={style.changingTextWrapper}>
+              <h1
+                // height="100%"
+                // fill="#000"
+                // x="50%"
+                // y="50%"
+                // dominant-baseline="middle"
+                // text-anchor="start"
+                id="myText"
+                className={style.changingText}
+              ></h1>
+            </div>
 
-        <ArrowButton
-          Icon={ArrowRightOutlined}
-          label="Contact Us "
-          style={
-            {
-              // backgroundColor: "#11ffee00",
+            {/* </svg> */}
+            {/* <Labels /> */}
+          </div>
+          <p className={style.description}>
+            We are a regional technology enterprise specialized in providing
+            Digital Transformation and complex technology solutions to a wide
+            array of industries and businesses.
+          </p>
+
+          <ArrowButton
+            Icon={ArrowRightOutlined}
+            label="Services "
+            style={
+              {
+                // backgroundColor: "#11ffee00",
+              }
             }
-          }
-          className={`${style.button}`}
-        />
+            className={`${style.button}`}
+          />
+        </div>
       </div>
     </div>
   );

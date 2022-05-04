@@ -10,50 +10,37 @@ import "./App.less";
 import "./global.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import Services from "./pages/ServicesPage";
+import { useLocation } from "react-router-dom";
+import { useLocoscroll } from "./components/Common/useLocoscroll";
 gsap.registerPlugin(ScrollTrigger);
 
 export const MyContext = createContext();
 function App() {
-  const scrollRef = useRef(document.querySelector(".App"));
+  // const scrollRef = useRef(document.querySelector(".App"));
+  const scrollRef = useRef(null);
   const navRef = useRef();
   let nav;
   let [isNavScrolled, setIsNavScrolled] = useState(false);
   let [isMounted, setIsMounted] = useState(false);
+  let location = useLocation();
+
+  // const locoScroll = useLocoscroll(scrollRef);
+  scrollRef.current = document.querySelector("[data-scroll-container]");
+  const [isAppMounted, setIsAppMounted] = useState(false);
+  let tltransition = useRef(null);
 
   useEffect(() => {
     nav = document.querySelector(".navBar");
-    const locoScroll = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-      multiplier: 0.8,
-    });
-    locoScroll.on("scroll", ScrollTrigger.update);
-    ScrollTrigger.scrollerProxy(scrollRef.current, {
-      scrollTop(value) {
-        return arguments.length
-          ? locoScroll.scrollTo(value, 0, 0)
-          : locoScroll.scroll.instance.scroll.y;
-      }, // we don't have to define a scrollLeft because we're only scrolling vertically.
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
-      pinType: scrollRef.current.style.transform ? "transform" : "fixed",
-    });
     const $img2 = document.querySelector(".image2");
     const $logo = document.querySelector(".transition__logo");
     const $frameBlack = document.querySelector(".page-transition__black");
     const $frameRed = document.querySelector(".page-transition__red");
     const $button = document.querySelector("#button");
 
-    let tltransition = gsap
+    tltransition.current = gsap
       .timeline({ paused: true })
+      .set(".transitionDiv", { autoAlpha: 1 })
       .fromTo(
         $frameRed,
         { scaleX: 0 },
@@ -82,7 +69,7 @@ function App() {
         0.7
       )
       .set($frameRed, { scaleX: 0 })
-      .set($img2, { autoAlpha: 0 })
+      // .set($img2, { autoAlpha: 0 })
       .to($frameBlack, {
         duration: 2.2,
         scaleX: 0,
@@ -91,40 +78,32 @@ function App() {
       })
       .to($logo, { duration: 0.2, autoAlpha: 0 }, "-=1.2");
 
-    setIsMounted(true);
+    setIsAppMounted(true);
   }, []);
 
   return (
     <>
-      <BrowserRouter>
-        <div className="App" ref={scrollRef} data-scroll-container>
-          <MyContext.Provider value={scrollRef.current}>
-            <NavigationBar
-              isScrolled={isNavScrolled}
-              // hanldeMouseLeave={handleReverse}
-              // handleMouseEnter={handleHover}
-            />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <HomePage
-                    data-scroll-section
-                    data-scroll-speed="1"
-                    data-scroll-position="top"
-                  />
-                }
-              />
-              {/* <Route path="/about" component={About} /> */}
-              {/* <Route path="/blog" component={Blog} /> */}
-              {/* <Route path="/contact" component={Contact} /> */}
-            </Routes>
-          </MyContext.Provider>
-        </div>
-      </BrowserRouter>
-      <div class="page-transition__red"></div>
-      <div class="page-transition__black"></div>
-      <div class="transition__logo">I'M LOGO</div>
+      <div ref={scrollRef} className="App">
+        <div className="overlay" />
+        <MyContext.Provider value={{ scrollRef, isAppMounted }}>
+          <NavigationBar
+            isScrolled={isNavScrolled}
+
+            // transitionController={tltransition}
+            // hanldeMouseLeave={handleReverse}
+            // handleMouseEnter={handleHover}
+          />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<Services />} />
+            {/* <Route path="/blog" component={Blog} /> */}
+            {/* <Route path="/contact" component={Contact} /> */}
+          </Routes>
+        </MyContext.Provider>
+      </div>
+      <div class="page-transition__red transitionDiv"></div>
+      <div class="page-transition__black transitionDiv"></div>
+      <div class="transition__logo transitionDiv">I'M LOGO</div>
     </>
   );
 }

@@ -1,20 +1,23 @@
 import style from "./Solutions.module.scss";
 import { ReactComponent as Arrow } from "../../SVG/topRightArrow.svg";
 
-function SolutionCard({ itemId }) {
+function SolutionCard({ itemId, title, listItems, Icon }) {
   return (
-    <div>
+    <div className={style.cardContainer}>
       <Arrow className={style.arrow} />
-      <ul>
-        <li>Low-Code Applications</li>
-        <li>Custom Applications</li>
-        <li>Communication-Enabled Business</li>
-        <li>Enterprise Content Management</li>
-        <li>Application Integration</li>
-      </ul>
-      <div className={style.cardTitle}>
-        <h2 className={style.normalTitle}>Business Intelligence</h2>
-        <h3 className={style.coloredTitle}>Business Intelligence</h3>
+      <div className={style.cardWrapper}>
+        <div className={style.cardHeading}>
+          <Icon />
+          <div className={style.cardTitle}>
+            <h2 className={style.normalTitle}>{title}</h2>
+            <h3 className={style.coloredTitle}>{title}</h3>
+          </div>
+        </div>
+        <ul>
+          {listItems.map((item) => {
+            return <li>{item}</li>;
+          })}
+        </ul>
       </div>
     </div>
   );

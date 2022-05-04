@@ -9,12 +9,14 @@ function Section({
   Title,
   children,
   IMGStyle,
+  className,
 }) {
   return (
     <div
-      className={`pagePart firstSection ${isEven ? "even" : "odd"} ${
-        colors[index]
-      }`}
+      // className={`pagePart firstSection ${isEven ? "even" : "odd"} ${
+      //   colors[index]
+      // }`}
+      className={`storySection ${className}`}
       // ref={currentSectionIndex === 0 ? visibleRef : null}
       style={
         {
@@ -24,13 +26,13 @@ function Section({
     >
       <div
         className="description"
-        style={{ zIndex: isImageBehind ? 2 : "initial" }}
+        // style={{ zIndex: isImageBehind ? 2 : "initial" }}
       >
         <div className="descriptionText">{children}</div>
       </div>
       <div
         className={"image"}
-        style={{ zIndex: isImageBehind ? "initial" : 2, ...IMGStyle }}
+        // style={{ zIndex: isImageBehind ? "initial" : 2, ...IMGStyle }}
       >
         <img src={img} />
       </div>
