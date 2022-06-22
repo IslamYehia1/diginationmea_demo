@@ -6,6 +6,8 @@ function SectionSeperator({
   Icon,
   imgScrollTarget,
   isHomeMounted,
+  firstLine,
+  secondLine,
 }) {
   const sectionRef = useRef(null);
   useEffect(() => {
@@ -16,7 +18,8 @@ function SectionSeperator({
     gsap.from(q(`.${style.textLine} span`), {
       scrollTrigger: {
         trigger: q(`.${style.revealAnimationHeader}`),
-        start: "top+=40% bottom",
+        start: "top+=5% bottom",
+        endTrigger: `.${style.revealAnimationHeader}`,
         toggleActions: "play none play reset",
       },
       duration: 1.8,
@@ -33,20 +36,23 @@ function SectionSeperator({
     <div ref={sectionRef} className={style.sectionHeading}>
       <div className={style.headingText}>
         <h1 className={style.revealAnimationHeader}>
+          <div>
+            <span className={style.textLine}>
+              <span className="">{firstLine}</span>
+            </span>
+            <span
+              data-scroll
+              data-scroll-speed="0.5"
+              // data-target={`.${style.section}`}
+              className={style.sectionIcon}
+            >
+              {" "}
+              <Icon />
+            </span>{" "}
+          </div>
+
           <span className={style.textLine}>
-            <span className="">OUR IT</span>
-          </span>
-          <span
-            data-scroll
-            data-scroll-speed="0.5"
-            // data-target={`.${style.section}`}
-            className={style.sectionIcon}
-          >
-            {" "}
-            <Icon />
-          </span>{" "}
-          <span className={style.textLine}>
-            <span className="">SOLUTIONS</span>
+            <span className="">{secondLine}</span>
           </span>
         </h1>
       </div>

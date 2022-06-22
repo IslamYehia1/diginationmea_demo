@@ -1,25 +1,87 @@
 .transformationStoryWrapper {
   position: relative;
   max-width: 100vw;
+  width: 100vw;
   // width: 100vw;
-  margin-top: -10%;
+  // margin-top: -10%;
   height: 100vh;
-  min-height: 830px;
+  display: flex;
+  align-items: center;
   // background: #f6f9fb;
   // padding-top: 6.66667rem;
   // margin-top: 15%;
   // top: -300px;
   // top: -250px;
   box-sizing: border-box;
-  background-color: transparent;
+  // background-color: transparent;
+  // background-color: #f6f9fb;
   z-index: 2;
 }
+.sectionTitle {
+  display: flex;
+  padding-left: 10rem;
+  height: 25vh;
+  // align-items: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  .title {
+    // width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    color: inherit;
+    gap: 18%;
+    .greenCircle {
+      display: block;
+      width: 10rem;
+      margin-top: -5rem;
+    }
+    h1 {
+      font-size: 2.3rem;
+      // font-size: 4rem;
+      font-family: Poppins;
+      text-transform: uppercase;
+      // width: 40%;
+      font-style: italic;
+      font-weight: 800;
+      color: inherit;
+      // color: #01172f;
+      line-height: 1.2;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      margin-bottom: 2%;
+      .colored {
+        color: #4cac83;
+      }
+      span {
+        // color: #4cac83;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  .content {
+    // padding-left: 10%;
+    padding-top: 1%;
+    line-height: 1.2;
+    font-family: MyraidProReg;
+    font-size: 1.6rem;
+    width: 40%;
+    text-align: left;
+    color: #0d1f22;
+  }
+}
+
 .transformationStory {
-  max-width: 100%;
+  width: 100%;
   overflow: hidden;
   margin: 0 auto;
   // height: calc(100vh - 80px);
-  height: 90%;
+
+  height: 90vh;
+  // min-height: 830px;
   // margin-top: 4.66667rem;
   position: relative;
   // border-radius: 20px;
@@ -137,6 +199,12 @@
   transform: translate(-50%, -50%) rotate(-90deg);
   opacity: 0.5;
 }
+.green_circle_text {
+  color: #fdfff7;
+}
+.imagination_circle_green_arrow {
+  color: #fdfff7;
+}
 .phaseHeading {
   position: absolute;
   z-index: 5;
@@ -144,8 +212,10 @@
   top: 50%;
   transform: translate(-50%, -50%);
   // font-family: MyraidProSemiBold;
-  font-family: "Oswald", sans-serif;
-  font-size: 6rem;
+  // font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
   color: white;
   white-space: nowrap;
   height: 8rem;
@@ -153,6 +223,11 @@
   display: flex;
   align-items: center;
   visibility: hidden;
+  ul {
+    li {
+      // font-weight: 100 !important;
+    }
+  }
 }
 .storySection {
   width: 100%;
@@ -193,10 +268,12 @@
     font-size: 1.2rem;
     // float: left;
     // z-index: 3;
+    h3 {
+      color: inherit;
+      font-size: 1.6rem;
+    }
   }
-  h3 {
-    color: inherit;
-  }
+
   img {
     width: 100%;
     object-fit: cover;
@@ -214,13 +291,13 @@
 .secondSection {
   background-color: red;
 }
-.active {
-  visibility: visible;
-  background: white;
-  // z-index: 90;
-  height: 100%;
-  // max-width: 50vw;
-}
+// .active {
+//   visibility: visible;
+//   background: white;
+//   // z-index: 90;
+//   height: 100%;
+//   // max-width: 50vw;
+// }
 .leftImg {
   position: absolute;
 }
@@ -239,6 +316,8 @@
   }
   .phaseHeading {
     font-size: 3rem;
+    white-space: normal;
+    vertical-align: center;
   }
   .descriptionText {
     // position: absolute;
@@ -262,18 +341,20 @@
     // color: black;
     h3 {
       font-family: MyraidProReg;
-      font-size: 1.4rem;
+      // font-size: 1.4rem;
     }
   }
 }
 .colors0 {
   // background: #2da894;
   background: #00b295;
-  // background: #8db38b;
+
+  // background: #4cac83;
 
   .image {
-    // background: #0d4138;
     background: #023436;
+    // background: #0d4138;
+    // background: #023436;
     // background: #1a281f;
 
     img {
@@ -316,9 +397,12 @@
   // }
 }
 .colors1 {
-  background: #2196c7;
+  // background: #2196c7;
+  background: #8fbb99;
+
   .image {
-    background: #0e1428;
+    background: #153243;
+    // background: #0e1428;
   }
 }
 .colors2 {
@@ -339,14 +423,15 @@
   }
 }
 .colors3 {
-  background: #1e2019;
-  background: #7cb8e4;
+  // background: #7cb8e4;
+  background: #153243;
 
   .descriptionText {
     color: white;
   }
   .image {
-    background: #7cb8e4;
+    // background: #7cb8e4;
+    background: #5fbff9;
   }
 
   // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#22627d", endColorstr="#2196c7", GradientType=1 );
@@ -382,8 +467,37 @@
 }
 
 @media (min-width: 500px) and (max-width: 699px) {
+  .sectionTitle {
+    padding: 0 2rem;
+    height: 25vh;
+    .title {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 }
 @media (max-width: 699px) {
+  .sectionTitle {
+    padding: 0 2rem;
+    height: 10vh;
+    .title {
+      flex-direction: column;
+      // align-items: center;
+      .greenCircle {
+        width: 7rem;
+        padding: 2rem 0;
+      }
+
+      h1 {
+        font-size: 4.5vw;
+      }
+    }
+    .content {
+      width: 100%;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+  }
   .transformationStory {
     height: 85vh;
     max-width: 100%;

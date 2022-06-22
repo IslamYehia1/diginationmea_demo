@@ -12,7 +12,9 @@
   // height: 70rem;
   z-index: 5;
   // padding-top: 5%;
-  background-color: white;
+  // background-color: #fdfff7;
+  background-color: #f4f4f9;
+
   // border-radius: 0.5rem;
 }
 .services {
@@ -25,6 +27,7 @@
   flex-direction: column;
   float: none;
   align-items: center;
+  // background-color: #242526;
 
   .servicesContainer {
     position: relative;

@@ -3,12 +3,12 @@
 .menu {
   // width: 100vw;
   padding: 2rem 0;
-
+  background: inherit;
   width: 100px;
   // max-height: 0;
   position: absolute;
   top: 100%;
-  z-index: 7;
+  // z-index: 7;
   // position: absolute;
   // left: 0;
   // right: 0;
@@ -21,6 +21,7 @@
   justify-content: center;
   max-height: inherit;
   height: 100%;
+  background: inherit;
   .link {
     height: 100%;
     display: flex;
@@ -31,7 +32,7 @@
   }
   ul {
     position: relative;
-    z-index: 100;
+    // z-index: 100;
     max-height: inherit;
     height: auto;
     // overflow: hidden;
@@ -65,17 +66,31 @@
 }
 
 .dropDownBackground {
-  position: absolute;
+  position: fixed;
   min-width: 150vw;
   // transform: translate(calc(-100vw + 25vw));
   left: -75vw;
   right: 0;
   // max-height: inherit;
+  // margin-top: -1px;
   height: 100%;
+  // z-index: -1;
   // left: -70vw;
   // right: -40vw;
-  top: 1px;
-  background-color: white;
+  // top: 1px;
+  top: 0;
+  // background: hsla(75, 100%, 98%, 0.84);
+
+  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* From https://css.glass */
+  // border-radius: 16px;
+  // background: hsla(75, 100%, 98%, 0.84);
+  background: hsla(240, 33%, 97%, 0.904);
+
+  // background: hsla(75, 100%, 98%, 0.84);
+  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.034);
+  backdrop-filter: blur(20px);
+  // -webkit-backdrop-filter: blur(5px);
   // &::before {
   //   content: "";
   //   position: fixed;

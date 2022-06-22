@@ -1,14 +1,16 @@
 import style from "./LandingPage.module.scss";
-import { ReactComponent as ArrowRightOutlined } from "../../SVG/right-arrow.svg";
-import ArrowButton from "../ArrowButton/ArrowButton";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/all";
 import { useEffect, useContext } from "react";
-import { ReactComponent as Circles } from "../../SVG/circles.svg";
+import Circle from "../../SVG/imagination_circle.png";
+import Logo from "../Images/logo.png";
+import { ReactComponent as RightArrow } from "../../SVG/right-arrow.svg";
+
 gsap.registerPlugin(TextPlugin);
+
 function LandingPage({ isHomeMounted }) {
-  const messageBodyStr = [
+  const typeWritterText = [
     // "Extensive experience of Low code",
     "Low code",
     "Business Intelligence",
@@ -16,139 +18,160 @@ function LandingPage({ isHomeMounted }) {
     "Enterprise Content Management",
     "Analytics",
   ];
-
   const mainTimeline = gsap.timeline({ repeat: -1 });
-  // mainTimeline.timeScale(2);
-  useEffect(() => {
-    const speed = 10;
-    const endFlashSpeed = 0.3;
-    const character = "|";
-    messageBodyStr.forEach((label, index) => {
-      let typingTl = gsap.timeline({ repeat: 1, yoyo: true });
-      typingTl
-        .fromTo(
-          "#myText",
-          {
-            text: "",
-          },
-          {
-            duration: label.length / speed,
-            text: label,
-            ease: "Linear.easeNone",
-            onUpdate: function () {
-              // console.log(this._targets[0].textContent);
-              this._targets[0].textContent += character;
-            },
-            onComplete: function () {
-              // this.target[0].textContent = messageBodyStr;
-              this._targets[0].textContent = label;
-            },
-          },
-          "+=0.5"
-        )
-        // .to("#myText", {
-        //   width: "100%",
-        // })
-        //makes it flash at the end
-        .to("#myText", {
-          duration: endFlashSpeed,
-          text: label + character,
-          repeat: 3,
-          repeatDelay: endFlashSpeed,
-          ease: "Linear.easeOut",
-          duration: 1,
-        });
-      mainTimeline.add(typingTl, ">");
-    });
 
-    // });
-  }, []);
   useEffect(() => {
     if (!isHomeMounted) return;
     gsap.set(`.${style.landingBackground}`, {
       autoAlpha: 1,
     });
-    const tween1 = gsap.to(`.backgroundCircles`, {
-      rotation: 90,
-      scrollTrigger: {
-        id: "backgroundCircles",
-        trigger: `.${style.landingBackground}`,
-        start: () => "top top",
-        end: () => "bottom top",
-        scrub: true,
-      },
-    });
 
-    const tween2 = gsap.to(`.landingBackground`, {
-      autoAlpha: 0,
-      scrollTrigger: {
-        id: "landingBackground",
-        trigger: `.${style.landingBackground}`,
-        start: () => "top top",
-        end: () => "+=80%",
-        scrub: true,
-        pin: ".landingBackground",
-        // markers: true,
-        pinSpacing: false,
-      },
-    });
+    // const tween2 = gsap
+    //   .timeline({
+    //     scrollTrigger: {
+    //       id: "landingBackground",
+    //       trigger: `.${style.landingBackground}`,
+    //       start: () => "top top",
+    //       end: () => "+=100%",
+    //       scrub: true,
+    //       pin: ".landingBackground",
+    //       // markers: true,
+    //       // pinSpacing: false,
+    //     },
+    //   })
+    //   .to(`.landingBackground`, {
+    //     duration: 10,
+    //     autoAlpha: 0,
+    //   })
+    //   .to(
+    //     `.${style.landingPage}`,
+    //     {
+    //       duration: 5,
+    //       opacity: 0,
+    //     },
+    //     "<"
+    //   );
+
+    const bodyTL = gsap
+      .timeline({
+        scrollTrigger: {
+          id: "bodyLandingPageBg",
+          trigger: `.${style.landingPageWrapper}`,
+          start: () => "40% top",
+          end: () => "bottom-=30% top",
+          scrub: true,
+        },
+      })
+      .fromTo(
+        "body",
+        {
+          backgroundColor: "#4cac83c9",
+          // backgroundColor: "#1d2b28",
+          // backgroundColor: "#4C9F6F",
+        },
+        {
+          // backgroundColor: "#f4f4f9",
+          backgroundColor: "#0D1F22",
+        }
+      )
+      .to(
+        `.sectionTitle`,
+        {
+          color: "white",
+          // color: "#0d1f22",
+        },
+        "<"
+      )
+      .to(
+        `.${style.landingPage}`,
+        {
+          opacity: 0,
+        },
+        "<"
+      );
     return () => {
-      ScrollTrigger.getById("backgroundCircles").kill();
-      ScrollTrigger.getById("landingBackground").kill();
+      ScrollTrigger.getById("bodyLandingPageBg").kill();
     };
   }, [isHomeMounted]);
+  useEffect(() => {
+    gsap.timeline({ repeat: -1 }).to(`#spinningCircle`, {
+      rotate: 360,
+      duration: 20,
+      ease: "none",
+    });
+    gsap.fromTo(
+      "#cursor",
+      { autoAlpha: 0, x: -10 },
+      { autoAlpha: 1, duration: 0.7, repeat: -1, ease: "steps(1)" }
+    );
+    typeWritterText.forEach((text, index) => {
+      let tween = gsap
+        .timeline({ yoyo: true, repeat: 1, repeatDelay: 2 })
+        .to("#text", {
+          text: {
+            value: text,
+          },
+          duration: 0.08 * text.length,
+          delay: 1,
+          ease: "none",
+        });
+      mainTimeline.add(tween, index * tween.totalDuration());
+    });
+    // });
+  }, []);
   return (
-    <div className={`${style.landingPageWrapper} firstPage`}>
-      <div
+    <div className={`${style.landingPageWrapper}`}>
+      {/* <div
         className={`${style.landingBackground} landingBackground`}
         // data-scroll-sticky
         // data-scroll-target="[data-scroll-container]"
         // data-scroll
-      ></div>
+      ></div> */}
       <div className={style.landingPage}>
-        <div className={style.topGradient}>
-          {/* <canvas></canvas> */}
-          <Circles className="backgroundCircles" />
-        </div>
-        <div className={style.landingHeading}>
-          <h1>Your partner for digital transformation</h1>
-          {/* <h1>Digital transformation</h1> */}
-          <div className={`${style.titleRow} ${style.labels}`}>
-            <h1 className={style.changingTextLabel}>With our</h1>
-            {/* <svg viewBox="0 0 495 10" xmlns="http://www.w3.org/2000/svg">
-            <defs></defs> */}
-            <div className={style.changingTextWrapper}>
-              <h1
-                // height="100%"
-                // fill="#000"
-                // x="50%"
-                // y="50%"
-                // dominant-baseline="middle"
-                // text-anchor="start"
-                id="myText"
-                className={style.changingText}
-              ></h1>
+        <div className={style.landingContent}>
+          <div className={style.landingHeading}>
+            <div className={style.headingText}>
+              <div className={style.headingFirstLine}>Your partner</div>
+              <div className={style.headingSecondLine}>For Digital</div>
+              <div className={style.headingThirdLine}>Transformation</div>
             </div>
-
-            {/* </svg> */}
-            {/* <Labels /> */}
+            <div className={style.loop}>
+              <div className={style.loopImg}>
+                <img id="spinningCircle" src={Circle} alt="" />
+                <img src={Logo} alt="" />
+              </div>
+            </div>
           </div>
-          <p className={style.description}>
-            We are a regional technology enterprise specialized in providing
-            Digital Transformation and complex technology solutions to a wide
-            array of industries and businesses.
-          </p>
-
-          <ArrowButton
-            Icon={ArrowRightOutlined}
-            label="Services "
-            style={
-              {
-                // backgroundColor: "#11ffee00",
-              }
-            }
-            className={`${style.button}`}
-          />
+          <div className={style.description}>
+            <p>
+              We are a regional technology enterprise specialized in providing
+              Digital Transformation and complex technology solutions to a wide
+              array of industries and businesses.
+            </p>
+            <p
+              // height="100%"
+              // fill="#000"
+              // x="50%"
+              // y="50%"
+              // dominant-baseline="middle"
+              // text-anchor="start"
+              id={style.myText}
+              className={style.changingText}
+            >
+              <span id="text"></span>
+              <span id="cursor">|</span>
+            </p>
+            <div className={style.buttons}>
+              <button>
+                <p>Contact Us</p>
+                <RightArrow />
+              </button>
+              <button>
+                <p>See services</p>
+                <RightArrow />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

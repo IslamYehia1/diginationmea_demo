@@ -25,10 +25,10 @@ function Solutions({ isHomeMounted }) {
       const q = gsap.utils.selector(card);
       let hover = gsap
         .timeline({ paused: true })
-        .to(q(`.${style.normalTitle}`), {
-          y: -34,
-          duration: 0.4,
-        })
+        // .to(q(`.${style.normalTitle}`), {
+        //   y: -34,
+        //   duration: 0.4,
+        // })
         .fromTo(
           q(`.${style.cardHeading}`),
           { top: "20%", duration: 1.5 },
@@ -53,23 +53,23 @@ function Solutions({ isHomeMounted }) {
             duration: 0.3,
           },
           "<"
-        )
-        .to(
-          q(`.${style.coloredTitle}`),
-          {
-            y: -45,
-            duration: 0.4,
-          },
-          "-=0.4"
-        )
-        .to(
-          q(`.${style.cardHeading} svg`),
-          {
-            color: "#00b295",
-            // width: "2.5rem",
-          },
-          "<"
         );
+      // .to(
+      //   q(`.${style.coloredTitle}`),
+      //   {
+      //     y: -45,
+      //     duration: 0.4,
+      //   },
+      //   "-=0.4"
+      // )
+      // .to(
+      //   q(`.${style.cardHeading} svg`),
+      //   {
+      //     color: "#00b295",
+      //     // width: "2.5rem",
+      //   },
+      //   "<"
+      // );
       card.addEventListener("mouseenter", () => {
         hover.play();
       });
@@ -93,6 +93,8 @@ function Solutions({ isHomeMounted }) {
         Icon={SolutionsIcon_1}
         imgScrollTarget={style.solutions}
         isHomeMounted={isHomeMounted}
+        firstLine={"OUR IT"}
+        secondLine={"SOLUTIONS"}
       />
       <ScrollMenu
         onMouseDown={() => dragStart}

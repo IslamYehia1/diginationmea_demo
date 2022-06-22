@@ -3,6 +3,8 @@
   min-height: 70vh;
   height: 70vh;
   width: 100%;
+  font-size: 6rem;
+
   .headingImg {
     width: 50%;
     overflow: hidden;
@@ -12,13 +14,9 @@
       object-fit: cover;
     }
   }
-  & h1 {
-  }
-  & h3 {
-    font-family: MyraidProSemiBold;
-    font-size: 1.4rem;
 
-    color: white;
+  .headingText h1 {
+    // font-size: 6rem;
   }
 }
 .revealAnimationHeader {
@@ -28,6 +26,16 @@
     // position: relative;
     display: inline-block;
     // height: 3rem;
+    font-family: "Poppins", sans-serif;
+    // font-family: "Oswald", sans-serif;
+
+    // font-style: italic;
+    font-weight: 900;
+    // letter-spacing: -1px;
+    // font-size: 6rem;
+    font-size: inherit;
+    // font-style: italic;
+
     span {
       display: inline-block;
     }
@@ -35,17 +43,22 @@
 }
 .headingText {
   // background-image: linear-gradient(90deg, #141414, #54c5d2);
-  background-color: #0f0f0f;
+  // background-color: #0f0f0f;
+  // background-color: #141414;
+  background-color: #141414;
+  // background-color: #000411;
+
   // background-color: #184543;
   width: 70%;
   // padding: 5rem 0 0 10rem;
-  padding: 6rem 10rem;
-  line-height: 136px;
+  padding: 9rem 10rem;
+  // line-height: 136px;
+  line-height: 90px;
   margin-bottom: 0;
-  font-family: "Oswald", sans-serif;
-  font-size: 6rem;
+  // font-family: "Oswald", sans-serif;
+
   // width: 30rem;
-  color: white;
+  color: #fdfff7;
   h1 {
     font-size: inherit;
     color: inherit;
@@ -73,7 +86,6 @@
     }
   }
 }
-
 @media (min-width: 500px) and (max-width: 699px) {
   .headingText {
     padding-right: 1.3333rem;
@@ -89,6 +101,11 @@
   }
 }
 @media (max-width: 699px) {
+  button {
+    position: relative;
+    top: 7%;
+    // margin-bottom: 0 !important;
+  }
   .sectionHeading {
     flex-direction: column-reverse;
     min-height: 70vh;
@@ -97,6 +114,7 @@
       width: 70%;
       top: 15%;
     }
+
     .headingText {
       max-width: 100%;
       display: flex;
@@ -107,7 +125,18 @@
       min-height: 60%;
       height: 60%;
       line-height: 4rem;
-      font-size: 3.2rem;
+      // font-size: 3.2rem;
+      // font-size: 2.66667rem;
+      font-size: 12vw;
+      padding-right: 1.3333rem;
+      padding-left: 1.3333rem;
+      width: 100%;
+      max-width: 100%;
+      h1 {
+        max-width: 100%;
+        width: 100%;
+        max-width: 100%;
+      }
       h1 {
         margin-bottom: 0;
       }
@@ -118,7 +147,7 @@
       width: 100%;
       img {
         width: 100%;
-        min-height: initial;
+        min-height: 100%;
       }
     }
   }

@@ -140,6 +140,8 @@ function Services({ isHomeMounted }) {
         Icon={ServicesIcon}
         imgScrollTarget={style.services}
         isHomeMounted={isHomeMounted}
+        firstLine={"OUR IT"}
+        secondLine={"SERVICES"}
       />
       {/* <div className={style.servicesTitle}>
         <div className={style.headingText}>

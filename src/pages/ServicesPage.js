@@ -6,6 +6,8 @@ import { useContext, useEffect, useRef } from "react";
 import { MyContext } from "../App";
 import { useLocoscroll } from "../components/Common/useLocoscroll";
 import ServerImg from "../components/Images/server.png";
+import ItServices from "../components/Images/ItServices.jpg";
+
 import TransformationSteps from "./TransformationSteps";
 import { useState } from "react";
 
@@ -29,25 +31,26 @@ function Services() {
           <div className={style.headingTitle}>
             <div className={style.firstColumn}>
               <h1 className={style.firstRow}>
-                What we can do for your company
+                <span>What we can do for your company</span>
+                <span className={style.gradientText}></span>
                 {/* <ITIcon />{" "} */}
               </h1>
-              <div className={style.secondRow}>
+              {/* <div className={style.secondRow}>
                 <h3>SERVICES</h3>
                 <p>
                   DigiNation is a leading digital business automation company in
                   KSA that offered successful business solutions to over 800
                   clients across the region.
                 </p>
-              </div>
+              </div> */}
             </div>
             {/* <div className={style.secondColumn}>
               <img src={ServerImg} />
             </div> */}
           </div>
-
-          {/* <div className={style.headingImg}>
-            <img src={PlantImg} />
+          {/* 
+          <div className={style.headingImg}>
+            <img src={ItServices} />
           </div> */}
         </div>
       </div>

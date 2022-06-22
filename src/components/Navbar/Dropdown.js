@@ -66,6 +66,9 @@ function Dropdown({ children, isOpen, onOpen, onClose, id, link }) {
       //     zIndex: 9,
       //   }
       // )
+      // .to(".navbarBackground", {
+      //   boxShadow: "none",
+      // })
       .to(menuRef.current, {
         delay: 0.1,
         scaleY: "1",
