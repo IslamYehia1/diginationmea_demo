@@ -1,0 +1,556 @@
+@import "../../vars.scss";
+
+.transformationStoryWrapper {
+  position: relative;
+  max-width: 100vw;
+  width: 100vw;
+
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  z-index: 2;
+}
+.sectionTitle {
+  display: flex;
+  // height: 25vh;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2%;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: inherit;
+    gap: 20%;
+    .greenCircle {
+      display: block;
+      width: 10rem;
+      margin-top: -5rem;
+    }
+    h1 {
+      font-size: 2.3rem;
+
+      font-family: Poppins;
+      // text-transform: uppercase;
+
+      // font-style: italic;
+      font-weight: 500;
+      color: inherit;
+
+      line-height: 1.2;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin-bottom: 2rem;
+      .colored {
+        color: #4cac83;
+      }
+      span {
+        color: #d7d3c9;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  .content {
+    padding-top: 1%;
+    line-height: 1.2;
+    font-family: MyraidProReg;
+    font-size: 1.6rem;
+    width: 40%;
+    text-align: left;
+    color: #0d1f22;
+  }
+}
+
+.transformationStory {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+
+  height: 90vh;
+
+  position: relative;
+
+  .transformationStory:before {
+    content: "";
+    position: absolute;
+    background: url(../../SVG/bg.svg) no-repeat 100% 100%;
+    background-image: url(../../SVG/bg.svg);
+    background-position-x: 100%;
+    background-position-y: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    pointer-events: none;
+    width: 900px;
+    height: 900px;
+    right: 0;
+    background-size: 100%;
+    bottom: 0;
+  }
+}
+.storyIntro {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  background-color: #00b295;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10%;
+  h1 {
+    font-family: MyraidProSemiBold;
+
+    color: white;
+  }
+}
+.whiteBackground {
+  background-color: #f6f9fb !important ;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  position: relative;
+
+  overflow: hidden;
+}
+
+.box {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 200vw;
+}
+
+.leftTransition {
+  top: 50%;
+  visibility: visible;
+  right: 50%;
+  transform-origin: 100% 50%;
+  transform: translate(0, -50%);
+}
+
+.rightTransition {
+  visibility: visible;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0% 50%;
+  transform: translate(0, -50%);
+}
+
+.rightImg {
+  position: absolute;
+  left: 50%;
+  width: 50vw;
+  bottom: 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+.description {
+  height: 100%;
+  width: 50%;
+  background-color: inherit;
+  z-index: 1;
+}
+
+.clockSVG {
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  opacity: 0.5;
+}
+.green_circle_text {
+  color: #fdfff7;
+}
+.imagination_circle_green_arrow {
+  color: #fdfff7;
+}
+.phaseHeading {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  font-family: "Poppins", sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  height: 8rem;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  ul {
+    li {
+    }
+  }
+}
+.storySection {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  position: absolute;
+  height: 100%;
+  visibility: hidden;
+  .learnMoreBtn {
+    width: 12rem;
+    font-family: Poppins;
+    font-size: 1rem;
+    &::before {
+      background: #d7d3c9;
+    }
+  }
+  .image {
+    width: 50%;
+    min-height: 100%;
+    height: 100%;
+
+    position: relative;
+
+    background-color: inherit;
+    img {
+      height: 100%;
+      object-fit: contain;
+      // opacity: 0.5;
+    }
+  }
+  .description {
+    width: 50%;
+    position: relative;
+    display: flex;
+    height: 100%;
+    min-height: 100%;
+    background: inherit;
+    font-family: MyraidProReg;
+    align-items: flex-end;
+
+    padding: 7rem 7rem 5rem 7rem;
+
+    font-size: 1.2rem;
+
+    h3 {
+      color: inherit;
+      font-size: 1.6rem;
+    }
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .description {
+    .slideTitle {
+      font-size: 1.4rem;
+      font-family: Poppins;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #dbd8d3;
+      width: 85%;
+      margin-bottom: 2rem;
+    }
+  }
+}
+.exploreBtn {
+  width: 12rem;
+  &::before {
+    background: #d7d3c9;
+  }
+}
+.visible {
+  visibility: visible;
+}
+.storySection.odd {
+  flex-direction: row-reverse;
+  .description {
+    padding: 7rem 7rem 5rem 10rem;
+  }
+}
+.storySection.even {
+  flex-direction: row;
+}
+.secondSection {
+  background-color: red;
+}
+
+.leftImg {
+  position: absolute;
+}
+
+.image img {
+  // opacity: 0.7;
+}
+
+@media (max-width: 699px) {
+  .clockSVG {
+    width: 60%;
+  }
+  .description {
+    padding: 2rem !important;
+  }
+  .phaseHeading {
+    font-size: 3rem;
+    white-space: normal;
+    vertical-align: center;
+  }
+  .descriptionText {
+  }
+  .box {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 150vw;
+    opacity: 0;
+  }
+}
+.storySection {
+  .description {
+    color: white;
+    font-family: MyraidProLight;
+
+    h3 {
+      font-family: MyraidProReg;
+    }
+  }
+  .image {
+    img {
+      filter: brightness(95%);
+    }
+  }
+}
+.colors0 {
+  // background: #9abea3;
+  background: $Primary;
+
+  .image {
+    background: $Primary;
+    background: #9abea3;
+    // background: #324944;
+    background: #5c946e;
+
+    img {
+      min-height: 100%;
+    }
+  }
+  .description {
+    // background-color: #9abea3;
+    // background-color: #d7d3c9;
+    color: white;
+    font-family: MyraidProLight;
+
+    h3 {
+      font-family: MyraidProReg;
+      font-size: 1.4rem;
+    }
+  }
+  h3 {
+    margin-bottom: 0;
+  }
+}
+.colors1 {
+  // background: #57886c;
+  background: $Primary;
+
+  .descriptionText {
+    color: white;
+  }
+  .image {
+    background: #5fbff9;
+    img {
+      height: 100%;
+      min-width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+.colors2 {
+  // background: #9abea3;
+  background: $Primary;
+  .description {
+    color: white;
+  }
+  .image {
+    background: #57886c;
+  }
+}
+.colors3 {
+  // background: #4f86c6;
+  background: $Primary;
+
+  .image {
+    // background: #153243;
+    background: #324944;
+    img {
+      height: unset;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+.colors4 {
+  background: #e84855;
+  .image {
+    background: #de1237;
+    display: flex;
+    align-items: center;
+    video {
+      width: 100%;
+    }
+  }
+  .description {
+    color: white;
+  }
+}
+.colors5 {
+  background: #1f487e;
+  color: white;
+  .image {
+    background: #54c5d2;
+    background: #1f487e;
+  }
+}
+
+.clock__dial__hour__circle {
+  fill-opacity: 0;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+@media (min-width: 700px) and (max-width: 1199px) {
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+  .sectionTitle {
+    padding: 0 2rem;
+    height: 25vh;
+    .title {
+      flex-direction: column;
+      // align-items: flex-start;
+    }
+  }
+}
+@media (max-width: 699px) {
+  .sectionTitle {
+    padding: 0 2rem;
+    height: 17vh;
+    .title {
+      flex-direction: column;
+
+      .greenCircle {
+        width: 7rem;
+        padding: 2rem 0;
+      }
+
+      h1 {
+        font-size: 4.5vw;
+      }
+    }
+    .content {
+      width: 100%;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+  }
+  .transformationStory {
+    height: 85vh;
+    max-width: 100%;
+  }
+  .box {
+    height: 200vh;
+    width: 150vw;
+  }
+  .boxesContainer {
+    transform: rotate(90deg);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+  }
+  .descriptionText {
+    padding: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .storySection {
+    background: #263935;
+
+    .description {
+      .slideTitle {
+        width: 100%;
+      }
+    }
+    .image {
+      background-color: #476760;
+    }
+    .learnMoreBtn {
+      height: 3rem;
+      width: 9rem;
+      margin-top: 1.7rem;
+      font-family: MyraidProSemiBold;
+      font-size: 1rem;
+      &::before {
+        background: #d7d3c9;
+      }
+    }
+  }
+  .storySection.odd {
+    flex-direction: column-reverse;
+    height: 50%;
+    bottom: 0;
+    .description {
+      min-width: 100%;
+      height: 100%;
+      align-items: center;
+    }
+    .image {
+      width: 100%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .storySection.even {
+    flex-direction: column;
+    height: 50%;
+    .description {
+      width: 100%;
+      align-items: center;
+    }
+    .image {
+      width: 100%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

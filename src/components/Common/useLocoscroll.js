@@ -23,6 +23,12 @@ export function useLocoscroll(scrollRef, multiplier) {
       el: scrollRef.current,
       smooth: true,
       multiplier: multiplier,
+      mobile: {
+        smooth: true,
+      },
+      tablet: {
+        smooth: true,
+      },
     });
     locoScrollRef.current.on("scroll", ScrollTrigger.update);
     ScrollTrigger.scrollerProxy(scrollRef.current, {

@@ -1,18 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "antd/dist/antd.css";
 import style from "./Card.module.scss";
-import { Card, Avatar } from "antd";
 import Button from "../Button/Button";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  ArrowRightOutlined,
-} from "@ant-design/icons";
+import { ReactComponent as RightArrow } from "../../SVG/right-arrow.svg";
 import { VisibilityContext } from "react-horizontal-scrolling-menu";
 
-const { Meta } = Card;
 function IndustryCard({ title, description, img, itemId }) {
   const visibility = React.useContext(VisibilityContext);
   const visible = visibility.isItemVisible(itemId);
@@ -26,7 +18,7 @@ function IndustryCard({ title, description, img, itemId }) {
         <div className={style.cardButtonContainer}>
           <Button
             label="Use cases"
-            Icon={ArrowRightOutlined}
+            Icon={RightArrow}
             className={`${style.industryCardBtn} ${style.blue}`}
           />
         </div>

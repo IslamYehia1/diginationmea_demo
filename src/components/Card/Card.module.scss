@@ -1,12 +1,16 @@
+@import "../../vars.scss";
+
 .textContainer {
   font-size: 1.07rem;
-  font-family: MyraidProSemiBold;
+  font-family: MyraidProReg;
   width: 70%;
   line-height: 1.4;
 }
 .cardTitle {
-  font-size: 1.5rem;
+  font-family: Poppins;
+  font-size: 1.3rem;
   margin-bottom: 0.8rem;
+  font-weight: 500;
 }
 .imgContainer {
   width: 100%;
@@ -54,9 +58,10 @@
   //   margin: 10px 0 10px 1.4rem;
   box-shadow: 0 0 50px 0 rgb(0 0 0 / 10%);
   display: block;
-  border-radius: 7px;
+  // border-radius: 7px;
+  border-radius: 2rem;
   position: relative;
-  background: white;
+  background: #fdfffc;
   z-index: 2;
   //   border: 2px solid;
   padding: 10px;
@@ -66,10 +71,15 @@
   line-height: 3;
   overflow: hidden;
   cursor: pointer;
+  color: $Primary;
+  p {
+    font-family: MyraidProSemiBold;
+    font-size: 1rem;
+  }
   svg {
     width: 25px;
     margin-left: 10px;
-    margin-top: -7px;
+    margin-top: -2px;
     color: #00b295;
   }
   &:focus {
@@ -77,6 +87,7 @@
   }
 
   &:hover {
+    color: $Primary;
   }
   p {
     margin: 0;
@@ -89,7 +100,8 @@
     left: 0px;
     right: 0px;
     top: 0px;
-    background: #00b295;
+    // background: #9abea3;
+    background: #66b186;
     transform: translatex(-100%);
     // z-index: -1;
   }
@@ -117,9 +129,9 @@
       animation: swipe 400ms ease-in-out forwards;
     }
     .cardButtonContainer {
-      color: white;
+      color: $Primary;
       svg {
-        color: white;
+        // color: white;
       }
     }
     img {
@@ -134,7 +146,10 @@
   .card {
     min-width: 100%;
     .textContainer {
-      width: 80%;
+      width: 95%;
+      p {
+        font-family: MyraidProReg;
+      }
     }
     .industryCardBtn {
       width: 100%;

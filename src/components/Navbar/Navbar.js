@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef, useCallback, useContext } from "react";
 import NormalLogo from "./LogoDigination.png";
-import WhiteLogo from "./whiteLogo.png";
+import WhiteLogo from "./whiteLogo1.png";
 import style from "./Navbar.module.scss";
-import { ReactComponent as ContactIcon } from "../talkIcon.svg";
+import { ReactComponent as ContactIcon } from "../../SVG/send.svg";
 import { ReactComponent as MenuIcon } from "../../SVG/menu.svg";
-import { CaretDownOutlined } from "@ant-design/icons";
+import { ReactComponent as MenuCircle } from "../../SVG/menuCircle.svg";
 import Button from "../Button/Button";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
@@ -13,17 +13,30 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import "./customizations.scss";
+import LinkBtn from "../Button/LinkBtn";
 import { MyContext } from "../../App";
 
 gsap.registerPlugin(CustomEase);
 
 gsap.registerPlugin(ScrollTrigger);
+const bins = [];
+const items = [];
+
+const amount = parseFloat((60 - 7.321).toFixed(2));
+
+console.log("amount: ", amount); // <--- this prints fine
+
+bins.push({
+  // friend: exp.friend,
+  amount: amount, // <-- but gets stored some floating-point garbage
+});
+console.log(bins);
 const links = [
-  { path: "/", title: "Home" },
-  {
-    path: "/about",
-    title: "About Us",
-  },
+  // { path: "/", title: "Home" },
+  // {
+  //   path: "/about",
+  //   title: "About Us",
+  // },
   {
     path: "/services",
     title: "Services",
@@ -34,8 +47,8 @@ const links = [
     dropDown: [
       { title: "Business Application", path: "/services" },
       { title: "Business Intelligence", path: "/services" },
-      { title: "AI Solutions", path: "/services" },
       { title: "Infrastructure & Operations", path: "/services" },
+      { title: "AI Solutions", path: "/services" },
     ],
   },
   {
@@ -51,30 +64,32 @@ const links = [
       { title: "Government", path: "/industries" },
     ],
   },
-  {
-    path: "/parteners",
-    title: "Parteners",
-  },
-  {
-    path: "/clients",
-    title: "Clients",
-  },
+  // {
+  //   path: "/parteners",
+  //   title: "Parteners",
+  // },
+  // {
+  //   path: "/clients",
+  //   title: "Clients",
+  // },
   {
     path: "/careers",
     title: "Careers",
   },
 ];
 
-function NavBar() {
+function NavBar({ isScrolled, bgClass, className, normalLogoOnly }) {
   const [click, setClick] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [activeDropdown, setActiveDropdown] = useState(false);
   const navRef = useRef();
+  const MobileMenuIconRef = useRef();
   const isMobile = width <= 999;
   const location = useLocation();
   const overlayTween = useRef(null);
   const mobileNavRef = useRef(null);
   const highlightTween = useRef(null);
+  const timeOut = useRef(null);
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
@@ -82,52 +97,68 @@ function NavBar() {
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
     highlightTween.current = gsap
-      .timeline({ pause: true })
-      .fromTo(
+      .timeline({ paused: true })
+      .to(
         `.${style.navBackground}`,
+        // {
+        //   // background: "$Primary",
+        //   // background: "$Primary",
+        //   background: "#768277",
+        //   color: "white",
+        // },
         {
-          background: "#1D2B28",
-          boxShadow: "none",
-          color: "white",
-        },
-        {
-          background: "white",
-          // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.034)",
+          immediateRender: false,
+          // background: "#f4f4f9",
+          // background: "hsla(240, 33%, 97%, 0.904)",
+          background: "hsla(100, 100%, 99% , 0.904)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.034)",
           ease: "none",
           duration: 0.2,
-          immediateRender: false,
         }
       )
+      .set(`.${style.navbar}`, {
+        color: "#1D2B28",
+      })
+      .set(`.${style.contactBtnWrapper}`, {
+        color: "#66B186",
+      })
+      .set(`.${style.contactButton}`, {
+        backgroundColor: "#66B186",
+      })
       .set(`.${style.normalLogo}`, {
         visibility: "visible",
-      })
-      .set(`.${style.whiteLogo}`, {
+        filter: "initial",
+      });
+    // .set(".overlay", {
+    //   display: "block",
+    // })
+    // .to(".overlay", { opacity: 0.3 });
+    if (!normalLogoOnly) {
+      highlightTween.current.set(`.${style.whiteLogo}`, {
         visibility: "hidden",
       });
-    overlayTween.current = gsap
-      .timeline()
-      .set(".overlay", {
-        display: "block",
-      })
-      .fromTo(".overlay", { opacity: 0, duration: 0.6 }, { opacity: 0.2 });
+    }
+
+    overlayTween.current = gsap.timeline({
+      paused: true,
+    });
+    // .set(".overlay", {
+    //   display: "block",
+    // })
+    // .to(".overlay", { opacity: 0.3 });
 
     mobileNavRef.current = gsap
       .timeline({ paused: true })
       .fromTo(
-        `.${style.activeNavBackground}`,
-        { autoAlpha: 0, duration: 1 },
-        { autoAlpha: 1 }
-      )
-      .fromTo(
-        `.${style.activeNavBackground}`,
+        `.${style.navBackground}`,
         {
-          scaleY: 0,
+          height: "4.66667rem",
         },
         {
-          duration: 0.2,
-          scaleY: 1,
+          duration: 0.3,
+          height: "100vh",
           transformOrigin: "50% 0%",
-          ease: "circ.out",
+          ease: "circ.in",
         }
       )
       .fromTo(
@@ -139,49 +170,79 @@ function NavBar() {
           autoAlpha: 1,
           duration: 0.2,
         }
+      )
+      .fromTo(
+        "body",
+        {
+          overflow: "visible",
+        },
+        {
+          overflow: "hidden",
+        }
       );
-
+    if (!isMobile) {
+      setClick(false);
+    }
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
+      highlightTween.current.seek(0).pause().kill();
+      mobileNavRef.current.seek(0).pause().kill();
+      overlayTween.current.seek(0).pause().kill();
     };
-  }, []);
-  const handleClick = () => {
+  }, [isMobile]);
+  const handleClick = (e) => {
     setClick(!click);
+    MobileMenuIconRef.current.classList.toggle("opened");
+    MobileMenuIconRef.current.setAttribute(
+      "aria-expanded",
+      MobileMenuIconRef.current.classList.contains("opened")
+    );
   };
+  useEffect(() => {
+    if (isScrolled) highlightTween.current.play();
+    else highlightTween.current.reverse();
+  }, [isScrolled, isMobile]);
 
   useEffect(() => {
-    if (click) {
-      mobileNavRef.current.play();
-    }
-    if (!click && isMobile) {
-      mobileNavRef.current.reverse();
-    }
-    if (!click && !isMobile) {
+    if (!isMobile) {
       gsap.set(`.${style.navMenu}`, {
         autoAlpha: 1,
       });
+      mobileNavRef.current.seek(0).pause();
+    }
+    if (click && isMobile) {
+      mobileNavRef.current.play();
+    }
+    if (!click && isMobile) {
+      gsap.set(`.${style.navMenu}`, {
+        autoAlpha: 0,
+      });
+      mobileNavRef.current.reverse();
     }
   }, [click, isMobile, location.pathname]);
-
-  useEffect(() => {
-    if (activeDropdown) overlayTween.current.play();
-    else overlayTween.current.reverse();
-  }, [activeDropdown]);
 
   return (
     <div style={{ zIndex: 20 }}>
       <nav
         onMouseOver={() => {
-          // highlightTween.current.play();
+          if (isMobile) return;
+          highlightTween.current.play();
+          clearTimeout(timeOut.current);
         }}
         onMouseLeave={() => {
-          // highlightTween.current.reverse();
+          if (isMobile) return;
+          if (!isScrolled) {
+            clearTimeout(timeOut.current);
+            timeOut.current = setTimeout(() => {
+              highlightTween.current.reverse();
+            }, 700);
+          }
         }}
         ref={navRef}
-        className={`${style.navbar}`}
+        className={`${style.navbar} ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`${style.navBackground}`}></div>
+        <div className={`${style.navBackground} ${bgClass}`}></div>
         <div className={`${style.navItems} navBar`}>
           <Link to="/" className={`${style.logo}`}>
             <img src={NormalLogo} className={`${style.normalLogo}`} />
@@ -195,33 +256,52 @@ function NavBar() {
                 return (
                   <li
                     onMouseOver={() => {
-                      setActiveDropdown(true);
+                      // overlayTween.current.play();
+                      // setActiveDropdown(true);
                     }}
-                    onMouseLeave={() => {
-                      setActiveDropdown(false);
+                    onMouseOut={() => {
+                      // overlayTween.current.reverse();
+                      // setActiveDropdown(false);
                     }}
                     className={`${style.navItem}`}
                   >
-                    <Dropdown
-                      id={1}
-                      link={
-                        <Link
-                          to="/"
-                          className={`${style.industry}`}
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          Solutions <CaretDownOutlined />
+                    {isMobile ? (
+                      <div className={style.mobileList}>
+                        <Link to={path} className={style.navLink}>
+                          {title}
                         </Link>
-                      }
-                    >
-                      {dropDown.map(({ title, path }) => {
-                        return (
-                          <li>
-                            <Link to={path}>{title}</Link>
-                          </li>
-                        );
-                      })}
-                    </Dropdown>
+                        <ul className={style.mobileSublist}>
+                          {dropDown.map(({ title, path }) => {
+                            return (
+                              <li>
+                                <Link to={path}>{title}</Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    ) : (
+                      <Dropdown
+                        id={1}
+                        link={
+                          <Link
+                            to="/"
+                            className={`${style.navLink}`}
+                            onClick={(e) => e.preventDefault()}
+                          >
+                            {title}
+                          </Link>
+                        }
+                      >
+                        {dropDown.map(({ title, path }) => {
+                          return (
+                            <li>
+                              <Link to={path}>{title}</Link>
+                            </li>
+                          );
+                        })}
+                      </Dropdown>
+                    )}
                   </li>
                 );
               else
@@ -230,7 +310,7 @@ function NavBar() {
                     <Link
                       to={path}
                       // activeClassName="active"
-                      // className={"nav-links"}
+                      className={style.navLink}
                       onClick={click ? handleClick : null}
                     >
                       <span>{title}</span>
@@ -240,26 +320,34 @@ function NavBar() {
             })}
 
             <li className={style.navItem}>
-              <Link
-                to="/"
-                className={`${style.rightBorder} ${style.langButton}`}
-              >
+              <Link to="/" className={`${style.navLink} ${style.langButton}`}>
                 EN
               </Link>
             </li>
+            <li className={style.navItem}>
+              <LinkBtn
+                id="contactButton"
+                Icon={ContactIcon}
+                label=" "
+                className={`${style.contactButton}`}
+                to="/contact"
+              >
+                Contact Us
+                <ContactIcon />
+              </LinkBtn>
+            </li>
           </ul>
-          <div className={style.rightMost}>
-            <Button
-              id="contactButton"
-              Icon={ContactIcon}
-              label="Contact Us "
-              className={`${style.contactButton} ${style.blue}`}
-            />
-
-            <div className={`${style.navIcon}`} onClick={handleClick}>
-              <MenuIcon />
+          {isMobile && (
+            <div className={style.contactBtnWrapper}>
+              <Link to="/contact">
+                <ContactIcon className={style.mobileContactIcon} />
+              </Link>
+              <div className={`${style.navIcon}`} onClick={handleClick}>
+                <MenuCircle className={style.menuCircle} />
+                <MenuIcon className={style.menuIcon} ref={MobileMenuIconRef} />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </nav>
     </div>

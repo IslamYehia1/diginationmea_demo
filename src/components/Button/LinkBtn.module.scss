@@ -1,0 +1,60 @@
+@import "../../vars.scss";
+
+.linkBtn {
+  border: none;
+  // background-color: #d7d3c9;
+  // background-color: #9abea3;
+  // border-radius: 0.4rem;
+  border-radius: 2rem;
+  color: $Primary;
+  // height: 3.4rem;
+  // width: 11rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  overflow: hidden;
+  span {
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-family: Poppins;
+    color: $Primary;
+  }
+  svg {
+    width: 1.5rem;
+    margin-top: -2px;
+    color: inherit;
+  }
+  &::before {
+    height: 100%;
+    width: 100%;
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    // background: #54c5d2;
+    transform: translatex(-100%);
+    border: inherit;
+  }
+  &:hover {
+    color: #141414;
+  }
+  &:hover {
+    &::before {
+      animation: swipe 400ms ease-in-out forwards;
+    }
+  }
+}
+
+@keyframes swipe {
+  0% {
+    transform: translatex(-100%);
+  }
+  100% {
+    transform: translatex(0%);
+  }
+}

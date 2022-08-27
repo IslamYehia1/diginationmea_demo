@@ -1,0 +1,213 @@
+@import "../../vars.scss";
+
+.transformationProcess {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vw;
+  padding-bottom: 5vw;
+  overflow: hidden;
+  .contentText {
+    width: 40%;
+    font-size: 3.3vw;
+    text-align: center;
+    color: #dbd8d3;
+    font-family: Poppins;
+  }
+}
+
+.processCircleContainer {
+  width: 45%;
+  fill: none;
+  position: relative;
+  display: flex;
+}
+.processCircle {
+  color: #66b186;
+  width: 100%;
+}
+.servicesBtn {
+  border: 1px solid #90c0a1;
+  border-radius: 5px;
+  padding: 0.8rem 1.5rem;
+  font-family: Poppins;
+  font-weight: 500;
+  color: #90c0a1;
+  p {
+    font-size: 1rem;
+    color: inherit;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  svg {
+    color: inherit;
+    margin-top: 1px;
+  }
+}
+.circleArrowWrapper {
+  position: absolute;
+  height: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  color: #66b186;
+}
+
+.firstCircleArrowWrapper {
+  transform: translateX(-50%) rotate(60deg);
+}
+.secondCircleArrowWrapper {
+  transform: translateX(-50%) rotate(180deg);
+  svg {
+    transform: translate(0px, -13px);
+  }
+}
+.thirdCircleArrowWrapper {
+  transform: translateX(-50%) rotate(300deg);
+  svg {
+    transform: translate(0px, -13px);
+  }
+}
+.fourthCircleArrowWrapper {
+  transform: translateX(-50%) rotate(300deg);
+  svg {
+    transform: translate(0px, -13px);
+  }
+}
+.label {
+  position: absolute;
+  height: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  width: 11rem;
+}
+.labelText {
+  position: absolute;
+  height: 2.8rem;
+  //   width: 14rem;
+  //   width: 30vw;
+  // width: 90%;
+  width: inherit;
+
+  //   padding: 0.5rem 2rem;
+  text-align: center;
+  border-radius: 2rem;
+  background-color: #66b186;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 0.7rem;
+  line-height: 1;
+  p {
+    font-size: 1rem;
+    color: $Primary;
+    margin-bottom: 0;
+    width: 95%;
+  }
+}
+.onCircleContainer {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+}
+.firstLabel {
+  transform: translateX(-50%);
+  .labelText {
+    // transform: translate(0%, -50%) rotate(-120deg);
+    transform: translate(0%, -29%);
+  }
+}
+.secondLabel {
+  transform: translateX(-50%) rotate(120deg);
+  .labelText {
+    transform: translate(0%, -50%) rotate(-120deg);
+  }
+}
+.thirdLabel {
+  transform: translateX(-50%) rotate(240deg);
+  .labelText {
+    transform: translate(0%, -50%) rotate(-240deg);
+  }
+}
+.fourthLabel {
+  transform: translateX(-50%) rotate(250deg);
+  .labelText {
+    transform: translate(0%, -50%) rotate(-250deg);
+  }
+}
+
+.circleContent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 999px) {
+  .transformationProcess {
+    padding-bottom: 20vw;
+  }
+  .processCircleContainer {
+    width: 80%;
+  }
+  .secondLabel {
+    .labelText {
+      transform: translateY(25%) translateX(25%) rotate(-120deg);
+    }
+  }
+  .thirdLabel {
+    .labelText {
+      transform: translateY(25%) translateX(-25%) rotate(-240deg);
+    }
+  }
+  .label {
+    width: 20vw;
+  }
+  .labelText {
+    width: inherit;
+
+    p {
+      font-size: 1.5vw;
+    }
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .processCircleContainer {
+    width: 90%;
+  }
+  .label {
+    width: 28vw;
+  }
+  .servicesBtn {
+    width: 7rem;
+    p {
+      font-size: 3vw;
+    }
+  }
+  .labelText {
+    height: 2rem;
+    p {
+      font-size: 2.5vw;
+    }
+  }
+  .circleContent {
+    margin-top: 0;
+    .contentText {
+      font-size: 6vw;
+      width: 70%;
+    }
+  }
+  .circleArrow {
+    width: 80%;
+  }
+  .contentText {
+    margin-bottom: 1rem;
+  }
+  .servicesBtn {
+    padding: 0.5rem 0.8rem;
+  }
+}

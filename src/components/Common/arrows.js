@@ -1,13 +1,12 @@
 import React from "react";
-
 import { VisibilityContext } from "react-horizontal-scrolling-menu";
-import { RightCircleOutlined } from "@ant-design/icons";
 import { ReactComponent as RightArrowIcon } from "./arrow.svg";
-function Arrow({ children, disabled, onClick }) {
+function Arrow({ children, className, disabled, onClick }) {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
+      className={className}
       style={{
         cursor: "pointer",
         display: "flex",
@@ -21,8 +20,8 @@ function Arrow({ children, disabled, onClick }) {
         border: "none",
         height: "50px",
         width: "50px",
-        marginRight: "30px",
-        marginBottom: "30px",
+        // marginRight: "30px",
+        // marginBottom: "30px",
       }}
     >
       {children}
@@ -49,13 +48,26 @@ export function LeftArrow({ className }) {
   }, [isFirstItemVisible, visibleItemsWithoutSeparators]);
 
   return (
-    <Arrow disabled={disabled} onClick={() => scrollPrev()}>
-      <div class={`chevron-d leftNavigationCircle ${className}`}>
+    <Arrow
+      className={className}
+      disabled={disabled}
+      onClick={() => scrollPrev()}
+    >
+      <div class={`chevron-d leftNavigationCircle`}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
-          <path
+          {/* <path
+            class="leftBtnCircle"
             d="M27.5 2C41.6 2 53 13.4 53 27.5S41.6 53 27.5 53 2 41.6 2 27.5 13.4 2 27.5 2M27.5 0C12.3 0 0 12.3 0 27.5S12.3 55 27.5 55 55 42.7 55 27.5 42.7 0 27.5 0L27.5 0z"
             fill="currentColor"
+          /> */}
+          <circle
+            class="leftBtnCircle"
+            r="48%"
+            cy="50%"
+            cx="50%"
+            fill="currentColor"
           />
+
           <polygon
             class="arrow"
             points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7"
@@ -90,13 +102,23 @@ export function RightArrow({ className }) {
       onClick={() => {
         scrollNext();
       }}
+      className={className}
     >
-      <div class={`chevron-d rightNavigationCircle ${className}`}>
+      <div class={`chevron-d rightNavigationCircle`}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
-          <path
+          {/* <path
+            class="rightBtnCircle"
             d="M27.5 2C41.6 2 53 13.4 53 27.5S41.6 53 27.5 53 2 41.6 2 27.5 13.4 2 27.5 2M27.5 0C12.3 0 0 12.3 0 27.5S12.3 55 27.5 55 55 42.7 55 27.5 42.7 0 27.5 0L27.5 0z"
-            fill="#000"
+            fill="currentColor"
+          /> */}
+          <circle
+            class="rightBtnCircle"
+            r="48%"
+            cy="50%"
+            cx="50%"
+            fill="currentColor"
           />
+
           <polygon
             class="arrow"
             points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7 "

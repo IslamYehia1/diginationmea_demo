@@ -1,0 +1,22 @@
+.rightArrow {
+  margin-right: 2rem;
+  position: relative;
+  right: 2rem;
+}
+.leftArrow {
+  position: relative;
+  right: 2rem;
+}
+.arrowBtn {
+  width: 2.3rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+@media only screen and (max-width: 699px) {
+  .rightArrow {
+    right: 0;
+  }
+  .leftArrow {
+    right: 0;
+  }
+}

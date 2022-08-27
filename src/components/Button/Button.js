@@ -1,10 +1,10 @@
 import style from "./Button.module.scss";
-function Button({ id, Icon, label, className, style }) {
+function Button({ id, Icon, label, className }) {
   return (
-    <button id={id} className={className} style={style}>
+    <button id={id} className={`${style.button} ${className}`}>
       {" "}
       <p>{label}</p>
-      <Icon />
+      {Icon && <Icon />}
     </button>
   );
 }

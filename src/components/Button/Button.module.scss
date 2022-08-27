@@ -1,11 +1,11 @@
-.contactButton {
+@import "../../vars.scss";
+
+.button {
   align-items: center;
   justify-content: center;
   border: none !important ;
-  margin: 10px 0 10px 1.4rem;
   display: block;
   border-radius: 7px;
-  background: #1c8a55;
   z-index: 2;
   //   border: 2px solid;
   padding: 10px;
@@ -34,7 +34,7 @@
 *::after {
   z-index: -1;
 }
-.contactButton {
+.button {
   color: white;
   // transform-origin: left center
   p {

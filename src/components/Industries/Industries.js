@@ -1,14 +1,6 @@
 import Card from "../Card/Card";
-// import { LeftArrow, RightArrow } from "./arrows";
-// import { Card } from "./card";
-// import { Footer } from "./footer";
-// import { Header } from "./header";
 import "./globalStyles.scss";
-import usePreventBodyScroll from "../Common/usePreventBodyScroll";
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
-import { RightCircleOutlined } from "@ant-design/icons";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import HealthCareImg from "./healthCare2.jpg";
 import EducationImg from "./education.jpg";
 import FineTechImg from "./fineTech.jpg";
@@ -16,10 +8,7 @@ import BankingImg from "./banking.jpg";
 import InsuranceImg from "./insurance.jpg";
 import OilAndGas from "./oil_and_gas.jpg";
 import style from "./Industries.module.scss";
-import { ReactComponent as DownArrow } from "../../SVG/gradientArrow.svg";
-import useDrag from "../Common/useDrag";
-import { LeftArrow, RightArrow } from "../Common/arrows";
-import gsap from "gsap";
+import HorizontalScroll from "../HorizontalScroll/HorizontalScroll";
 function Industries({ isHomeMounted }) {
   return (
     <div className={`${style.industriesSection} industriesSection`}>
@@ -28,7 +17,8 @@ function Industries({ isHomeMounted }) {
           <span>Industries</span>
         </h3>
         <h1 className="revealAnimationHeader">
-          <span className="textLine">
+          We advised over 800 clients across KSA from all industries
+          {/* <span className="textLine">
             <span>We advised over 800</span>
           </span>
           <span className="textLine">
@@ -36,7 +26,7 @@ function Industries({ isHomeMounted }) {
           </span>
           <span className="textLine">
             <span>from all industries</span>
-          </span>
+          </span> */}
         </h1>
       </div>
       <IndustryCards />
@@ -44,59 +34,17 @@ function Industries({ isHomeMounted }) {
   );
 }
 
-const elemPrefix = "test";
-const getId = (index) => `${elemPrefix}${index}`;
-
-const getItems = () =>
-  Array(20)
-    .fill(0)
-    .map((_, ind) => ({ id: getId(ind) }));
-
 export function IndustryCards() {
-  //   const [items] = React.useState(getItems);
-  //   const { disableScroll, enableScroll } = usePreventBodyScroll();
-  const [items] = React.useState(getItems);
-  const { dragStart, dragStop, dragMove, dragging } = useDrag();
-  const handleDrag =
-    ({ scrollContainer }) =>
-    (ev) =>
-      dragMove(ev, (posDiff) => {
-        if (scrollContainer.current) {
-          scrollContainer.current.scrollLeft += posDiff;
-        }
-      });
-
-  const [selected, setSelected] = React.useState("");
-  const handleItemClick = (itemId) => () => {
-    if (dragging) {
-      return false;
-    }
-    setSelected(selected !== itemId ? itemId : "");
-  };
   return (
     <div style={{ height: "100vh" }}>
       {/* <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}> */}
-      <div onMouseLeave={dragStop} className={style.scrollMenuContainer}>
-        <ScrollMenu
-          onMouseDown={() => dragStart}
-          onMouseUp={() => dragStop}
-          onMouseMove={handleDrag}
-          LeftArrow={<LeftArrow></LeftArrow>}
-          RightArrow={RightArrow}
-          transitionBehavior="smooth"
+      <div className={style.scrollMenuContainer}>
+        <HorizontalScroll
           itemClassName={style.card}
-          // wrapperClassName={}
-          // onWheel={onWheel}
           separatorClassName={style.cardsSeperator}
           scrollContainerClassName={style.industryCards}
+          arrowClassName={style.arrowBtn}
         >
-          {/* {items.map(({ id }) => (
-              <Card
-                title={id}
-                itemId={id} // NOTE: itemId is required for track items
-                key={id}
-              />
-            ))} */}
           <Card
             title="Oil and gas"
             description={
@@ -162,25 +110,10 @@ export function IndustryCards() {
             itemId={"6"}
             key={6}
           ></Card>
-        </ScrollMenu>
+        </HorizontalScroll>
       </div>
     </div>
   );
-}
-
-function onWheel(apiObj, ev) {
-  const isThouchpad = Math.abs(ev.deltaX) !== 0 || Math.abs(ev.deltaY) < 15;
-
-  if (isThouchpad) {
-    ev.stopPropagation();
-    return;
-  }
-
-  if (ev.deltaY < 0) {
-    apiObj.scrollNext();
-  } else if (ev.deltaY > 0) {
-    apiObj.scrollPrev();
-  }
 }
 
 export default Industries;

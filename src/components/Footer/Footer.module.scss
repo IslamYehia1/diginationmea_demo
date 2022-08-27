@@ -1,21 +1,160 @@
+@import "../../vars.scss";
+
 .footer {
-  background-color: #141414;
-  width: 100% !important;
-  height: 300px;
   display: flex;
-  .columnHeading {
-    color: gray;
+  width: 100%;
+  // background-color: $Primary;
+  // background-color: #0f1614;
+  // background-color: #141414;
+  background-color: $Primary;
+  padding: 5rem 10%;
+  flex-direction: column;
+  h1 {
+    font-weight: 500;
   }
-  .firstColumn {
+  h2 {
+    font-weight: 500;
+
+    color: #90c0a1;
+    font-family: Poppins;
+  }
+  p {
+    font-family: MyraidProReg;
+  }
+}
+.firstRow {
+  display: flex;
+  width: 100%;
+}
+.contactForm {
+  width: 55%;
+
+  // padding: 2rem 8rem 0 12rem;
+  padding-top: 8rem;
+  padding-left: 10rem;
+  .inputFields {
     display: flex;
     flex-direction: column;
+    gap: 3rem;
+    padding-top: 2%;
   }
-  .secondColumn {
+  input:focus,
+  text-area:focus {
+    outline: none;
+  }
+  .logo {
+    width: 5rem;
+  }
+  input,
+  textarea {
+    border: none;
+    background: whitesmoke;
+    // border-bottom: solid 1px #d0d0d0a7;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    color: $Primary;
+    width: 90%;
+  }
+  textarea {
+    resize: none;
+    // border: 1px solid #d0d0d0a7;
+    // background: whitesmoke;
+    border-radius: 5px;
+    // background: none;
+    height: 12rem;
+    padding: 2rem;
+    color: $Primary;
+  }
+
+  .submitBtn {
+    width: 8rem;
+    height: 3.3rem;
+    font-family: Poppins;
+    background-color: #d7d3c9;
+    &:before {
+      background-color: #66b186;
+    }
+  }
+}
+.connectInfo {
+  width: 45%;
+  height: inherit;
+  color: #d7d3c9;
+  display: flex;
+  flex-direction: column;
+  .row {
+    margin-top: 2rem;
+    padding-right: 7rem;
     display: flex;
+    justify-content: space-between;
+  }
+  .address {
+    width: 30%;
+  }
+  .general {
+  }
+  h1 {
+    font-family: Poppins;
+    font-size: 4rem;
+    color: #90c0a1;
+    margin-bottom: 0;
+  }
+}
+.secondRow {
+  position: relative;
+  top: -2rem;
+  display: flex;
+  gap: 2%;
+  svg {
+    color: white;
+    width: 1.4rem;
+  }
+}
+
+.thirdRow {
+  border-top: 2px solid #d7d3c962;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  font-family: Poppins;
+  color: #d7d3c9;
+}
+
+@media screen and (max-width: 999px) {
+  .firstRow {
     flex-direction: column;
   }
-  .thirdColumn {
-    display: flex;
-    flex-direction: column;
+  .contactForm {
+    width: 100%;
+    padding: 3rem 0;
+    input {
+      width: 100%;
+    }
+    textarea {
+      width: 100%;
+    }
+  }
+  .connectInfo {
+    width: 100%;
+    .row {
+      width: 100%;
+    }
+  }
+  .secondRow {
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .footer {
+    padding: 5rem 5%;
+  }
+  .connectInfo {
+    h1 {
+      font-size: 2.4rem;
+    }
+    .row {
+      justify-content: space-between;
+      padding-right: 0;
+    }
   }
 }

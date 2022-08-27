@@ -5,12 +5,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MyContext } from "../../App";
 import ItImg from "../Images/cables.jpg";
 import ServicesContainer from "./ServicesContainer";
-import { ReactComponent as SolutionsIcon } from "../../SVG/solution.svg";
 import { ReactComponent as ServicesIcon } from "../../SVG/cloud-computing.svg";
-import ItServices from "../Images/ItServices.jpg";
-
-import SolutionsIcon2 from "../../SVG/computing.png";
-import SectionSeperator from "../Solutions/SectionSeperator";
+// import ItServices from "../Images/ItServices.jpg";
+import ItServices from "../Images/board.jpg";
+import SectionSeperator from "../SectionsSeperator/SectionSeperator";
 
 gsap.registerPlugin(ScrollTrigger);
 function Services({ isHomeMounted }) {
@@ -140,8 +138,8 @@ function Services({ isHomeMounted }) {
         Icon={ServicesIcon}
         imgScrollTarget={style.services}
         isHomeMounted={isHomeMounted}
-        firstLine={"OUR IT"}
-        secondLine={"SERVICES"}
+        firstLine={"Our IT"}
+        secondLine={"Services"}
       />
       {/* <div className={style.servicesTitle}>
         <div className={style.headingText}>

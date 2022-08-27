@@ -1,55 +1,42 @@
-// .lineContainer {
-//   height: 100vh;
-// }
+@import "../../vars.scss";
+
 .servicesContainer {
   display: flex;
   width: 80%;
   font-family: "MyraidProSemiBold";
-  // background-image: linear-gradient(90deg, #139c8e, #0ce162);
-  // background-color: white;
-  box-shadow: 0 2px 21px 0 rgba(0, 0, 0, 0.061);
-  // min-height: 150vh;
-  // height: 70rem;
-  z-index: 5;
-  // padding-top: 5%;
-  // background-color: #fdfff7;
-  background-color: #f4f4f9;
 
-  // border-radius: 0.5rem;
+  box-shadow: 0 2px 21px 0 rgba(0, 0, 0, 0.061);
+
+  z-index: 5;
+
+  // background-color: #f4f4f9;
+  background-color: #fdfffc;
+  margin-bottom: 4rem;
 }
 .services {
-  //   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1c8a55", endColorstr="#2196c7", GradientType=1 );
   min-height: 100%;
-  // min-height: 280vh;
+
   margin-bottom: 10%;
-  // padding-left: 10rem;
+
   display: flex;
   flex-direction: column;
   float: none;
   align-items: center;
-  // background-color: #242526;
-
-  .servicesContainer {
-    position: relative;
-    top: -5rem;
-  }
-  img {
-    object-fit: contain;
-    // opacity: 0;
-  }
+}
+.servicesContainer {
+  position: relative;
+  top: -5rem;
+}
+img {
+  object-fit: contain;
 }
 
 .servicesTitle {
   display: flex;
-  // flex-direction: column;
 
   width: 100%;
-  // min-height: 42rem;
-  // min-height: 768px;
-  // height: 60vh;
-  min-height: 70vh;
 
-  // padding-left: 10rem;
+  min-height: 70vh;
 
   .servicesImg {
     width: 50%;
@@ -60,7 +47,7 @@
     img {
       object-fit: fill;
       min-height: 130%;
-      // min-height: 70vh;
+
       opacity: 0.7;
     }
   }
@@ -81,42 +68,23 @@
   }
   & > h3 {
     margin-bottom: 1%;
-    // background-image: -webkit-gradient(
-    //   linear,
-    //   left top,
-    //   right top,
-    //   from(#139c8e),
-    //   to(#0ce162)
-    // );
-    // background-image: linear-gradient(90deg, #139c8e, #0ce162);
-    // -webkit-background-clip: text;
-    // background-clip: text;
-    // -webkit-text-fill-color: transparent;
+
     color: white;
   }
   h1 {
     margin-bottom: 9%;
-    // color: #333;
-    // color: white;
+
     font-family: "Oswald", sans-serif;
     font-size: 6rem;
     text-transform: uppercase;
     max-width: 30rem;
-    // line-height: 1.1;
-    // background-image: linear-gradient(90deg, #139c8e, #0ce162);
-    // background-image: linear-gradient(90deg, #54c5d2, #1c8a55);
 
-    // background-clip: text;
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
     color: white;
     svg {
-      // color: #54c5d2;
       color: #00b295;
       width: 5rem;
     }
   }
-  //   background-color: #141414;
 }
 .gradientText {
   height: 10rem;
@@ -133,18 +101,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  // svg {
-  //   display: block;
-  // }
 }
 .contentContainer {
   display: flex;
   width: 100%;
-  // background-color: #7cb9e42d;
-  // background-color: #eaf6ff;
-  // background-color: #fcfcfc;
-  // background-color: #f2f2f2;
-  // background-color: #ffffff;
+
   padding: 4.5rem 6rem;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -155,17 +116,16 @@
     width: 50%;
     .serviceDescription {
       visibility: hidden;
-      color: #141414;
+
+      color: $Primary;
 
       h1 {
-        color: #141414;
+        color: $Primary;
         font-size: 1.7rem;
         font-family: "MyraidProReg";
         margin-bottom: 0.3rem;
       }
-      // &.active {
-      //   display: block;
-      // }
+
       p {
         font-family: "MyraidProLight";
         font-size: 1.4rem;
@@ -175,10 +135,7 @@
   }
   .content {
     display: flex;
-    // flex-direction: row-reverse;
-    // justify-content: space-between;
-    // min-height: 250px;
-    // height: 20rem;
+
     overflow-y: hidden;
     width: 100%;
   }
@@ -188,45 +145,35 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    // width: 50%;
+
     margin-bottom: 3rem;
-    color: #141414;
+    color: $Primary;
 
     cursor: pointer;
     .title {
       display: flex;
       align-items: center;
       color: inherit;
-      // width: 50%;
+
       svg {
         width: 3.5rem;
         margin-right: 2rem;
         opacity: 0.8;
         color: inherit;
       }
-      // img {
-      //   width: 7rem;
-      //   margin-right: 2rem;
-      //   opacity: 0.8;
-      //   color: inherit;
-      // }
+
       .rightArrow {
         width: 0;
         margin-right: 0;
         color: inherit;
       }
-      // &:hover {
-      //   .rightArrow {
-      //     width: 2rem !important;
-      //   }
-      // }
+
       h2 {
         font-family: "MyraidProSemiBold";
-        // font-size: 1.8rem;
+
         font-size: 1.4rem;
         margin-left: 1rem;
-        // color: rgb(209, 209, 209);
-        // font-family: "MyraidProSemiBold";
+
         margin-bottom: 0;
         line-height: 4rem;
         color: inherit;
@@ -235,17 +182,15 @@
 
     p {
       font-family: "MyraidProSemiBold";
-
-      // opacity: 0;
     }
   }
 }
 .mobileDescription {
-  // visibility: hidden;
   span {
     visibility: hidden;
     font-family: MyraidProLight;
     font-size: 1.5rem;
+    text-align: center;
   }
 }
 .servicesSolid {
@@ -268,8 +213,6 @@
   margin-right: 100px;
 }
 .activeService {
-  // color: #2196c7 !important;
-
   .rightArrow {
     width: 2rem !important;
   }
@@ -279,13 +222,13 @@
   display: block;
   min-height: 100%;
   width: 1px;
-  //   background-color: hsla(0, 0%, 100%, 0.05);
+
   background-color: #d4e0e6;
   float: none;
   .pinnedLine {
     display: block;
     margin: 0px;
-    //   inset: 0px 0px 2544px;
+
     position: absolute;
     flex-basis: auto;
     overflow: visible;
@@ -298,31 +241,18 @@
 .activeLine {
   position: absolute;
   height: 75px;
-  //   transform: translate(0px, 187.6px);
+
   margin: 0px;
   max-width: 1px;
   width: 2px;
   max-height: 128px;
   padding: 0px;
   background-color: #1c8a55;
-  //   background-image: -webkit-gradient(
-  //     linear,
-  //     left top,
-  //     right top,
-  //     from(#139c8e),
-  //     to(#0ce162)
-  //   );
-  //   background-image: linear-gradient(90deg, #139c8e, #0ce162);
-  //   -webkit-background-clip: text;
-  //   background-clip: text;
-  //   -webkit-text-fill-color: transparent;
+
   float: none;
 }
 
 @media (min-width: 700px) and (max-width: 1199px) {
-  // .card {
-  //   min-width: 50%;
-  // }
   .card:first-child {
     margin-left: 4rem;
   }
@@ -376,9 +306,9 @@
   }
 
   .servicesContainer {
-    // padding-left: 1.3333rem;
     padding: 1.3333rem 2rem;
     width: 90%;
+    top: -3rem;
     .contentContainer {
       padding: 0;
     }
@@ -389,7 +319,7 @@
         flex-direction: column;
         h2 {
           font-size: 1rem;
-          // font-family: MyraidProReg;
+
           margin-left: 0;
         }
         svg {
@@ -399,7 +329,10 @@
       }
     }
   }
-  .service {
+  .contentContainer {
+    .service {
+      align-items: center;
+    }
   }
 }
 

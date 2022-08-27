@@ -1,8 +1,8 @@
+@import "../../vars.scss";
+
 .industriesSection {
-  // padding-bottom: 7%;
-  // padding-top: 7%;
   min-height: 800px;
-  //   padding-left: 10rem;
+
   margin-top: 10%;
 }
 .industryCards {
@@ -14,35 +14,39 @@
   cursor: grab;
 }
 .sectionTitle {
-  padding: 5rem 10rem 2rem 10rem;
-  font-family: MyraidProSemiBold;
+  // padding: 5rem 10rem 2rem 10rem;
+  padding: 5rem 10rem 1rem 10rem;
+  font-family: Poppins;
+  font-weight: 300;
   margin-bottom: 2%;
-  white-space: nowrap;
+  // margin-bottom: 0;
+  // white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
   h3 {
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(#139c8e),
-      to(#0ce162)
-    );
-    background-image: linear-gradient(90deg, #139c8e, #0ce162);
-    -webkit-background-clip: text;
+    color: $Primary;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: #1c8a55;
+    span {
+      color: inherit;
+    }
   }
   h1 {
-    color: #0d1f22;
+    // color: $Primary;
+    color: $Primary;
+    // color: #042825;
     font-family: "Poppins", sans-serif;
-    // font-family: "Gotham Black", sans-serif;
-    // font-family: TelegrafBold, sans-serif;
-    font-weight: 800;
-    font-style: italic;
-    // font-size: 4rem;
-    // font-size: 3.1rem;
-    font-size: 2.7rem;
 
-    text-transform: uppercase;
+    font-weight: 500;
+    // font-style: italic;
+
+    // font-size: 2.2rem;
+    font-size: 2rem;
+
+    // text-transform: uppercase;
     max-width: 40%;
     line-height: 1.1;
     display: flex;
@@ -52,7 +56,7 @@
 .card {
   min-width: 32%;
   width: 50%;
-  // margin-right: 5%;
+
   border: none;
   &:first-child {
     margin-left: 10rem;
@@ -61,16 +65,17 @@
 .cardsSeperator {
   width: 20px;
 }
-.rightArrow {
-  position: absolute;
-}
-.leftArrow {
-  position: absolute;
+// .rightArrow {
+//   position: absolute;
+// }
+// .leftArrow {
+//   position: absolute;
+// }
+.arrowBtn {
+  bottom: 1.3rem;
+  // width: 2.5rem;
 }
 @media (min-width: 700px) and (max-width: 1199px) {
-  // .card {
-  //   min-width: 50%;
-  // }
   .card:first-child {
     margin-left: 4rem;
   }
@@ -103,7 +108,6 @@
 @media (max-width: 699px) {
   .card {
     min-width: 80%;
-    // margin-right: 10%;
   }
   .industryCards {
     gap: 5%;
@@ -116,8 +120,9 @@
   }
   .sectionTitle h1 {
     max-width: 100%;
-    margin-bottom: 20%;
-    font-size: 2.66667rem;
+    margin-bottom: 5%;
+    // font-size: 2.66667rem;
+    font-size: 6vw;
     width: 100%;
   }
 }
@@ -127,7 +132,6 @@
     margin-left: 1.3333rem;
   }
   .sectionTitle h1 {
-    // font-size: 2.66667rem;
-    font-size: 7.3vw;
+    // font-size: 7.3vw;
   }
 }

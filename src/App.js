@@ -4,17 +4,19 @@ import { Routes, BrowserRouter, Route } from "react-router-dom";
 // import "locomotive-scroll.css";
 import "./fonts/MYRIADPRO-REGULAR.OTF";
 import "./fonts/MYRIADPRO-SEMIBOLD.OTF";
-import HomePage from "./pages/Home/HomePage";
+// import HomePage from "./pages/Home/HomePage";
 import LocomotiveScroll from "locomotive-scroll";
-import "./App.less";
 import "./global.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Services from "./pages/ServicesPage";
+// import Services from "./pages/ServicesPage";
 import { useLocation } from "react-router-dom";
 import { useLocoscroll } from "./components/Common/useLocoscroll";
+// import Contact from "./pages/Contact";
 gsap.registerPlugin(ScrollTrigger);
-
+const HomePage = React.lazy(() => import("./pages/Home/HomePage"));
+const Services = React.lazy(() => import("./pages/ServicesPage"));
+const Contact = React.lazy(() => import("./pages/Contact"));
 export const MyContext = createContext();
 function App() {
   // const scrollRef = useRef(document.querySelector(".App"));
@@ -86,18 +88,33 @@ function App() {
       <div ref={scrollRef} className="App">
         <div className="overlay" />
         <MyContext.Provider value={{ scrollRef, isAppMounted }}>
-          <NavigationBar
-            isScrolled={isNavScrolled}
-
-            // transitionController={tltransition}
-            // hanldeMouseLeave={handleReverse}
-            // handleMouseEnter={handleHover}
-          />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<Services />} />
+            <Route
+              path="/"
+              element={
+                <React.Suspense fallback={<>..</>}>
+                  {" "}
+                  <HomePage />{" "}
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/services"
+              element={
+                <React.Suspense fallback={<>fdf</>}>
+                  <Services />
+                </React.Suspense>
+              }
+            />
             {/* <Route path="/blog" component={Blog} /> */}
-            {/* <Route path="/contact" component={Contact} /> */}
+            <Route
+              path="/contact"
+              element={
+                <React.Suspense fallback={<>fd</>}>
+                  <Contact />
+                </React.Suspense>
+              }
+            />
           </Routes>
         </MyContext.Provider>
       </div>
