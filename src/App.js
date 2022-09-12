@@ -142,6 +142,10 @@ function App() {
               path="/news"
               element={<WIP onLoad={playPageTransitionOut} />}
             />
+            <Route
+              path="/careers"
+              element={<WIP onLoad={playPageTransitionOut} />}
+            />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </MyContext.Provider>

@@ -13,6 +13,9 @@ function Contact({ onMount }) {
   useEffect(() => {
     if (onMount) onMount();
   }, [onMount]);
+  useEffect(() => {
+    document.title = "Contact Us";
+  }, []);
   return (
     <>
       <NavBar

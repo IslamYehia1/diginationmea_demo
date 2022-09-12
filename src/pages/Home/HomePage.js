@@ -45,7 +45,6 @@ function HomePage({ onMount }) {
     });
     return () => {
       setIsHomeMounted(false);
-      console.log("Cleaning up");
       ScrollTrigger.getById("navbarHighlight").kill();
     };
   }, []);

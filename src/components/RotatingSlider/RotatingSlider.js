@@ -85,7 +85,9 @@ function TransformationStory({ onLoad }) {
         tl.isActive() ? null : scaleLittleCircle.reverse()
       );
     });
-    mainTimeline.current.play();
+    return () => {
+      mainTimeline.current.kill();
+    };
   }, []);
 
   return (
@@ -99,7 +101,12 @@ function TransformationStory({ onLoad }) {
           />
           <div className={style.wrapper}>
             <SliderTransitions nextSection={nextSection}>
-              <SliderSections onLoad={onLoad} />
+              <SliderSections
+                onLoad={() => {
+                  onLoad();
+                  mainTimeline.current.play();
+                }}
+              />
             </SliderTransitions>
           </div>
         </div>

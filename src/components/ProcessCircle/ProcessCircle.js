@@ -64,7 +64,6 @@ function Process() {
     }, 100);
     return () => {
       tl.current.kill();
-      ScrollTrigger.getById("processCircleScrolltrigger").kill();
     };
   }, []);
   return (

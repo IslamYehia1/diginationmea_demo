@@ -1,8 +1,12 @@
 import NavBar from "../components/Navbar/Navbar";
 import style from "./Partners.module.scss";
 import RotatingSlider from "../components/RotatingSlider/RotatingSlider";
+import { useEffect } from "react";
 
 function Partners({ onMount }) {
+  useEffect(() => {
+    document.title = "Partners";
+  }, []);
   return (
     <>
       <NavBar

@@ -1,11 +1,10 @@
-import Card from "../Card/Card";
+import Card from "./Card";
 import "./globalStyles.scss";
-import React, { useEffect } from "react";
+import React from "react";
 import HealthCareImg from "../Images/healthCare2.jpg";
 import EducationImg from "../Images/education.jpg";
 import GovernmentImg from "../Images/government.jpg";
 import CommunicationImg from "../Images/communication.jpg";
-import FineTechImg from "../Images/fineTech.jpg";
 import BankingImg from "../Images/banking.jpg";
 import InsuranceImg from "../Images/insurance.jpg";
 import OilAndGas from "../Images/oil_and_gas.jpg";

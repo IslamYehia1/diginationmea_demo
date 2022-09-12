@@ -45,24 +45,26 @@ export function useLocoscroll(scrollRef, multiplier) {
       // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
       pinType: scrollRef.current.style.transform ? "transform" : "fixed",
     });
-    ScrollTrigger.addEventListener("refresh", () => {
+    const update = () => {
       if (locoScrollRef.current) locoScrollRef.current.update();
-    });
+    };
+    ScrollTrigger.addEventListener("refresh", update);
     ScrollTrigger.refresh(true);
-
     ScrollTrigger.defaults({ scroller: scrollRef.current });
-    const resizeObserver = new ResizeObserver((entries) => {
-      ScrollTrigger.refresh(true);
-      locoScrollRef.current.update();
-      // locoScrollRef.current.update();
-      // console.log("Body height changed:", entries[0].target.clientHeight)
-    });
+    // const resizeObserver = new ResizeObserver((entries) => {
+    //   ScrollTrigger.refresh(true);
+    //   if (locoScrollRef.current && locoScrollRef.current.update)
+    //     locoScrollRef.current.update();
+    //   // locoScrollRef.current.update();
+    //   // console.log("Body height changed:", entries[0].target.clientHeight)
+    // });
 
     // start observing a DOM node
-    resizeObserver.observe(document.body);
+    // resizeObserver.observe(document.body);
     return () => {
       locoScrollRef.current.destroy();
-      resizeObserver.disconnect();
+      // resizeObserver.disconnect();
+      ScrollTrigger.removeEventListener("refresh", update);
     };
   }, [scrollRef.current]);
 

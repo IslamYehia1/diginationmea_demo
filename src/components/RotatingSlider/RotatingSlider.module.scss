@@ -247,8 +247,8 @@
     max-width: 100%;
   }
   .box {
-    height: 300vh;
-    width: 100vh;
+    height: 150vh;
+    width: 200vh;
   }
   .boxesContainer {
     transform: rotate(90deg);
@@ -309,13 +309,13 @@
     vertical-align: center;
   }
 
-  .box {
-    position: absolute;
-    z-index: 1;
-    width: 100vw;
-    height: 240vw;
-    opacity: 0;
-  }
+  // .box {
+  //   position: absolute;
+  //   z-index: 1;
+  //   width: 100vw;
+  //   height: 240vw;
+  //   opacity: 0;
+  // }
   .storySection {
     min-height: 100%;
     height: 100%;
