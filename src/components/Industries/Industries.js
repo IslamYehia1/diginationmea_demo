@@ -1,15 +1,17 @@
 import Card from "../Card/Card";
 import "./globalStyles.scss";
 import React, { useEffect } from "react";
-import HealthCareImg from "./healthCare2.jpg";
-import EducationImg from "./education.jpg";
-import FineTechImg from "./fineTech.jpg";
-import BankingImg from "./banking.jpg";
-import InsuranceImg from "./insurance.jpg";
-import OilAndGas from "./oil_and_gas.jpg";
+import HealthCareImg from "../Images/healthCare2.jpg";
+import EducationImg from "../Images/education.jpg";
+import GovernmentImg from "../Images/government.jpg";
+import CommunicationImg from "../Images/communication.jpg";
+import FineTechImg from "../Images/fineTech.jpg";
+import BankingImg from "../Images/banking.jpg";
+import InsuranceImg from "../Images/insurance.jpg";
+import OilAndGas from "../Images/oil_and_gas.jpg";
 import style from "./Industries.module.scss";
 import HorizontalScroll from "../HorizontalScroll/HorizontalScroll";
-function Industries({ isHomeMounted }) {
+function Industries() {
   return (
     <div className={`${style.industriesSection} industriesSection`}>
       <div className={`${style.sectionTitle} animatedText`}>
@@ -48,7 +50,7 @@ export function IndustryCards() {
           <Card
             title="Oil and gas"
             description={
-              "We solve stuff alot of stuff meaning that we work with health care to care about health "
+              "We develop IT solutions to transform the oil and gas industry by reducing operational and maintenance costs, increasing efficiency, and optimizing operations."
             }
             img={OilAndGas}
             itemId={"0"}
@@ -58,7 +60,7 @@ export function IndustryCards() {
           <Card
             title="Health Care"
             description={
-              "Modern technological advancements have taken the business into a new era! It’s not technology optimizing business operations anymore, it’s new markets "
+              "Digination solutions for health IT enable digital transformation by providing clinicians with instant access to patient information as they roam across facilities, devices and networks."
             }
             img={HealthCareImg}
             itemId={"1"}
@@ -67,7 +69,7 @@ export function IndustryCards() {
           <Card
             title="Insurance"
             description={
-              "We help business to design a perfect path to their ultimate digital transformation. Taking into consideration to minimize "
+              "Hexaware’s Digital Insurance Services deliver transformative solutions to Insurers using AI, Cloud,  Robotic Process Automation (RPA), Machine Learning and other emerging technologies."
             }
             img={InsuranceImg}
             itemId={"2"}
@@ -77,7 +79,7 @@ export function IndustryCards() {
           <Card
             title="Education"
             description={
-              "We solve stuff alot of stuff meaning that we work with health care to care about health "
+              "Our comprehensive on-premises and cloud IT management solutions for education industry will enable you to take complete control of your IT infrastructure and services, both on-campus and remote."
             }
             img={EducationImg}
             itemId={"3"}
@@ -86,7 +88,7 @@ export function IndustryCards() {
           <Card
             title="Financial sector"
             description={
-              "We solve stuff alot of stuff meaning that we work with health care to care about health "
+              "Quickly detect and prevent fraud. Determine credit- and loan-worthiness.  We'll help you remove data obstacles like cloud latency and AI bottlenecks. "
             }
             img={BankingImg}
             itemId={"4"}
@@ -95,18 +97,18 @@ export function IndustryCards() {
           <Card
             title="Communication"
             description={
-              "We solve stuff alot of stuff meaning that we work with health care to care about health "
+              "We offer IT and network support to multiple types of businesses within the telecom industry. "
             }
-            img={EducationImg}
+            img={CommunicationImg}
             itemId={"5"}
             key={5}
           ></Card>
           <Card
             title="Government"
             description={
-              "We solve stuff alot of stuff meaning that we work with health care to care about health "
+              "We work with governments to increase their efficiency by building world-class IT services. Digitizing systems and processes enables governments to more effectively serve citizens. "
             }
-            img={EducationImg}
+            img={GovernmentImg}
             itemId={"6"}
             key={6}
           ></Card>

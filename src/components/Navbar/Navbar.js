@@ -1,36 +1,16 @@
 import { useEffect, useState, useRef, useCallback, useContext } from "react";
-import NormalLogo from "./LogoDigination.png";
-import WhiteLogo from "./whiteLogo1.png";
-import style from "./Navbar.module.scss";
-import { ReactComponent as ContactIcon } from "../../SVG/send.svg";
-import { ReactComponent as MenuIcon } from "../../SVG/menu.svg";
-import { ReactComponent as MenuCircle } from "../../SVG/menuCircle.svg";
-import Button from "../Button/Button";
+import desktopNavStyle from "./Navbar.module.scss";
+import commonNavStyle from "./commonNavbar.module.scss";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-import { useLocation } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from "react-router-dom";
-import Dropdown from "./Dropdown";
-import "./customizations.scss";
-import LinkBtn from "../Button/LinkBtn";
-import { MyContext } from "../../App";
+import DesktopNavbar from "./DesktopNavbar";
+import MobileNavbar from "./MobileNavbar";
 
 gsap.registerPlugin(CustomEase);
 
 gsap.registerPlugin(ScrollTrigger);
-const bins = [];
-const items = [];
 
-const amount = parseFloat((60 - 7.321).toFixed(2));
-
-console.log("amount: ", amount); // <--- this prints fine
-
-bins.push({
-  // friend: exp.friend,
-  amount: amount, // <-- but gets stored some floating-point garbage
-});
-console.log(bins);
 const links = [
   // { path: "/", title: "Home" },
   // {
@@ -40,6 +20,10 @@ const links = [
   {
     path: "/services",
     title: "Services",
+  },
+  {
+    path: "/partners",
+    title: "Partners",
   },
   {
     path: "/services",
@@ -53,7 +37,7 @@ const links = [
   },
   {
     path: "/industries",
-    title: "Industries",
+    title: "industries",
     dropDown: [
       { title: "Financial sector", path: "/industries" },
       { title: "Healthcare", path: "/industries" },
@@ -78,18 +62,12 @@ const links = [
   },
 ];
 
-function NavBar({ isScrolled, bgClass, className, normalLogoOnly }) {
-  const [click, setClick] = useState(false);
+function NavBar({ isScrolled, bgClass, className, highlightOnMobile }) {
   const [width, setWidth] = useState(window.innerWidth);
-  const [activeDropdown, setActiveDropdown] = useState(false);
-  const navRef = useRef();
-  const MobileMenuIconRef = useRef();
   const isMobile = width <= 999;
-  const location = useLocation();
-  const overlayTween = useRef(null);
-  const mobileNavRef = useRef(null);
   const highlightTween = useRef(null);
   const timeOut = useRef(null);
+
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
@@ -98,259 +76,85 @@ function NavBar({ isScrolled, bgClass, className, normalLogoOnly }) {
     window.addEventListener("resize", handleWindowSizeChange);
     highlightTween.current = gsap
       .timeline({ paused: true })
-      .to(
-        `.${style.navBackground}`,
-        // {
-        //   // background: "$Primary",
-        //   // background: "$Primary",
-        //   background: "#768277",
-        //   color: "white",
-        // },
-        {
-          immediateRender: false,
-          // background: "#f4f4f9",
-          // background: "hsla(240, 33%, 97%, 0.904)",
-          background: "hsla(100, 100%, 99% , 0.904)",
-          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.034)",
-          ease: "none",
-          duration: 0.2,
-        }
-      )
-      .set(`.${style.navbar}`, {
+      .to(`.${commonNavStyle.navBackground}`, {
+        immediateRender: false,
+        background: "hsla(100, 100%, 99% , 0.904)",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.034)",
+        ease: "none",
+        duration: 0.2,
+      })
+      .set(`.${commonNavStyle.navbar}`, {
         color: "#1D2B28",
       })
-      .set(`.${style.contactBtnWrapper}`, {
-        color: "#66B186",
-      })
-      .set(`.${style.contactButton}`, {
-        backgroundColor: "#66B186",
-      })
-      .set(`.${style.normalLogo}`, {
-        visibility: "visible",
-        filter: "initial",
-      });
-    // .set(".overlay", {
-    //   display: "block",
-    // })
-    // .to(".overlay", { opacity: 0.3 });
-    if (!normalLogoOnly) {
-      highlightTween.current.set(`.${style.whiteLogo}`, {
+      .set(`.${commonNavStyle.whiteLogo}`, {
         visibility: "hidden",
+      })
+      .set(`.${commonNavStyle.coloredLogo}`, {
+        visibility: "visible",
+        // filter: "initial",
       });
-    }
-
-    overlayTween.current = gsap.timeline({
-      paused: true,
+    highlightTween.current.set(`:root`, {
+      // backgroundColor: "#66B186",
+      "--contactBtnBg": "#1D2B28",
+      "--contactBtnColor": "#9ABEA3",
     });
-    // .set(".overlay", {
-    //   display: "block",
-    // })
-    // .to(".overlay", { opacity: 0.3 });
 
-    mobileNavRef.current = gsap
-      .timeline({ paused: true })
-      .fromTo(
-        `.${style.navBackground}`,
-        {
-          height: "4.66667rem",
-        },
-        {
-          duration: 0.3,
-          height: "100vh",
-          transformOrigin: "50% 0%",
-          ease: "circ.in",
-        }
-      )
-      .fromTo(
-        `.${style.navMenu}`,
-        {
-          autoAlpha: 0,
-        },
-        {
-          autoAlpha: 1,
-          duration: 0.2,
-        }
-      )
-      .fromTo(
-        "body",
-        {
-          overflow: "visible",
-        },
-        {
-          overflow: "hidden",
-        }
-      );
     if (!isMobile) {
-      setClick(false);
+    } else {
     }
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
-      highlightTween.current.seek(0).pause().kill();
-      mobileNavRef.current.seek(0).pause().kill();
-      overlayTween.current.seek(0).pause().kill();
+      highlightTween.current.seek(0).kill();
     };
   }, [isMobile]);
-  const handleClick = (e) => {
-    setClick(!click);
-    MobileMenuIconRef.current.classList.toggle("opened");
-    MobileMenuIconRef.current.setAttribute(
-      "aria-expanded",
-      MobileMenuIconRef.current.classList.contains("opened")
-    );
-  };
+
   useEffect(() => {
-    if (isScrolled) highlightTween.current.play();
+    if (isScrolled) highlightTween.current.restart();
     else highlightTween.current.reverse();
   }, [isScrolled, isMobile]);
-
-  useEffect(() => {
-    if (!isMobile) {
-      gsap.set(`.${style.navMenu}`, {
-        autoAlpha: 1,
-      });
-      mobileNavRef.current.seek(0).pause();
+  const highlight = useCallback(() => {
+    highlightTween.current.play();
+    clearTimeout(timeOut.current);
+  });
+  const unHighlight = useCallback(() => {
+    if (!isScrolled) {
+      clearTimeout(timeOut.current);
+      timeOut.current = setTimeout(() => {
+        highlightTween.current.reverse();
+      }, 700);
     }
-    if (click && isMobile) {
-      mobileNavRef.current.play();
-    }
-    if (!click && isMobile) {
-      gsap.set(`.${style.navMenu}`, {
-        autoAlpha: 0,
-      });
-      mobileNavRef.current.reverse();
-    }
-  }, [click, isMobile, location.pathname]);
-
+  });
   return (
-    <div style={{ zIndex: 20 }}>
-      <nav
-        onMouseOver={() => {
-          if (isMobile) return;
-          highlightTween.current.play();
-          clearTimeout(timeOut.current);
-        }}
-        onMouseLeave={() => {
-          if (isMobile) return;
-          if (!isScrolled) {
-            clearTimeout(timeOut.current);
-            timeOut.current = setTimeout(() => {
-              highlightTween.current.reverse();
-            }, 700);
-          }
-        }}
-        ref={navRef}
-        className={`${style.navbar} ${className}`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className={`${style.navBackground} ${bgClass}`}></div>
-        <div className={`${style.navItems} navBar`}>
-          <Link to="/" className={`${style.logo}`}>
-            <img src={NormalLogo} className={`${style.normalLogo}`} />
-            <img src={WhiteLogo} className={`${style.whiteLogo}`} />
-          </Link>
-          <div className={style.activeNavBackground}></div>
-
-          <ul className={`${style.navMenu}`}>
-            {links.map(({ path, title, dropDown }) => {
-              if (dropDown)
-                return (
-                  <li
-                    onMouseOver={() => {
-                      // overlayTween.current.play();
-                      // setActiveDropdown(true);
-                    }}
-                    onMouseOut={() => {
-                      // overlayTween.current.reverse();
-                      // setActiveDropdown(false);
-                    }}
-                    className={`${style.navItem}`}
-                  >
-                    {isMobile ? (
-                      <div className={style.mobileList}>
-                        <Link to={path} className={style.navLink}>
-                          {title}
-                        </Link>
-                        <ul className={style.mobileSublist}>
-                          {dropDown.map(({ title, path }) => {
-                            return (
-                              <li>
-                                <Link to={path}>{title}</Link>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    ) : (
-                      <Dropdown
-                        id={1}
-                        link={
-                          <Link
-                            to="/"
-                            className={`${style.navLink}`}
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            {title}
-                          </Link>
-                        }
-                      >
-                        {dropDown.map(({ title, path }) => {
-                          return (
-                            <li>
-                              <Link to={path}>{title}</Link>
-                            </li>
-                          );
-                        })}
-                      </Dropdown>
-                    )}
-                  </li>
-                );
-              else
-                return (
-                  <li className={style.navItem}>
-                    <Link
-                      to={path}
-                      // activeClassName="active"
-                      className={style.navLink}
-                      onClick={click ? handleClick : null}
-                    >
-                      <span>{title}</span>
-                    </Link>
-                  </li>
-                );
-            })}
-
-            <li className={style.navItem}>
-              <Link to="/" className={`${style.navLink} ${style.langButton}`}>
-                EN
-              </Link>
-            </li>
-            <li className={style.navItem}>
-              <LinkBtn
-                id="contactButton"
-                Icon={ContactIcon}
-                label=" "
-                className={`${style.contactButton}`}
-                to="/contact"
-              >
-                Contact Us
-                <ContactIcon />
-              </LinkBtn>
-            </li>
-          </ul>
-          {isMobile && (
-            <div className={style.contactBtnWrapper}>
-              <Link to="/contact">
-                <ContactIcon className={style.mobileContactIcon} />
-              </Link>
-              <div className={`${style.navIcon}`} onClick={handleClick}>
-                <MenuCircle className={style.menuCircle} />
-                <MenuIcon className={style.menuIcon} ref={MobileMenuIconRef} />
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-    </div>
+    <nav
+      className={`${commonNavStyle.navbar} navbar ${className || ""}`}
+      style={{ zIndex: 20 }}
+    >
+      {isMobile ? (
+        <MobileNavbar
+          bgClass={bgClass}
+          linksList={links}
+          isScrolled={isScrolled}
+          links={links}
+          onHighlight={highlightOnMobile ? highlight : null}
+          onUnHighlight={highlightOnMobile ? unHighlight : null}
+        />
+      ) : (
+        <DesktopNavbar
+          onMouseOver={() => {
+            highlight();
+          }}
+          onMouseLeave={() => {
+            if (!isScrolled) {
+              unHighlight();
+            }
+          }}
+          isScrolled={isScrolled}
+          bgClass={bgClass}
+          // className={className}
+          links={links}
+        />
+      )}
+    </nav>
   );
 }
 

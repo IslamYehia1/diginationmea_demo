@@ -1,3 +1,4 @@
+@import "../../vars.scss";
 .phasesList {
   list-style: none;
   display: grid;
@@ -7,6 +8,9 @@
   z-index: 1000;
   li {
     grid-area: 1 / 1;
+    font-family: var(--mainFont);
+    font-weight: 600;
+    // font-size: 10rem;
     user-select: none;
     visibility: hidden;
     text-align: center;

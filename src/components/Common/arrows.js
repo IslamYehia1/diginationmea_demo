@@ -1,12 +1,13 @@
 import React from "react";
 import { VisibilityContext } from "react-horizontal-scrolling-menu";
 import { ReactComponent as RightArrowIcon } from "./arrow.svg";
-function Arrow({ children, className, disabled, onClick }) {
+function Arrow({ children, className, disabled, onClick, ariaLabel }) {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
       className={className}
+      aria-label={ariaLabel}
       style={{
         cursor: "pointer",
         display: "flex",
@@ -52,16 +53,17 @@ export function LeftArrow({ className }) {
       className={className}
       disabled={disabled}
       onClick={() => scrollPrev()}
+      ariaLabel="Left scroll button"
     >
-      <div class={`chevron-d leftNavigationCircle`}>
+      <div className={`chevron-d leftNavigationCircle`}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
           {/* <path
-            class="leftBtnCircle"
+            className="leftBtnCircle"
             d="M27.5 2C41.6 2 53 13.4 53 27.5S41.6 53 27.5 53 2 41.6 2 27.5 13.4 2 27.5 2M27.5 0C12.3 0 0 12.3 0 27.5S12.3 55 27.5 55 55 42.7 55 27.5 42.7 0 27.5 0L27.5 0z"
             fill="currentColor"
           /> */}
           <circle
-            class="leftBtnCircle"
+            className="leftBtnCircle"
             r="48%"
             cy="50%"
             cx="50%"
@@ -69,12 +71,12 @@ export function LeftArrow({ className }) {
           />
 
           <polygon
-            class="arrow"
+            className="arrow"
             points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7"
             fill="currentColor"
           />
           <polygon
-            class="arrow-2"
+            className="arrow-2"
             points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7"
             fill="currentColor"
           />
@@ -103,16 +105,17 @@ export function RightArrow({ className }) {
         scrollNext();
       }}
       className={className}
+      ariaLabel="Right scroll button"
     >
-      <div class={`chevron-d rightNavigationCircle`}>
+      <div className={`chevron-d rightNavigationCircle`}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
           {/* <path
-            class="rightBtnCircle"
+            className="rightBtnCircle"
             d="M27.5 2C41.6 2 53 13.4 53 27.5S41.6 53 27.5 53 2 41.6 2 27.5 13.4 2 27.5 2M27.5 0C12.3 0 0 12.3 0 27.5S12.3 55 27.5 55 55 42.7 55 27.5 42.7 0 27.5 0L27.5 0z"
             fill="currentColor"
           /> */}
           <circle
-            class="rightBtnCircle"
+            className="rightBtnCircle"
             r="48%"
             cy="50%"
             cx="50%"
@@ -120,11 +123,11 @@ export function RightArrow({ className }) {
           />
 
           <polygon
-            class="arrow"
+            className="arrow"
             points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7 "
           />
           <polygon
-            class="arrow-2"
+            className="arrow-2"
             points="34.9 31 28.5 35 28.5 17 26.5 17 26.5 35 20.1 31 19 32.7 27.5 38 36 32.7 "
           />
         </svg>

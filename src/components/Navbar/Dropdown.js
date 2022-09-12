@@ -3,53 +3,25 @@ import style from "./dropdown.module.scss";
 import gsap from "gsap";
 import { ReactComponent as CaretDownOutlined } from "../../SVG/caretDown.svg";
 
-function Dropdown({ children, onOpen, onClose, id, link }) {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [isOpen, setIsOpen] = useState(false);
+function Dropdown({ children, id, link }) {
   const menuRef = useRef(null);
   const openAnimation = useRef(null);
   const ulRef = useRef(null);
   const backgroundRef = useRef(null);
   const caretRef = useRef(null);
-  const isMobile = width <= 999;
-  function handleResize() {
-    setWidth(window.innerWidth <= 999);
-  }
-  function onReverse(func, onlyAfterComplete) {
-    let time = 0,
-      reversed;
-    return function () {
-      let t = this.time(),
-        r = t < time;
-      r &&
-        !reversed &&
-        (!onlyAfterComplete || time === this.duration()) &&
-        func.call(this);
-      time = t;
-      reversed = r;
-    };
-  }
+  const overlayRef = useRef(null);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
     gsap.set(menuRef.current, { scaleY: 0, autoAlpha: 1 });
     const q = gsap.utils.selector(caretRef);
     openAnimation.current = gsap
       .timeline({
         paused: true,
-        onUpdate: onReverse(() => {
-          gsap.set(menuRef.current, {
-            zIndex: -1,
-          });
-        }),
-        onReverseComplete: () => {
-          if (onClose) onClose(id);
-        },
       })
+
       .set(menuRef.current, {
         zIndex: 100,
       })
-
       .to(menuRef.current, {
         delay: 0.1,
         scaleY: "1",
@@ -59,7 +31,7 @@ function Dropdown({ children, onOpen, onClose, id, link }) {
         duration: 0.4,
       })
       .to(
-        q("svg"),
+        q(caretRef.current),
         {
           transformOrigin: "50% 50%",
           rotate: "180deg",
@@ -81,17 +53,20 @@ function Dropdown({ children, onOpen, onClose, id, link }) {
           translateY: "0",
         },
         "<+=50%"
-        // "<+=50%"
       )
-      .set(`.${style.overlaay}`, {
-        display: "block",
-      })
-      .to(`.${style.overlaay}`, { opacity: 0.3 });
+      .set(
+        overlayRef.current,
+        {
+          display: "block",
+        },
+        "<"
+      )
+      .to(overlayRef.current, { opacity: 0.2, duration: 0.4 }, "<");
   }, []);
 
   return (
     <>
-      <div className={style.overlaay}></div>
+      <div ref={overlayRef} className={style.overlaay}></div>
       <div
         id={`${id}`}
         className={style.dropDown}

@@ -7,19 +7,35 @@ import NavigationBar from "../components/Navbar/Navbar";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TransformationSteps from "../components/TransformationPhases/TransformationPhases";
-import { ReactComponent as Logo } from "../SVG/black_logo.svg";
+// import logo from "../components/Images/logo_black.png";
+import logo from "../components/Images/logo_bright.png";
 import { ReactComponent as Circle } from "../SVG/empty_circle.svg";
 import "../global.scss";
 
 import Footer from "../components/Footer/Footer";
-function Services() {
-  const { isAppMounted } = useContext(MyContext);
+import LinkBtn from "../components/Button/LinkBtn";
+function Services({ onMount }) {
   const scrollRef = useRef(null);
   const locoScroll = useLocoscroll(scrollRef, 1);
   const [isMounted, setIsMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
+    if (onMount) onMount();
+  }, [onMount]);
+  useEffect(() => {
     setIsMounted(true);
+    gsap
+      .timeline()
+      .set(`.${style.elToReveal}`, { opacity: 1 })
+      .from(`.${style.elToReveal}`, {
+        duration: 1.8,
+        skewY: 7,
+        y: 150,
+        ease: "power4.out",
+        stagger: {
+          amount: 0.3,
+        },
+      });
     gsap
       .timeline({
         scrollTrigger: {
@@ -39,7 +55,7 @@ function Services() {
         `.servicesPage`,
 
         {
-          backgroundColor: "white",
+          backgroundColor: "#FDFFFC",
           immediateRender: false,
         }
       );
@@ -65,16 +81,34 @@ function Services() {
             <div className={style.headingTitle}>
               <div className={style.logoContainer}>
                 <Circle className={style.circle} />
-                <Logo className={style.logo} />
+                <img src={logo} alt="Digination Logo" className={style.logo} />
               </div>
-              <h1>
-                What we can do for your company
-                {/* <ITIcon />{" "} */}
-              </h1>
-              <p>IT services to support the success of your business.</p>
-              <button className={style.btn}>
-                <p>Book a demo</p>
-              </button>
+              <div className={`${style.titleTextWrapper}`}>
+                <div className={`${style.elToRevealWrapper}`}>
+                  <h1 className={style.elToReveal}>
+                    What we can do for
+                    {/* <ITIcon />{" "} */}
+                  </h1>
+                </div>
+                <div className={`${style.elToRevealWrapper} `}>
+                  <h1 className={style.elToReveal}>
+                    your company
+                    {/* <ITIcon />{" "} */}
+                  </h1>
+                </div>
+                <div className={style.elToRevealWrapper}>
+                  <p className={`${style.titleLittleText} ${style.elToReveal}`}>
+                    IT services to support the success of your business.
+                  </p>
+                </div>
+              </div>
+              <LinkBtn
+                to="/contact"
+                className={style.btn}
+                aria-label={"Book a demo button"}
+              >
+                <span>Book a demo</span>
+              </LinkBtn>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 @import "../../vars.scss";
 
 .arrowButton {
-  font-family: MyraidProReg;
+  font-family: var(--mainFont);
   align-items: center;
   justify-content: center;
   border: none;

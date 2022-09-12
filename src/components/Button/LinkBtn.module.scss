@@ -2,13 +2,8 @@
 
 .linkBtn {
   border: none;
-  // background-color: #d7d3c9;
-  // background-color: #9abea3;
-  // border-radius: 0.4rem;
   border-radius: 2rem;
-  color: $Primary;
-  // height: 3.4rem;
-  // width: 11rem;
+  // color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,16 +12,26 @@
   z-index: 2;
   cursor: pointer;
   overflow: hidden;
+
   span {
     margin-bottom: 0;
     font-size: 1rem;
-    font-family: Poppins;
-    color: $Primary;
+    font-family: var(--mainFont);
+    // color: $Primary;
+    color: inherit;
+    position: relative;
+    // z-index: 2;
   }
   svg {
     width: 1.5rem;
-    margin-top: -2px;
+    // margin-top: -2px;
     color: inherit;
+    position: relative;
+    z-index: 3;
+  }
+  span {
+    position: relative;
+    z-index: 3;
   }
   &::before {
     height: 100%;
@@ -36,12 +41,32 @@
     left: 0px;
     right: 0px;
     top: 0px;
+    bottom: 0px;
     // background: #54c5d2;
-    transform: translatex(-100%);
-    border: inherit;
+    transform: translatex(-101%);
+    border-radius: inherit;
+    z-index: 2;
+  }
+  &::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    border-radius: inherit;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: scale(0.98);
+    border-radius: 3rem;
+  }
+  &:focus {
+    outline: none;
   }
   &:hover {
-    color: #141414;
+    // color: #1d2b28;
   }
   &:hover {
     &::before {

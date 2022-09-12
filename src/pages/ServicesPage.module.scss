@@ -18,6 +18,15 @@
   // background-color: #7d98a1;
   // background-color: #08415c;
 }
+.elToReveal {
+  opacity: 0;
+}
+.elToRevealWrapper {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
 .navBar {
   img {
     // filter: brightness(2.5);
@@ -34,7 +43,7 @@
   position: relative;
   top: -10rem;
   color: white;
-  // background-color: #dbd8d3;
+  background-color: #dbd8d3 !important;
 }
 .headingContainer {
   position: relative;
@@ -69,24 +78,32 @@
     // font-style: italic;
     position: relative;
     // bottom: -5rem;
-    h1 {
-      font-family: "Poppins", sans-serif;
-      font-size: 4rem;
+    font-size: 4vw;
+    font-size: 4vw;
+    .titleTextWrapper {
+      font-family: var(--mainFont), sans-serif;
       font-weight: 500;
+      font-size: inherit;
       // color: #d7d3c9;
       // color: white;
-      color: #d7d3c9;
+      color: #dbd8d3;
       width: 40%;
       line-height: 1.1;
       margin-bottom: 2rem;
+      h1 {
+        font-size: inherit;
+        font-weight: inherit;
+        margin-bottom: 0rem;
+      }
     }
-    p {
-      font-family: "Poppins", sans-serif;
+    .titleLittleText {
+      font-family: "var(--mainFont)", sans-serif;
       font-size: 1.5rem;
       font-weight: 200;
       // color: #d7d3c9;
       // color: white;
       color: #d7d3c9;
+      margin-top: 2rem;
     }
     .logoContainer {
       position: relative;
@@ -99,7 +116,7 @@
       .circle {
         width: 100%;
         // color: #9abea3;
-        color: #d7d3c9;
+        color: #223b36;
       }
       .logo {
         position: relative;
@@ -107,6 +124,9 @@
         width: 54%;
         // color: white;
         color: $Primary;
+        img {
+          filter: brightness(2);
+        }
       }
       svg {
         position: absolute;
@@ -122,47 +142,22 @@
 
     .btn {
       border: none;
-      // background-color: #d7d3c9;
-      // background-color: #90c0a1;
-      background-color: #d7d3c9;
-      border-radius: 3rem;
-      color: #141414;
+      background-color: #223b36;
       height: 3rem;
       width: 9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 13px;
-      p {
-        margin-bottom: 0;
-        // text-transform: uppercase;
-        font-size: 1rem;
-        font-family: MyraidProSemiBold;
-        color: $Primary;
-        line-height: 1;
+      color: #90c0a1;
+      span {
       }
-      svg {
-        width: 2rem;
-        margin-top: -4px;
-
+      &:hover {
         color: $Primary;
       }
-      &:nth-child(2) {
-        background-color: transparent;
-
-        border: 2px solid #d9eddb;
-        color: black;
-        svg {
-          color: #d9eddb;
-        }
-      }
-      .secondColumn {
-        img {
-          width: 70%;
-          opacity: 0.8;
-        }
+      &::before {
+        background-color: #90c0a1;
       }
     }
+    // .btn:hover {
+    //   color: blue;
+    // }
     .backgroundPattern {
       max-width: 100%;
       display: flex;
@@ -203,9 +198,17 @@
 @media screen and (max-width: 800px) {
   .heading {
     .headingTitle {
+      font-size: 9vw;
+      .titleTextWrapper {
+        width: 100%;
+      }
+      .titleLittleText {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1.3rem;
+      }
       h1 {
         width: 90%;
-        font-size: 10vw;
       }
       p {
         font-size: 1.3rem;

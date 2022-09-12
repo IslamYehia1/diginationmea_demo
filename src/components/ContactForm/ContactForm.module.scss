@@ -9,16 +9,30 @@
   // background-color: #dbd8d3;
   background-color: white;
 }
+.contactInfoWrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: #606060;
+  svg {
+    width: 1.2rem;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .contactInfo {
+  }
+}
 .firstColumn {
   width: 50%;
-  font-family: Poppins;
+  font-family: var(--mainFont);
   padding-left: 7%;
   h1 {
     font-weight: 400;
     font-size: 5rem;
     // color: $Primary;
     // color: #90c0a1;
-    color: #8aa39b;
+    color: #727d71;
     width: 50%;
     line-height: 1.2;
   }
@@ -57,13 +71,19 @@
     textarea {
       width: 100%;
     }
-    button {
+    .submitBtn {
       width: 10rem;
       border-radius: 10rem;
       // background-color: #90c0a1;
-      background-color: #8aa39b;
-
-      color: $Primary;
+      // background-color: #8aa39b;
+      background-color: #727d71;
+      color: white;
+      &:before {
+        background-color: $Primary;
+      }
+      &:hover {
+        color: #d7d3c9;
+      }
     }
   }
 }
@@ -71,24 +91,29 @@
   display: flex;
 }
 .locationInfo {
-  padding: 19% 7%;
+  padding: 16% 7%;
   display: flex;
   flex-direction: column;
   // d-items: center;
   justify-content: center;
   height: inherit;
   width: 50%;
-  font-family: Poppins;
-  font-weight: 300;
+  font-family: var(--mainFont);
+  font-weight: 400;
   // background-color: #84a07c;
-  background-color: #8aa39b;
+  background-color: #727d71;
+  font-size: 2rem;
   color: white;
   .locationInfoText {
     width: 15rem;
   }
   h1 {
     font-weight: inherit;
-    width: 10rem;
+    line-height: 5rem;
+    width: 19rem;
+  }
+  p {
+    font-size: 1rem;
   }
 }
 .locationImg {
@@ -103,8 +128,12 @@
   width: 50%;
 }
 .footer {
-  height: 20rem;
+  height: 10rem;
   background-color: $Primary;
+  font-family: var(--mainFont);
+  font-weight: 500;
+  padding: 2rem 9rem;
+  color: #d7d3c9;
 }
 
 @media screen and (max-width: 699px) {

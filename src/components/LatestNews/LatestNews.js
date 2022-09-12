@@ -3,11 +3,7 @@ import newsImg1 from "../Images/medical_city_news.png";
 import newsImg2 from "../Images/automation_award.jpg";
 import newsImg3 from "../Images/Yamama-Cement.jpg";
 import newsImg4 from "../Images/booth.jpg";
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import useDrag from "../Common/useDrag";
-import { LeftArrow, RightArrow } from "../Common/arrows";
 import { ReactComponent as LinkIndicator } from "../../SVG/linkIndicator.svg";
-import { useState, useRef } from "react";
 import HorizontalScroll from "../HorizontalScroll/HorizontalScroll";
 import gsap from "gsap";
 import { useEffect } from "react";
@@ -68,6 +64,7 @@ function LatestNews() {
         separatorClassName={style.cardsSeperator}
         scrollContainerClassName={style.newsCardsWrapper}
         wrapperClassName={style.horizontalScrollWrapper}
+        arrowClassName={style.arrowClassName}
       >
         {news.map((newsPiece, index) => {
           return (

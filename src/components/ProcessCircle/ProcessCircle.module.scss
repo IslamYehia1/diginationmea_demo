@@ -7,14 +7,19 @@
   align-items: center;
   padding-top: 5vw;
   padding-bottom: 5vw;
+  opacity: 0;
+
   overflow: hidden;
   .contentText {
     width: 40%;
     font-size: 3.3vw;
     text-align: center;
     color: #dbd8d3;
-    font-family: Poppins;
+    font-family: var(--mainFont), sans-serif;
   }
+}
+.elementOnCircle {
+  opacity: 0;
 }
 
 .processCircleContainer {
@@ -28,13 +33,17 @@
   width: 100%;
 }
 .servicesBtn {
-  border: 1px solid #90c0a1;
+  // border: 1px solid #90c0a1;
+  background-color: #223b36;
   border-radius: 5px;
   padding: 0.8rem 1.5rem;
-  font-family: Poppins;
+  font-family: var(--mainFont);
   font-weight: 500;
   color: #90c0a1;
-  p {
+  &:hover {
+    color: $Primary;
+  }
+  span {
     font-size: 1rem;
     color: inherit;
     width: 100%;
@@ -43,6 +52,9 @@
   svg {
     color: inherit;
     margin-top: 1px;
+  }
+  &::before {
+    background-color: #90c0a1;
   }
 }
 .circleArrowWrapper {
@@ -96,7 +108,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Poppins;
+  font-family: var(--mainFont);
   font-size: 0.7rem;
   line-height: 1;
   p {
@@ -183,9 +195,14 @@
     width: 28vw;
   }
   .servicesBtn {
-    width: 7rem;
+    // width: 7rem;
+    width: unset;
     p {
       font-size: 3vw;
+      margin-right: -7px;
+    }
+    svg {
+      width: 2rem;
     }
   }
   .labelText {

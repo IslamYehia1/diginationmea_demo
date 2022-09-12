@@ -1,0 +1,139 @@
+@import "../../vars.scss";
+:root {
+  --contactBtnBg: #d7d3c9;
+  --contactBtnColor: #1d2b28;
+}
+.navbar {
+  opacity: 1;
+}
+@mixin navBackground {
+  // background: $Primary;
+  // background: $Primary;
+  // background: #768277;
+  // background: #0b130d;
+  backdrop-filter: blur(20px);
+}
+
+// .whiteLogo {
+//   visibility: visible;
+// }
+// .coloredLogo {
+//   visibility: hidden;
+// }
+.navbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9;
+  width: 100%;
+  color: #dbd8d3;
+  background-color: transparent;
+  height: 4.66667rem;
+}
+.navBackground {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  // z-index: -1;
+  //   z-index: 4;
+  height: 4.66667rem;
+  background: $Primary;
+  @include navBackground;
+}
+
+// .logo {
+//   top: 20px;
+//   left: 5px;
+//   img {
+//     height: 2rem;
+//     // opacity: 0.8;
+//   }
+// }
+
+.contactBtnWrapper {
+  position: initial;
+  // color: #d7d3c9;
+  color: #66b186;
+  a {
+    color: inherit;
+  }
+}
+
+.contactButton {
+  // color: $Primary;
+  background-color: transparent;
+  justify-content: space-between;
+  z-index: 2;
+  padding: 10px 1.5rem;
+  width: 11rem;
+  height: 3.1rem;
+  line-height: 3;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  // border-radius: 4px;
+  // border-radius: 0 !important;
+  color: var(--contactBtnColor);
+  span {
+    position: relative;
+    z-index: 3;
+    color: inherit;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  svg {
+    width: 1.2rem;
+    margin-left: 10px;
+    margin-top: -2px;
+    color: inherit;
+    position: relative;
+    z-index: 3;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $Primary !important;
+  }
+  p {
+    margin: 0;
+  }
+  &::before {
+    // background: #54c5d2;
+    // position: relative;
+    // background: #6c8578;
+    background: #66b186;
+    transform: translatex(-100%);
+    z-index: 2;
+    border-radius: 2rem;
+    // transform: scale(1);
+    // transform: scale(0.98);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--contactBtnBg);
+    transform: scale(0.98);
+    border-radius: 3rem;
+  }
+}
+
+.whiteLogo {
+  visibility: visible;
+}
+.coloredLogo {
+  visibility: hidden;
+  filter: brightness(0.7);
+}

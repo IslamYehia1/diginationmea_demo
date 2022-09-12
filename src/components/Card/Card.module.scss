@@ -2,12 +2,17 @@
 
 .textContainer {
   font-size: 1.07rem;
-  font-family: MyraidProReg;
-  width: 70%;
+  font-family: var(--mainFont);
+  color: $Primary;
+  width: 85%;
   line-height: 1.4;
+  p {
+    height: 6rem;
+    // text-overflow: ellipsis;
+  }
 }
 .cardTitle {
-  font-family: Poppins;
+  font-family: var(--mainFont);
   font-size: 1.3rem;
   margin-bottom: 0.8rem;
   font-weight: 500;
@@ -24,7 +29,7 @@
     width: 100%;
     max-height: 100%;
     min-height: 100%;
-    img {
+    .img {
       position: relative;
       min-width: 100%;
       width: 120%;
@@ -42,73 +47,57 @@
   }
 }
 .cardButtonContainer {
-  position: absolute;
+  // position: absolute;
   //   width: 100%;
   width: 40%;
   right: 20px;
-  bottom: -1.4rem;
+  // bottom: -1.4rem;
   z-index: 3;
   //   min-height: 80px;
 }
 
 .industryCardBtn {
-  align-items: center;
-  justify-content: center;
-  border: none !important ;
-  //   margin: 10px 0 10px 1.4rem;
   box-shadow: 0 0 50px 0 rgb(0 0 0 / 10%);
-  display: block;
-  // border-radius: 7px;
-  border-radius: 2rem;
+  // border-radius: 2rem;
   position: relative;
   background: #fdfffc;
+  font-family: var(--mainFont);
   z-index: 2;
-  //   border: 2px solid;
-  padding: 10px;
-  width: 100%;
-  height: 3.7rem;
-  display: flex;
-  line-height: 3;
-  overflow: hidden;
+  // padding: 10px;
+  width: 80%;
+  height: 3.3rem;
+  left: -3px;
+  margin-top: 1.5rem;
+  // height: 3rem;
   cursor: pointer;
   color: $Primary;
-  p {
-    font-family: MyraidProSemiBold;
-    font-size: 1rem;
+  font-family: var(--mainFont);
+  font-size: 1rem;
+  font-weight: 500;
+  span {
+    margin-right: 0.3rem;
+    color: inherit;
+    font-size: inherit;
   }
   svg {
-    width: 25px;
-    margin-left: 10px;
-    margin-top: -2px;
-    color: #00b295;
+    bottom: -2px;
   }
-  &:focus {
-    outline: none;
-  }
+  &::after {
+    // border: 2px solid $Primary;
+    border: 1px solid $Primary;
 
+    box-sizing: border-box;
+  }
+  &::before {
+    background-color: $Primary;
+    // transform: scale(1.2);
+  }
   &:hover {
     color: $Primary;
   }
   p {
     margin: 0;
   }
-  &::before {
-    height: 100%;
-    width: 100%;
-    content: "";
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    // background: #9abea3;
-    background: #66b186;
-    transform: translatex(-100%);
-    // z-index: -1;
-  }
-}
-*::before,
-*::after {
-  z-index: -1;
 }
 
 @keyframes swipe {
@@ -128,17 +117,37 @@
     .industryCardBtn::before {
       animation: swipe 400ms ease-in-out forwards;
     }
-    .cardButtonContainer {
-      color: $Primary;
+    .industryCardBtn {
+      color: #9abea3;
       svg {
         // color: white;
       }
     }
-    img {
+    .img {
       // transition: all 0.3s linear;
       -webkit-transform: scale3d(1.2, 1.2, 1);
       transform: scale3d(1.1, 1.1, 1);
     }
+  }
+}
+
+@media (max-width: 999px) {
+  .card {
+    .textContainer {
+      // width: 95%;
+      p {
+        height: 6rem;
+        // height: 30vw;
+        font-family: var(--mainFont);
+      }
+    }
+  }
+  .cardButtonContainer {
+    width: 90%;
+  }
+  .industryCardBtn {
+    margin-top: 5rem;
+    // width: 5rem;
   }
 }
 
@@ -148,12 +157,15 @@
     .textContainer {
       width: 95%;
       p {
-        font-family: MyraidProReg;
+        height: 7rem;
+        font-family: var(--mainFont);
       }
     }
     .industryCardBtn {
-      width: 100%;
+      margin-top: 2rem;
+      width: 11rem;
       height: 3rem;
+      color: $Primary;
     }
     .cardButtonContainer {
       width: 50%;

@@ -25,9 +25,7 @@
 
 .landingHeading {
   position: relative;
-
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -42,7 +40,8 @@
 .headingText {
   position: relative;
   top: 7rem;
-  margin-top: 3rem;
+  margin-bottom: 2rem;
+
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -50,7 +49,12 @@
   justify-content: center;
   h1 {
     font-size: inherit;
-    font-family: Poppins;
+    // font-family: Oswald;
+    // font-family: var(--mainFont);
+    font-family: var(--mainFont);
+
+    // font-family: Archivo, sans-serif;
+    font-weight: 500;
     // font-style: italic;
     // font-size: 3.8rem;
     font-size: 3.4rem;
@@ -58,6 +62,9 @@
     line-height: 4rem;
     // text-transform: uppercase;
     font-weight: 500;
+    margin-bottom: 0;
+    margin-right: 0;
+    padding-right: 0;
   }
 }
 .backgroundPattern {
@@ -71,15 +78,18 @@
     svg {
       position: absolute;
       color: #90c0a1;
-
       height: 18rem;
       right: -11rem;
+      &::before {
+        content: " ";
+        position: absolute;
+        width: 50vw;
+      }
     }
   }
   .rightPattern {
     width: 50%;
     position: relative;
-
     svg {
       color: #90c0a1;
 
@@ -96,7 +106,14 @@
   display: flex;
   position: relative;
 }
-
+.elementToRevealWrapper {
+  overflow: hidden;
+}
+.elementToReveal {
+  box-sizing: content-box;
+  opacity: 0;
+  // transform: translateY(100%);
+}
 .loop {
   position: absolute;
   right: 30%;
@@ -122,21 +139,23 @@
   }
 }
 .changingText {
-  font-family: MyraidProSemiBold;
-  font-size: 1.1rem;
+  font-family: var(--mainFont);
+  font-size: 1.3rem;
   color: #dbd8d3;
+  margin-top: 2rem;
 }
 .description {
   width: 60%;
   position: relative;
   font-size: 1.2rem;
-  font-family: MyraidProLight;
+  font-family: var(--mainFont);
   color: #d7d3c9;
+  font-weight: 200;
   text-align: center;
   margin-bottom: 2rem;
   margin-top: 3rem;
   h2 {
-    font-family: Poppins;
+    font-family: var(--mainFont);
     // font-size: 2.5rem;
     font-size: 2rem;
     font-weight: 500;
@@ -157,11 +176,12 @@
   height: 3.4rem;
   width: 11rem;
   background-color: #9abea3;
+  color: $Primary;
   span {
     font-weight: 500;
   }
   svg {
-    margin-top: 2px;
+    // margin-top: 1px;
   }
   &::before {
     background: #d7d3c9;
@@ -193,7 +213,7 @@
     word-break: break-all;
     hyphens: auto;
     h2 {
-      font-family: Poppins;
+      font-family: var(--mainFont);
       font-size: 6vw;
       font-weight: 500;
       color: #d7d3c9;
@@ -207,14 +227,14 @@
     font-weight: 800;
     font-size: 2.3rem;
     flex-direction: column;
-
+    margin-top: 5rem;
     .headingText {
       top: unset;
       min-height: 26rem;
       width: 100%;
       h1 {
         font-size: 7vw;
-        width: 95%;
+        // width: 95%;
         line-height: 1.5;
       }
       p {

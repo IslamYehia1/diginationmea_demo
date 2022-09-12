@@ -2,25 +2,23 @@
 
 .sectionHeading {
   display: flex;
-  // min-height: 70vh;
-  // min-height: 75vh;
-  // height: 70vh;
   width: 100%;
-  font-size: 5.4rem;
+  font-size: 5.4vw;
   // font-size: 5.4rem;
+  background-color: #111817f8;
 
   .headingImg {
     width: 50%;
     overflow: hidden;
     // background-color: $Primary;
     // background-color: #111917;
-    background-color: $Primary;
+    background-color: inherit;
 
-    img {
+    .img {
       width: 100%;
       min-height: 120%;
       object-fit: cover;
-      opacity: 0.8;
+      opacity: 0.9;
       mix-blend-mode: hard-light;
     }
   }
@@ -28,41 +26,11 @@
   .headingText h1 {
   }
 }
-.revealAnimationHeader {
-  width: 100%;
-  margin-bottom: 2rem;
-  .textLine {
-    overflow: hidden;
-
-    display: inline-block;
-    // line-height: 5rem;
-    line-height: 9rem;
-
-    font-family: "Poppins", sans-serif;
-    // font-family: MyraidProSemiBold, sans-serif;
-    // font-family: MyraidProBold, sans-serif;
-    // font-family: MyraidProReg, sans-serif;
-    // font-weight: 800;
-    // font-weight: 600;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: inherit;
-
-    span {
-      display: inline-block;
-    }
-  }
-}
 .headingText {
-  background-color: $Primary;
-  // background-color: #141414;
-  // background-color: $Primary;
-  // background-color: #111917;
-  // background-color: #8aa39b;
-
-  // width: 70%;
+  // font-size: 9rem;
+  font-size: 8vw;
   width: 50%;
-  padding: 13rem 10rem 16rem 10rem;
+  padding: 12rem 10rem 15rem 10rem;
   // padding-bottom: 0;
   display: flex;
   flex-direction: column;
@@ -70,15 +38,9 @@
   justify-content: flex-start;
   // line-height: 90px;
   line-height: 5rem;
-
   margin-bottom: 0;
-
   color: $Primary;
-  color: white;
-  // color: #d7d3c9;
   color: #fdfffc;
-
-  // color: #90c0a1;
   h1 {
     font-size: inherit;
     color: inherit;
@@ -90,10 +52,36 @@
     vertical-align: middle;
   }
 }
+.revealAnimationHeader {
+  width: 100%;
+  margin-bottom: 2rem;
+  .textLine {
+    overflow: hidden;
+
+    display: inline-block;
+    // line-height: 5rem;
+    line-height: 10rem;
+
+    // font-family: "var(--mainFont)", sans-serif;
+    // font-family: "var(--mainFont)", sans-serif;
+    font-family: var(--secondaryFont);
+
+    // font-weight: 100;
+    text-transform: uppercase;
+    font-size: inherit;
+
+    span {
+      display: inline-block;
+      line-height: inherit;
+    }
+  }
+}
+
 .sectionIcon {
   margin-left: 2rem;
+  margin-top: -5rem;
   // width: 7rem;
-  width: 5vw;
+  width: 7vw;
   svg {
     // color: #90c0a1;
     // color: $Primary;
@@ -102,20 +90,22 @@
   }
 }
 .btn {
-  // background-color: #90c0a1;
-  // background-color: #fdfffc;
-  background-color: transparent;
-  border: 2px solid #9abea3;
+  // background-color: #9abea3;
+  background-color: #fdfffc;
+  // border: 2px solid #9abea3;
   font-size: 1rem;
-  font-family: Poppins;
+  font-family: var(--mainFont);
   font-weight: 500;
   width: 11rem;
   height: 3.3rem;
   color: $Primary;
-  color: #9abea3;
+  // color: #9abea3;
   &::before {
     border-radius: 0 2rem 2rem 0;
-    background: #9abea3;
+    background: #90c0a1;
+  }
+  &:hover {
+    color: $Primary;
   }
 }
 @media (min-width: 700px) and (max-width: 1199px) {
@@ -123,7 +113,7 @@
     padding-right: 4rem;
     padding-left: 4rem;
     h1 {
-      max-width: 70%;
+      // max-width: 70%;
     }
   }
 }
@@ -134,7 +124,7 @@
     width: 100%;
     max-width: 100%;
     h1 {
-      font-size: 3.33333rem;
+      // font-size: 3.33333rem;
       max-width: 100%;
       width: 100%;
       max-width: 100%;
@@ -143,9 +133,10 @@
 }
 @media (max-width: 699px) {
   .btn {
-    margin-top: 5%;
-    height: 3rem;
-    width: 10rem;
+    margin-top: 2%;
+    height: 2.8rem;
+    width: 9rem;
+    font-size: max(1rem, 2vw);
   }
   button {
     position: relative;
@@ -153,8 +144,8 @@
   }
   .sectionHeading {
     flex-direction: column-reverse;
-    min-height: 70vh;
-    height: 70vh;
+    // min-height: 70vh;
+    height: 45rem;
     .revealAnimationHeader {
       position: relative;
       width: 70%;
@@ -167,18 +158,19 @@
       display: flex;
       align-items: flex-start;
       width: 100%;
-      padding: 0 1.3333rem;
+      // padding: 1rem 1.3333rem;
+      padding: 1rem 2rem;
       padding-bottom: 1rem;
       min-height: 60%;
       height: 60%;
-      line-height: 4rem;
-      font-size: max(2rem, 12vw);
-      padding-right: 1.3333rem;
-      padding-left: 1.3333rem;
+      line-height: 5rem;
+      font-size: max(2rem, 14vw);
+      // padding-right: 1.3333rem;
+      // padding-left: 1.3333rem;
       width: 100%;
       max-width: 100%;
       .textLine {
-        line-height: 4rem;
+        line-height: inherit;
       }
       h1 {
         max-width: 100%;
@@ -193,7 +185,7 @@
       min-height: 40%;
       height: 40%;
       width: 100%;
-      img {
+      .img {
         width: 100%;
         min-height: 100%;
       }
@@ -208,7 +200,8 @@
   }
 
   .sectionIcon {
-    width: 3.5rem;
+    width: 14vw;
+    margin-top: -2rem;
   }
 }
 

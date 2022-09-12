@@ -19,6 +19,7 @@
   max-height: inherit;
   height: 100%;
   background: inherit;
+  z-index: 4;
   .link {
     height: 100%;
     display: flex;
@@ -52,7 +53,8 @@
     // padding: 0;
     box-sizing: content-box;
     li {
-      font-family: MyraidProSemiBold;
+      font-family: var(--mainFont);
+      font-weight: 500;
       font-size: 1.7rem;
       list-style: none;
       padding: 1rem 0;
@@ -73,15 +75,14 @@
 
 .dropDownBackground {
   position: fixed;
-  min-width: 150vw;
+  min-width: 130vw;
   left: -80vw;
   right: -40vw;
   height: 100%;
   top: 0;
   background: hsla(100, 100%, 99%, 0.904);
-  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.034)",
+  // box-shadow: "0 4px 30px rgba(0, 0, 0, 0.034)";
   backdrop-filter: blur(20px);
-  z-index: 4;
 }
 
 .overlaay {
@@ -92,6 +93,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  top: 0;
+  top: 5rem;
   display: none;
 }

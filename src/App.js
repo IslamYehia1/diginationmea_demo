@@ -1,108 +1,130 @@
-import NavigationBar from "./components/Navbar/Navbar";
 import React, { useRef, useEffect, useState, createContext } from "react";
-import { Routes, BrowserRouter, Route } from "react-router-dom";
-// import "locomotive-scroll.css";
-import "./fonts/MYRIADPRO-REGULAR.OTF";
-import "./fonts/MYRIADPRO-SEMIBOLD.OTF";
-// import HomePage from "./pages/Home/HomePage";
-import LocomotiveScroll from "locomotive-scroll";
+import { Routes, BrowserRouter, Route, Navigate } from "react-router-dom";
+import PageLoader from "./components/PageLoader/PageLoader";
 import "./global.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import Services from "./pages/ServicesPage";
-import { useLocation } from "react-router-dom";
-import { useLocoscroll } from "./components/Common/useLocoscroll";
-// import Contact from "./pages/Contact";
+import { useLocation, useNavigate } from "react-router-dom";
+import WIP from "./pages/WIP";
+import Partners from "./pages/Partners";
+import { useCallback } from "react";
+
 gsap.registerPlugin(ScrollTrigger);
 const HomePage = React.lazy(() => import("./pages/Home/HomePage"));
 const Services = React.lazy(() => import("./pages/ServicesPage"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 export const MyContext = createContext();
 function App() {
-  // const scrollRef = useRef(document.querySelector(".App"));
   const scrollRef = useRef(null);
-  const navRef = useRef();
-  let nav;
-  let [isNavScrolled, setIsNavScrolled] = useState(false);
-  let [isMounted, setIsMounted] = useState(false);
-  let location = useLocation();
-
-  // const locoScroll = useLocoscroll(scrollRef);
+  const location = useLocation();
   scrollRef.current = document.querySelector("[data-scroll-container]");
   const [isAppMounted, setIsAppMounted] = useState(false);
-  let tltransition = useRef(null);
-
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const pageTransitionOut = useRef(null);
+  const pageTransitionIn = useRef(null);
+  const displayLocationSetter = useRef();
+  const navigate = useNavigate();
+  displayLocationSetter.current = () => {
+    setDisplayLocation(location);
+  };
+  // Each component decides when to the page is loaded
   useEffect(() => {
-    nav = document.querySelector(".navBar");
-    const $img2 = document.querySelector(".image2");
-    const $logo = document.querySelector(".transition__logo");
-    const $frameBlack = document.querySelector(".page-transition__black");
-    const $frameRed = document.querySelector(".page-transition__red");
-    const $button = document.querySelector("#button");
+    pageTransitionOut.current = gsap
+      .timeline({
+        paused: true,
+      })
+      .to(`.overlay`, {
+        delay: 0.3,
+        duration: 0.5,
+        yPercent: -101,
+        ease: "Power4.out",
+      })
+      .set("body", {
+        overflow: "visible",
+      });
 
-    tltransition.current = gsap
+    pageTransitionIn.current = gsap
       .timeline({ paused: true })
-      .set(".transitionDiv", { autoAlpha: 1 })
+      .set(`.loaderTriangle`, {
+        opacity: 0,
+      })
+      .set("body", {
+        overflow: "hidden",
+      })
       .fromTo(
-        $frameRed,
-        { scaleX: 0 },
+        `.overlay`,
         {
-          duration: 2.2,
-          scaleX: 1,
-          transformOrigin: "left",
-          ease: "Power4.easeInOut",
+          opacity: 1,
+          yPercent: -101,
+          immediateRender: false,
+        },
+        {
+          immediateRender: false,
+          yPercent: 0,
+          duration: 0.4,
+          ease: "Power4.out",
         }
       )
-      .fromTo(
-        $frameBlack,
-        { scaleX: 0 },
-        {
-          duration: 2.2,
-          scaleX: 1,
-          transformOrigin: "left",
-          ease: "Power4.easeInOut",
-        },
-        0.2
-      )
-      .fromTo(
-        $logo,
-        { xPercent: -100, autoAlpha: 0 },
-        { duration: 1.6, xPercent: 0, autoAlpha: 1, ease: "Power4.easeInOut" },
-        0.7
-      )
-      .set($frameRed, { scaleX: 0 })
-      // .set($img2, { autoAlpha: 0 })
-      .to($frameBlack, {
-        duration: 2.2,
-        scaleX: 0,
-        transformOrigin: "right",
-        ease: "Power4.easeInOut",
+      .to(`.loaderTriangle`, {
+        opacity: 1,
       })
-      .to($logo, { duration: 0.2, autoAlpha: 0 }, "-=1.2");
-
-    setIsAppMounted(true);
+      .add(() => {
+        displayLocationSetter.current();
+      });
   }, []);
 
+  useEffect(() => {
+    if (location !== displayLocation) {
+      pageTransitionOut.current.kill();
+      if (!pageTransitionIn.current.isActive())
+        pageTransitionIn.current.play(0);
+    } else {
+    }
+  }, [location, displayLocation]);
+
+  const playPageTransitionOut = useCallback(() => {
+    if (pageTransitionOut.current)
+      pageTransitionOut.current.progress(0).restart();
+  }, [pageTransitionOut.current]);
   return (
     <>
       <div ref={scrollRef} className="App">
-        <div className="overlay" />
+        <div className="overlay">
+          <div className="transitionPageContainer">
+            <div className="loader">
+              <div className="loaderTriangle">
+                <svg viewBox="0 0 86 80">
+                  <polygon points="43 8 79 72 7 72"></polygon>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
         <MyContext.Provider value={{ scrollRef, isAppMounted }}>
-          <Routes>
+          <Routes location={displayLocation}>
             <Route
               path="/"
               element={
-                <React.Suspense fallback={<>..</>}>
-                  {" "}
-                  <HomePage />{" "}
+                <React.Suspense fallback={<PageLoader />}>
+                  <HomePage onMount={playPageTransitionOut} />
                 </React.Suspense>
               }
             />
             <Route
               path="/services"
               element={
-                <React.Suspense fallback={<>fdf</>}>
-                  <Services />
+                <div>
+                  <React.Suspense fallback={<PageLoader />}>
+                    <Services onMount={playPageTransitionOut} />
+                  </React.Suspense>
+                </div>
+              }
+            />
+            <Route
+              path="/partners"
+              element={
+                <React.Suspense fallback={<PageLoader />}>
+                  <Partners onMount={playPageTransitionOut} />
                 </React.Suspense>
               }
             />
@@ -110,17 +132,20 @@ function App() {
             <Route
               path="/contact"
               element={
-                <React.Suspense fallback={<>fd</>}>
-                  <Contact />
+                <React.Suspense fallback={<PageLoader />}>
+                  <Contact onMount={playPageTransitionOut} />
                 </React.Suspense>
               }
             />
+            <Route path="/industries" element={<WIP />} />
+            <Route
+              path="/news"
+              element={<WIP onLoad={playPageTransitionOut} />}
+            />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </MyContext.Provider>
       </div>
-      <div class="page-transition__red transitionDiv"></div>
-      <div class="page-transition__black transitionDiv"></div>
-      <div class="transition__logo transitionDiv">I'M LOGO</div>
     </>
   );
 }

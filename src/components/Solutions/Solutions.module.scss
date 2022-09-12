@@ -2,7 +2,7 @@
 .solutions {
   display: flex;
   flex-direction: column;
-  overflow: visible;
+  // overflow: visible;
 
   // height: 120vh;
   margin-bottom: 7%;
@@ -10,25 +10,24 @@
 
 .scrollMenuWrapper {
   position: relative;
-  overflow-y: visible;
-  overflow-x: hidden;
-  top: -10rem;
+
+  top: -12rem;
   botton : {
     margin-right: 1rem !important;
     margin-bottom: 0rem !important;
   }
 }
 .cards {
-  height: 30rem !important;
+  // height: 30rem !important;
+  padding: 3rem 10rem;
   position: relative;
   display: flex;
   align-items: center;
-  overflow-y: visible;
-  overflow-x: hidden;
+  // overflow-y: visible;
+  // overflow-x: hidden;
   justify-content: space-between;
-  gap: 2%;
   position: relative;
-  padding: 2rem 0;
+  // padding: 2rem 0;
 }
 
 .arrowBtn {
@@ -45,7 +44,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 28rem;
   color: inherit;
 }
 
@@ -72,44 +71,41 @@
 .scrollMenuWrapper {
   // top: -15%;
 }
+.horizontalCard {
+  margin-right: 3rem;
+  width: 23%;
+  min-width: 28rem;
+}
 .solutionCard {
   z-index: 2;
   border-radius: 0.53333rem;
   cursor: pointer;
   position: relative;
-
   padding: 30px 50px;
-
   // box-shadow: 0 2px 21px 0 rgba(0, 0, 0, 0.103);
-  width: 23%;
-  // min-width: 25rem;
-  min-width: 28rem;
-  height: 100%;
+  width: 100%;
   border: 2px solid #f1f0f0;
   box-shadow: rgba(149, 157, 165, 0.118) 0px 8px 24px;
   // box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-  &:last-child {
-    margin-right: 5%;
-  }
+
   // background-color: #f4f4f9;
   // background-color: #f9f9f9;
   background-color: #fdfffc;
   // background-color: #f9f9f9;
 
-  font-family: Poppins;
+  font-family: var(--mainFont);
   font-weight: 300;
 
   & > div {
     height: 100%;
   }
-  &:first-child {
-    margin-left: 10rem;
-  }
+  // &:first-child {
+  // }
   ul {
     list-style: none; /* Remove default bullets */
     opacity: 0;
     font-size: 1rem;
-    font-family: MyraidProReg;
+    font-family: var(--mainFont);
     padding-left: 4px;
     margin-bottom: 0.6rem;
     height: 70%;
@@ -129,7 +125,7 @@
     white-space: nowrap;
   }
   .cardWrapper {
-    height: 100%;
+    // height: 100%;
     display: flex;
     flex-direction: column;
     color: inherit;
@@ -141,7 +137,7 @@
     padding-bottom: 2rem;
     top: 20%;
 
-    font-family: Poppins;
+    font-family: var(--mainFont);
     font-weight: 300;
     svg {
       width: 3.5rem;
@@ -152,9 +148,9 @@
     }
     .cardTitle {
       max-height: 34px;
-      overflow: hidden;
+      // overflow: hidden;
       h2 {
-        font-family: Poppins;
+        font-family: var(--mainFont);
         font-weight: 400;
         font-size: 1.2rem;
       }
@@ -165,19 +161,13 @@
       line-height: 34px;
       color: $Primary;
     }
-    // .coloredTitle {
-    //   font-size: 1.4rem;
-    //   line-height: 34px;
-    //   color: #00b295;
-    //   height: inherit;
-    // }
   }
 }
 
 @media (min-width: 700px) and (max-width: 1199px) {
-  .card:first-child {
-    margin-left: 4rem;
-  }
+  // .card:first-child {
+  //   margin-left: 4rem;
+  // }
   .headingText {
     padding-right: 4rem;
     padding-left: 4rem;
@@ -188,9 +178,6 @@
 }
 
 @media (min-width: 500px) and (max-width: 699px) {
-  .solutionCard:first-child {
-    margin-left: 1.3333rem;
-  }
   .headingText {
     padding-right: 1.3333rem;
     padding-left: 1.3333rem;
@@ -205,20 +192,32 @@
   }
 }
 @media (max-width: 699px) {
+  .cards {
+    padding-left: 1.3333rem;
+    padding-right: 0;
+    padding-top: 1rem;
+  }
   .scrollMenuWrapper {
     position: relative;
-    top: -8.5rem;
+    top: -7rem;
   }
 
   .arrowBtn {
     margin-bottom: 0rem;
   }
   .solutionCard {
-    min-width: 80%;
+    min-width: 100%;
+    width: min(25rem, 80vw);
+    min-width: 17rem;
+    margin-right: 0rem;
   }
-  .industryCards {
-    gap: 5%;
+
+  .horizontalCard {
+    margin-right: 1.5rem;
+    min-width: initial;
+    width: auto;
   }
+
   .headingText {
     max-width: 100%;
     width: 100%;
@@ -234,9 +233,6 @@
 }
 
 @media (max-width: 499px) {
-  .solutionCard:first-child {
-    margin-left: 1.3333rem;
-  }
   .solutionsHeading h1 {
     font-size: 2.66667rem;
   }

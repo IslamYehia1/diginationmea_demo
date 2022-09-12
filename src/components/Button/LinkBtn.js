@@ -1,8 +1,13 @@
 import style from "./LinkBtn.module.scss";
 import { Link } from "react-router-dom";
-function LinkBtn({ to, className, children }) {
+import gsap from "gsap";
+function LinkBtn({ to, className, children, areaLabel }) {
   return (
-    <Link to={to} className={`${style.linkBtn} ${className}`}>
+    <Link
+      aria-label={areaLabel}
+      to={to}
+      className={`${style.linkBtn} ${className}`}
+    >
       {children}
     </Link>
   );

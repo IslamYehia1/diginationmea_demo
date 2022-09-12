@@ -1,18 +1,11 @@
 import style from "./Services.module.scss";
-import laptopImg from "./laptop_coding.jpg";
-import DevIcon from "./softwareDev.png";
-import ConsultIcon from "./webDev.png";
-// import ItImg from "../Images/it.jpg";
 import { ReactComponent as ConsultationIcon } from "../../SVG/technical-support.svg";
-// import { ReactComponent as Consultation } from "../../SVG/consultation.svg";
 import { ReactComponent as Consultation } from "../../SVG/data-network.svg";
 import { ReactComponent as Software } from "../../SVG/software-development.svg";
 import { ReactComponent as Backlog1 } from "../../SVG/backlog_2.svg";
-// import { ReactComponent as IntegrationIcon } from "../../SVG/integration2.svg";
 import { ReactComponent as IntegrationIcon } from "../../SVG/connection.svg";
 import { ReactComponent as ScannerIcon } from "../../SVG/scanner.svg";
 import { ReactComponent as RightArrow } from "../../SVG/right-long-arrow.svg";
-import { ReactComponent as AIIcon } from "../../SVG/ai.svg";
 import { ReactComponent as ResourceAugIcon } from "../../SVG/competition.svg";
 import { ReactComponent as BusinessIntelligenceIcon } from "../../SVG/business_application.svg";
 
@@ -34,21 +27,10 @@ function ServicesContainer({ className }) {
     };
   });
   useEffect(() => {
-    gsap.set(`.${style.mobileDescription}`, {
-      autoAlpha: 1,
-    });
-    gsap.fromTo(
-      `.${style.serviceDescription}`,
-      {
-        y: "400",
-        autoAlpha: 0,
-      },
-      {
-        y: 0,
-        autoAlpha: 1,
-      }
-    );
     if (isMobile) {
+      gsap.set(`.${style.mobileDescription}`, {
+        autoAlpha: 1,
+      });
       gsap
         .timeline()
         .from(`.${style.mobileDescription}`, {
@@ -71,6 +53,18 @@ function ServicesContainer({ className }) {
       //     transformOrigin: "top center",
       //   }
       // );
+    } else {
+      gsap.fromTo(
+        `.${style.serviceDescription}`,
+        {
+          y: "400",
+          autoAlpha: 0,
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
+        }
+      );
     }
   }, [currentService, isMobile]);
 
@@ -167,6 +161,7 @@ function ServicesContainer({ className }) {
           {services.map(({ title, ServiceIcon, description }, index) => {
             return (
               <div
+                key={index}
                 className={`content ${style.service}  ${
                   currentService == index ? style.activeService : ""
                 }`}

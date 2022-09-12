@@ -7,7 +7,7 @@
 }
 .industryCards {
   display: flex;
-  gap: 4%;
+  gap: 2%;
   width: 100%;
 }
 .scrollMenuContainer {
@@ -16,7 +16,8 @@
 .sectionTitle {
   // padding: 5rem 10rem 2rem 10rem;
   padding: 5rem 10rem 1rem 10rem;
-  font-family: Poppins;
+  font-family: var(--mainFont);
+
   font-weight: 300;
   margin-bottom: 2%;
   // margin-bottom: 0;
@@ -38,16 +39,17 @@
     // color: $Primary;
     color: $Primary;
     // color: #042825;
-    font-family: "Poppins", sans-serif;
+    // font-family: "var(--mainFont)", sans-serif;
+    font-family: var(--secondaryFont), sans-serif;
 
-    font-weight: 500;
+    font-weight: 900;
     // font-style: italic;
 
     // font-size: 2.2rem;
-    font-size: 2rem;
+    font-size: 3rem;
 
-    // text-transform: uppercase;
-    max-width: 40%;
+    text-transform: uppercase;
+    max-width: 33rem;
     line-height: 1.1;
     display: flex;
     flex-direction: column;
@@ -107,10 +109,10 @@
 }
 @media (max-width: 699px) {
   .card {
-    min-width: 80%;
+    min-width: 90%;
   }
   .industryCards {
-    gap: 5%;
+    gap: 2%;
   }
   .sectionTitle {
     max-width: 100%;
@@ -122,7 +124,7 @@
     max-width: 100%;
     margin-bottom: 5%;
     // font-size: 2.66667rem;
-    font-size: 6vw;
+    font-size: 5vw;
     width: 100%;
   }
 }

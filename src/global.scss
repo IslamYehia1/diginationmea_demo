@@ -1,39 +1,33 @@
 @import "./vars.scss";
+// @import url("https://use.typekit.net/klw7ker.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @font-face {
-  font-family: "MyraidProSemiBold";
-  src: local("MyraidProSemiBold"),
-    url("./fonts/MYRIADPRO-SEMIBOLD.OTF") format("truetype");
-  font-weight: bold;
+  font-family: "Bebas-Neue-Bold";
+  src: url("./fonts/BebasNeue/BebasNeue-Bold.otf");
 }
 
 @font-face {
-  font-family: "MyraidProReg";
-  src: local("MyraidProReg"),
-    url("./fonts/MYRIADPRO-REGULAR.OTF") format("truetype");
-  font-weight: bold;
+  font-family: "Bebas-Neue-Book";
+  src: url("./fonts/BebasNeue/BebasNeue-Book.otf");
 }
 @font-face {
-  font-family: "MyraidProLight";
-  src: local("MyraidProLight"),
-    url("./fonts/MyriadPro-Light.otf") format("truetype");
-  font-weight: bold;
+  font-family: "Bebas-Neue-Regular";
+  src: url("./fonts/BebasNeue/BebasNeue-Regular.otf");
 }
-@font-face {
-  font-family: "MyraidProBold";
-  src: local("MyraidProLight"),
-    url("./fonts/MYRIADPRO-BOLD.OTF") format("truetype");
-  font-weight: bold;
+:root {
+  --mainFont: Poppins;
+  --secondaryFont: Bebas-Neue-Bold, sans-serif;
+  // --secondaryFont: bebas-neue-by-fontfabric, sans-serif;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap");
-
 // body::after {
 //   content : "" ;
 //   position : fixed ;
 
 // }
+.homePageWrapper {
+  // height: 100vh;
+  // overflow: hidden;
+}
 a {
   text-decoration: none;
 }
@@ -47,69 +41,17 @@ h4 {
   margin-top: 0;
 }
 .overlay {
-  z-index: 8;
-  background-color: black;
-  opacity: 0;
+  z-index: 8000;
+  // background-color: transparent;
+  // opacity: 0;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
-  display: none;
-}
-.page-transition__black {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background: #000;
-  z-index: 1000;
+  display: block;
 }
 
-.page-transition__red {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background: red;
-  z-index: 1000;
-}
-.transition__logo {
-  text-transform: uppercase;
-  font-family: sans-serif;
-  font-size: 60px;
-  position: absolute;
-  z-index: 1;
-  color: #fff;
-  font-weight: bold;
-  top: 50vh;
-  left: 50vw;
-  transform: translate(-50%, -50%);
-  z-index: 1001;
-}
-.transitionDiv {
-  visibility: hidden;
-}
-.gradientText {
-  h2 {
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(#139c8e),
-      to(#0ce162)
-    );
-    background-image: linear-gradient(90deg, #139c8e, #0ce162);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  // svg {
-  //   display: block;
-  // }
-}
 // .App {
 //   font-size: 17px;
 // }
@@ -118,19 +60,15 @@ h4 {
 }
 body {
   width: 100%;
-  height: 100%;
+  // height: 100%;
   font-size: inherit;
   // background-color: #fdfff7;
   // background-color: #eef8ff;
   background-color: #f4f4f9;
-  overflow: visible;
+  // overflow: visible;
   margin: 0;
 }
-button {
-  background-color: black;
-  font-family: MyraidProSemiBold;
-  // font-size: 17px !important;
-}
+
 .homePage {
   height: 150%;
 }
@@ -171,9 +109,12 @@ html.has-scroll-dragging {
 }
 
 .clock__dial__hour__circle {
+  cursor: pointer;
   fill-opacity: 0;
+  pointer-events: none;
 }
 .clock__dial__hour {
+  cursor: pointer;
   opacity: 0;
 }
 .c-scrollbar {
@@ -446,3 +387,131 @@ html.has-scroll-dragging {
   stroke-dashoffset: -134;
   stroke-width: 6;
 }
+
+//loader
+
+// @keyframes fillLogo {
+//   from {
+//     height: 0;
+//   }
+//   to {
+//     height: 200px;
+//   }
+// }
+.transitionPageContainer {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.pageLoaderVisibleLogo {
+  position: absolute;
+  .pageLoaderWrapper {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    // background-color: #dbd8d3;
+    // background-color: #8aa39b;
+    background-color: #727d71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loaderTriangle {
+  transform: scale(1.5);
+  --path: #1d2b28;
+  // --dot: #5628ee;
+  --dot: white;
+  --duration: 3s;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  &:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    display: block;
+    background: var(--dot);
+    top: 37px;
+    left: 19px;
+    transform: translate(-18px, -18px);
+    animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+      infinite;
+  }
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    rect,
+    polygon,
+    circle {
+      fill: none;
+      stroke: var(--path);
+      stroke-width: 10px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    polygon {
+      stroke-dasharray: 145 (221 - 145) 145 (221 - 145);
+      stroke-dashoffset: 0;
+      animation: pathTriangle var(--duration)
+        cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+  }
+  & {
+    // width: 48px;
+    &:before {
+      left: 21px;
+      transform: translate(-10px, -18px);
+      animation: dotTriangle var(--duration)
+        cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+  }
+}
+@keyframes pathTriangle {
+  33% {
+    stroke-dashoffset: 74;
+  }
+  66% {
+    stroke-dashoffset: 147;
+  }
+  100% {
+    stroke-dashoffset: 221;
+  }
+}
+
+@keyframes dotTriangle {
+  33% {
+    transform: translate(0, 0);
+  }
+  66% {
+    transform: translate(10px, -18px);
+  }
+  100% {
+    transform: translate(-10px, -18px);
+  }
+}
+
+// .loader {
+//   height: 20px;
+//   width: 250px;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   margin: auto;
+// }

@@ -33,7 +33,7 @@ function PageFooter() {
             <input type="text" placeholder="Your email" />
             <textarea rows="6" placeholder="Your message" />
             <LinkBtn className={style.submitBtn} to="/contact">
-              Submit
+              <span>Submit</span>
             </LinkBtn>
           </div>
         </form>

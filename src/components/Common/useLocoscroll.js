@@ -8,15 +8,12 @@ import React, {
   createContext,
   useContext,
 } from "react";
-import { useLocation } from "react-router-dom";
-import { MyContext } from "../../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function useLocoscroll(scrollRef, multiplier) {
   let locoScrollRef = useRef(null);
   // scrollRef.current = document.querySelector("[data-scroll-container]");
-  const location = useLocation();
   useEffect(() => {
     if (!(scrollRef && scrollRef.current)) return;
     locoScrollRef.current = new LocomotiveScroll({
@@ -48,16 +45,15 @@ export function useLocoscroll(scrollRef, multiplier) {
       // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
       pinType: scrollRef.current.style.transform ? "transform" : "fixed",
     });
-    ScrollTrigger.addEventListener("refresh", () =>
-      locoScrollRef.current.update()
-    );
+    ScrollTrigger.addEventListener("refresh", () => {
+      if (locoScrollRef.current) locoScrollRef.current.update();
+    });
     ScrollTrigger.refresh(true);
 
     ScrollTrigger.defaults({ scroller: scrollRef.current });
     const resizeObserver = new ResizeObserver((entries) => {
       ScrollTrigger.refresh(true);
       locoScrollRef.current.update();
-
       // locoScrollRef.current.update();
       // console.log("Body height changed:", entries[0].target.clientHeight)
     });
@@ -70,10 +66,15 @@ export function useLocoscroll(scrollRef, multiplier) {
     };
   }, [scrollRef.current]);
 
-  useEffect(() => {
-    if (!locoScrollRef.current) return;
-    locoScrollRef.current.update();
-    ScrollTrigger.refresh(true);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (!locoScrollRef.current) return;
+  //   locoScrollRef.current.update();
+  //   ScrollTrigger.refresh(true);
+  //   console.log("WHY TRIGGERED HHAAAH?");
+  //   return () => {
+  //     if (locoScrollRef.current) locoScrollRef.current.destroy();
+  //     // if (resizeObserver) resizeObserver.disconnect();
+  //   };
+  // }, [location]);
   return locoScrollRef.current;
 }

@@ -16,10 +16,10 @@
     font-weight: 500;
 
     color: #90c0a1;
-    font-family: Poppins;
+    font-family: var(--mainFont);
   }
   p {
-    font-family: MyraidProReg;
+    font-family: var(--mainFont);
   }
 }
 .firstRow {
@@ -69,7 +69,8 @@
   .submitBtn {
     width: 8rem;
     height: 3.3rem;
-    font-family: Poppins;
+    font-family: var(--mainFont);
+    color: $Primary;
     background-color: #d7d3c9;
     &:before {
       background-color: #66b186;
@@ -94,7 +95,7 @@
   .general {
   }
   h1 {
-    font-family: Poppins;
+    font-family: var(--mainFont);
     font-size: 4rem;
     color: #90c0a1;
     margin-bottom: 0;
@@ -115,7 +116,7 @@
   border-top: 2px solid #d7d3c962;
   padding-top: 2rem;
   margin-top: 2rem;
-  font-family: Poppins;
+  font-family: var(--mainFont);
   color: #d7d3c9;
 }
 

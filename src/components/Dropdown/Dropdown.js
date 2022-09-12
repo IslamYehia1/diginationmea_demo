@@ -51,7 +51,6 @@ class Dropdown extends React.Component {
           className="dropdown__toggle dropdown__list-item"
         >
           {this.props.title}
-          <i class="fa fa-angle-down" aria-hidden="true"></i>
         </div>
         <ul
           className={
