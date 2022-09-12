@@ -23,6 +23,7 @@ function Services({ onMount }) {
     if (onMount) onMount();
   }, [onMount]);
   useEffect(() => {
+    document.title = "DiginationMea";
     setIsMounted(true);
     gsap
       .timeline()

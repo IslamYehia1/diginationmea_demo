@@ -28,6 +28,7 @@ function HomePage({ onMount }) {
     if (onMount) onMount();
   }, [onMount]);
   useEffect(() => {
+    document.title = "DiginationMea";
     setIsHomeMounted(true);
     ScrollTrigger.create({
       id: "navbarHighlight",
