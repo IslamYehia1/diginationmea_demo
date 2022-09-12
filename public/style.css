@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0;
 }
-.pageLoaderWrapper {
+.loader {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -12,14 +12,6 @@ body {
   align-items: center;
 }
 
-@keyframes fillLogo {
-  from {
-    height: 0;
-  }
-  to {
-    height: 200px;
-  }
-}
 .pageLoaderVisibleLogo {
   position: absolute;
 }
