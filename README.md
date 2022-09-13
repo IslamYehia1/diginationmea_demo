@@ -1,6 +1,6 @@
 # A marketing website for the IT company Digination
 
-Live link: demo.diginationmea.com
+Live link: [https://demo.diginationmea.com](https://demo.diginationmea.com)
 
 # Main frameworks and libraries used:
 
