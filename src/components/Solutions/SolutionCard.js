@@ -17,13 +17,15 @@ function SolutionCard({ itemId, className, title, listItems, Icon }) {
       //   duration: 0.4,
       // })
       .to(cardRef.current, {
-        scale: 1.05,
+        boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+
+        scale: 1.03,
       })
       .fromTo(
         q(`.${style.cardHeading}`),
         { top: "20%", duration: 1.5 },
         {
-          top: "10%",
+          top: "5%",
         },
         "<"
       )

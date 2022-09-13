@@ -40,6 +40,7 @@ function LatestNews() {
     cardsArr.forEach((card) => {
       const cardScaleTl = gsap.timeline({ paused: true }).to(card, {
         scale: "1.03",
+        boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       });
       card.addEventListener("mouseover", () => {
         cardScaleTl.play();

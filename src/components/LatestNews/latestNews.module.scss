@@ -54,7 +54,8 @@
   color: $Primary;
   // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   // box-shadow: rgba(0, 0, 0, 0.068) 0px 4px 12px;
-  height: 19rem;
+  // height: 19rem;
+  height: 27rem;
 }
 .cardsSeperator {
   width: 10rem;
@@ -62,7 +63,8 @@
 
 .imgWrapper {
   // width: 100%;
-  width: 24rem;
+  // width: 24rem;
+  width: 40rem;
   height: 100%;
   border-radius: 1rem 0 0 1rem;
   img {
@@ -99,7 +101,7 @@
   margin-top: 2rem;
   // margin-bottom: 2rem;
   svg {
-    color: #66b186;
+    color: $Primary;
   }
 }
 

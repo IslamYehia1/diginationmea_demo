@@ -1,7 +1,7 @@
 import Card from "./Card";
 import "./globalStyles.scss";
 import React from "react";
-import HealthCareImg from "../Images/healthCare2.jpg";
+import HealthCareImg from "../Images/healthCare3.jpg";
 import EducationImg from "../Images/education.jpg";
 import GovernmentImg from "../Images/government.jpg";
 import CommunicationImg from "../Images/communication.jpg";

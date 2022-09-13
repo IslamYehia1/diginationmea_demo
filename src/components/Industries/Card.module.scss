@@ -1,11 +1,13 @@
 @import "../../vars.scss";
 
 .textContainer {
-  font-size: 1.07rem;
+  font-size: 1rem;
   font-family: var(--mainFont);
+  padding: 1rem 3rem 1rem 2rem;
   color: $Primary;
-  width: 85%;
-  line-height: 1.4;
+  font-weight: 100;
+  width: 100%;
+  line-height: 1.5;
   p {
     height: 6rem;
     // text-overflow: ellipsis;
@@ -29,6 +31,8 @@
     width: 100%;
     max-height: 100%;
     min-height: 100%;
+    border-radius: 1rem;
+
     .img {
       position: relative;
       min-width: 100%;
@@ -49,6 +53,8 @@
 .cardButtonContainer {
   // position: absolute;
   //   width: 100%;
+  padding: 1rem 3rem;
+
   width: 40%;
   right: 20px;
   // bottom: -1.4rem;
@@ -113,7 +119,10 @@
   min-height: 400px;
   position: relative;
   cursor: pointer;
+  border-radius: 1rem;
+
   &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     .industryCardBtn::before {
       animation: swipe 400ms ease-in-out forwards;
     }

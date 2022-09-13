@@ -44,7 +44,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 28rem;
+  // height: 28rem;
+  height: 24rem;
   color: inherit;
 }
 
@@ -73,26 +74,25 @@
 }
 .horizontalCard {
   margin-right: 3rem;
+  // width: 23%;
   width: 23%;
-  min-width: 28rem;
+  // min-width: 28rem;
+  min-width: 40rem;
 }
 .solutionCard {
   z-index: 2;
-  border-radius: 0.53333rem;
+  // border-radius: 0.53333rem;
+  border-radius: 1rem;
   cursor: pointer;
   position: relative;
   padding: 30px 50px;
   // box-shadow: 0 2px 21px 0 rgba(0, 0, 0, 0.103);
   width: 100%;
-  border: 2px solid #f1f0f0;
-  box-shadow: rgba(149, 157, 165, 0.118) 0px 8px 24px;
-  // box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-
-  // background-color: #f4f4f9;
-  // background-color: #f9f9f9;
-  background-color: #fdfffc;
-  // background-color: #f9f9f9;
-
+  // border: 2px solid #f1f0f0;
+  // background: #f8f5f7;
+  background: hsla(100, 100%, 99%, 0.904);
+  backdrop-filter: blur(20px);
+  box-shadow: rgba(149, 157, 165, 0.101) 0px 8px 24px;
   font-family: var(--mainFont);
   font-weight: 300;
 
@@ -110,7 +110,7 @@
     margin-bottom: 0.6rem;
     height: 70%;
     position: relative;
-    top: 10%;
+    top: 6%;
   }
   ul li {
     margin-bottom: 3px;
@@ -132,16 +132,17 @@
   }
   .cardHeading {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     position: relative;
-    padding-bottom: 2rem;
-    top: 20%;
-
+    padding-bottom: 0.5rem;
+    top: 10%;
     font-family: var(--mainFont);
     font-weight: 300;
     svg {
       width: 3.5rem;
       margin-right: 2rem;
+      margin-bottom: 1rem;
       color: $Primary !important;
       opacity: 0.8;
       // color: #90c0a1 !important;

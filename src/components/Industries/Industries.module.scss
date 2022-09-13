@@ -7,11 +7,14 @@
 }
 .industryCards {
   display: flex;
-  gap: 2%;
+  gap: 3.7%;
   width: 100%;
+  padding: 2rem;
 }
 .scrollMenuContainer {
   cursor: grab;
+  position: relative;
+  top: -3rem;
 }
 .sectionTitle {
   // padding: 5rem 10rem 2rem 10rem;
@@ -19,7 +22,7 @@
   font-family: var(--mainFont);
 
   font-weight: 300;
-  margin-bottom: 2%;
+  margin-bottom: 0;
   // margin-bottom: 0;
   // white-space: nowrap;
   display: flex;
@@ -46,10 +49,10 @@
     // font-style: italic;
 
     // font-size: 2.2rem;
-    font-size: 3rem;
+    font-size: 3.6rem;
 
     text-transform: uppercase;
-    max-width: 33rem;
+    max-width: 40rem;
     line-height: 1.1;
     display: flex;
     flex-direction: column;
@@ -58,10 +61,22 @@
 .card {
   min-width: 32%;
   width: 50%;
+  background: #fdfffc;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgb(235, 235, 235);
+  // box-shadow: rgba(149, 157, 165, 0.161) 0px 8px 24px;
+  // border: none;
+  overflow: hidden;
+  border-radius: 2rem;
+  transition: box-shadow 0.3s ease-in-out, translate 0.3s ease-in-out;
 
-  border: none;
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    translate: 0 -1rem;
+    border-color: transparent;
+  }
   &:first-child {
-    margin-left: 10rem;
+    margin-left: 8rem;
   }
 }
 .cardsSeperator {

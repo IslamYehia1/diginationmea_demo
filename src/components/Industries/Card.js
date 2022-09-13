@@ -19,7 +19,7 @@ function IndustryCard({ title, description, img, itemId }) {
         <h1 className={style.cardTitle}>{title}</h1>
         <p>{description}</p>
       </div>
-      <div className={style.cardButtonContainer}>
+      {/* <div className={style.cardButtonContainer}>
         <span
           to="/partners"
           className={`${LinkBtnStyle.linkBtn} ${style.industryCardBtn} `}
@@ -27,7 +27,7 @@ function IndustryCard({ title, description, img, itemId }) {
           <span>Use cases</span>
           <RightArrow />
         </span>
-      </div>
+      </div> */}
     </Link>
   );
 }
