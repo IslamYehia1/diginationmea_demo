@@ -1,10 +1,17 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { TextPlugin } from "gsap/all";
 
-function TypewriterEffect({ textList, className }) {
+gsap.registerPlugin(TextPlugin);
+
+function TypewriterEffect({ textList, className, repeat }) {
   const mainTimeline = useRef(null);
-  mainTimeline.current = gsap.timeline({ repeat: -1, delay: 2 });
+  const typewriterRef = useRef(null);
+
   useEffect(() => {
+    let to;
+    if (to) clearTimeout(to);
+
     gsap.fromTo(
       "#cursor",
       {
@@ -22,24 +29,46 @@ function TypewriterEffect({ textList, className }) {
         repeatDelay: 0.2,
       }
     );
-
-    textList.forEach((text, index) => {
-      let tween = gsap
-        .timeline({ yoyo: true, repeat: 1, repeatDelay: 2 })
-        .to("#text", {
-          text: {
-            value: text,
-          },
-          duration: 0.08 * text.length,
-          delay: 1,
-          ease: "linear",
-        });
-      mainTimeline.current.add(tween, index * tween.totalDuration());
-    });
+    let prevTweenDuration = 0;
+    to = setTimeout(() => {
+      mainTimeline.current = gsap.timeline({
+        repeat: repeat ? repeat : -1,
+        scrollTrigger: {
+          trigger: typewriterRef.current,
+          toggleActions: "play pause play pause",
+        },
+      });
+      textList.forEach((text) => {
+        console.log(prevTweenDuration);
+        let tween = gsap
+          .timeline({
+            yoyo: true,
+            repeat: 1,
+            repeatDelay: 2,
+          })
+          .fromTo(
+            "#text",
+            {
+              text: {
+                value: "",
+              },
+            },
+            {
+              text: {
+                value: text,
+              },
+              delay: 0.1,
+              duration: 0.08 * text.length,
+              ease: "linear",
+            }
+          );
+        mainTimeline.current.add(tween);
+      });
+    }, 100);
   }, [textList]);
 
   return (
-    <p className={className}>
+    <p ref={typewriterRef} className={className}>
       <span id="text"></span>
       <span id="cursor">|</span>
     </p>

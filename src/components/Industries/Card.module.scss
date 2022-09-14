@@ -21,22 +21,26 @@
 }
 .imgContainer {
   width: 100%;
-  //   height: 70%;
   // max-height: 400px;
-  aspect-ratio: auto 632 / 471;
   margin-bottom: 1.6rem;
   position: relative;
+  aspect-ratio: auto 632 / 471;
   .image {
     overflow: hidden;
+    height: 24rem;
+    // aspect-ratio: auto 632 / 632;
     width: 100%;
+    max-width: 100%;
     max-height: 100%;
     min-height: 100%;
     border-radius: 1rem;
 
     .img {
       position: relative;
+
       min-width: 100%;
-      width: 120%;
+      min-height: 100%;
+      // width: 120%;
       object-fit: cover;
       object-position: center center;
       transform: scale3d(1, 1, 1);
@@ -115,11 +119,26 @@
   }
 }
 
+.cardWrapper {
+  background: #fdfffc;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgb(235, 235, 235);
+  border-radius: 2rem;
+  overflow: hidden;
+  min-width: 35%;
+  transition: box-shadow 0.3s ease-in-out, translate 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    translate: 0 -1rem;
+    border-color: transparent;
+  }
+}
+
 .card {
   min-height: 400px;
   position: relative;
   cursor: pointer;
-  border-radius: 1rem;
 
   &:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -141,12 +160,16 @@
 }
 
 @media (max-width: 999px) {
+  .cardWrapper {
+    min-width: 30rem;
+  }
   .card {
     .textContainer {
       // width: 95%;
       p {
         height: 6rem;
         // height: 30vw;
+        // font-size: 1rem;
         font-family: var(--mainFont);
       }
     }
@@ -161,13 +184,20 @@
 }
 
 @media (max-width: 699px) {
+  .cardWrapper {
+    min-width: max(20rem, 100%);
+    width: 90%;
+  }
   .card {
     min-width: 100%;
     .textContainer {
-      width: 95%;
+      padding: 1rem 1rem 0rem 2rem;
+      width: 100%;
       p {
-        height: 7rem;
+        height: unset;
         font-family: var(--mainFont);
+        // font-size: max(1rem, 10vw);
+        font-size: 1rem;
       }
     }
     .industryCardBtn {
@@ -178,6 +208,15 @@
     }
     .cardButtonContainer {
       width: 50%;
+    }
+  }
+}
+
+@media (max-width: 499px) {
+  .card {
+    .textContainer {
+      // padding: 1rem 1rem 3rem 2rem;
+      // height: 50vw;
     }
   }
 }

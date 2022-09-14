@@ -9,6 +9,8 @@ import BankingImg from "../Images/banking.jpg";
 import InsuranceImg from "../Images/insurance.jpg";
 import OilAndGas from "../Images/oil_and_gas.jpg";
 import style from "./Industries.module.scss";
+import cardStyle from "./Card.module.scss";
+
 import HorizontalScroll from "../HorizontalScroll/HorizontalScroll";
 function Industries() {
   return (
@@ -41,10 +43,11 @@ export function IndustryCards() {
       {/* <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}> */}
       <div className={style.scrollMenuContainer}>
         <HorizontalScroll
-          itemClassName={style.card}
+          itemClassName={cardStyle.cardWrapper}
           separatorClassName={style.cardsSeperator}
           scrollContainerClassName={style.industryCards}
           arrowClassName={style.arrowBtn}
+          // wrapperClassName={style.scrollWrapper}
         >
           <Card
             title="Oil and gas"

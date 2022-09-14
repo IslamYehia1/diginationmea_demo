@@ -23,6 +23,7 @@ function App() {
   const pageTransitionOut = useRef(null);
   const pageTransitionIn = useRef(null);
   const displayLocationSetter = useRef();
+  const [playPageTransitionOut, setPlayTransitionOut] = useState(null);
   const navigate = useNavigate();
   displayLocationSetter.current = () => {
     setDisplayLocation(location);
@@ -71,8 +72,13 @@ function App() {
       .add(() => {
         displayLocationSetter.current();
       });
+    setPlayTransitionOut(() => () => {
+      pageTransitionOut.current.progress(0).restart();
+    });
   }, []);
-
+  useEffect(() => {
+    console.log(playPageTransitionOut);
+  }, [playPageTransitionOut]);
   useEffect(() => {
     if (location !== displayLocation) {
       pageTransitionOut.current.kill();
@@ -82,10 +88,6 @@ function App() {
     }
   }, [location, displayLocation]);
 
-  const playPageTransitionOut = useCallback(() => {
-    if (pageTransitionOut.current)
-      pageTransitionOut.current.progress(0).restart();
-  }, [pageTransitionOut.current]);
   return (
     <>
       <div ref={scrollRef} className="App">
@@ -137,7 +139,10 @@ function App() {
                 </React.Suspense>
               }
             />
-            <Route path="/industries" element={<WIP />} />
+            <Route
+              path="/industries"
+              element={<WIP onLoad={playPageTransitionOut} />}
+            />
             <Route
               path="/news"
               element={<WIP onLoad={playPageTransitionOut} />}

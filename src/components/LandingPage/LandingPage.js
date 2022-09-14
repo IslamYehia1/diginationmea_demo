@@ -1,6 +1,5 @@
 import style from "./LandingPage.module.scss";
 import gsap from "gsap";
-import { TextPlugin } from "gsap/all";
 import { useEffect, useContext } from "react";
 import { ReactComponent as RightArrow } from "../../SVG/right-arrow.svg";
 import { ReactComponent as Left } from "../../SVG/left.svg";
@@ -10,7 +9,6 @@ import LinkBtn from "../Button/LinkBtn";
 import TypewriterEffect from "../TypewriterEffect/TypewriterEffect";
 import { Transition } from "react-transition-group";
 import { ScrollTrigger } from "gsap/all";
-gsap.registerPlugin(TextPlugin);
 const typeWritterText = [
   "Low code",
   "Business Intelligence",

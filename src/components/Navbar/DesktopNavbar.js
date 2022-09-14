@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback, useContext } from "react";
 import NormalLogo from "./LogoDigination.png";
-import WhiteLogo from "./whiteLogo1.png";
+import WhiteLogo from "./whiteLogo2.png";
 import style from "./Navbar.module.scss";
 import commonNavStyle from "./commonNavbar.module.scss";
 import { ReactComponent as ContactIcon } from "../../SVG/send.svg";

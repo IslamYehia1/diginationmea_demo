@@ -5,11 +5,14 @@
 
   margin-top: 10%;
 }
+.scrollWrapper {
+}
 .industryCards {
+  padding: 2rem;
+  padding-left: 10rem;
   display: flex;
   gap: 3.7%;
   width: 100%;
-  padding: 2rem;
 }
 .scrollMenuContainer {
   cursor: grab;
@@ -61,22 +64,19 @@
 .card {
   min-width: 32%;
   width: 50%;
-  background: #fdfffc;
-  backdrop-filter: blur(20px);
-  border: 2px solid rgb(235, 235, 235);
+
   // box-shadow: rgba(149, 157, 165, 0.161) 0px 8px 24px;
   // border: none;
   overflow: hidden;
   border-radius: 2rem;
-  transition: box-shadow 0.3s ease-in-out, translate 0.3s ease-in-out;
+  // transition: box-shadow 0.3s ease-in-out, translate 0.3s ease-in-out;
 
-  &:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    translate: 0 -1rem;
-    border-color: transparent;
-  }
+  // &:hover {
+  //   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  //   translate: 0 -1rem;
+  //   border-color: transparent;
+  // }
   &:first-child {
-    margin-left: 8rem;
   }
 }
 .cardsSeperator {
@@ -89,12 +89,24 @@
 //   position: absolute;
 // }
 .arrowBtn {
-  bottom: 1.3rem;
+  bottom: -1rem;
   // width: 2.5rem;
 }
-@media (min-width: 700px) and (max-width: 1199px) {
-  .card:first-child {
-    margin-left: 4rem;
+// @media (min-width: 700px) and (max-width: 1199px) {
+//   .scrollWrapper {
+//     padding-left: 4rem;
+//   }
+//   .sectionTitle {
+//     padding-right: 4rem;
+//     padding-left: 4rem;
+//     h1 {
+//       max-width: 70%;
+//     }
+//   }
+// }
+@media only screen and (max-width: 999px) {
+  .industryCards {
+    padding-left: 4rem;
   }
   .sectionTitle {
     padding-right: 4rem;
@@ -106,8 +118,8 @@
 }
 
 @media (min-width: 500px) and (max-width: 699px) {
-  .card:first-child {
-    margin-left: 1.3333rem;
+  .scrollWrapper {
+    padding-left: 0rem;
   }
   .sectionTitle {
     padding-right: 1.3333rem;
@@ -123,8 +135,12 @@
   }
 }
 @media (max-width: 699px) {
+  .industryCards {
+    padding-left: 1rem;
+  }
   .card {
-    min-width: 90%;
+    min-width: 100%;
+    // height: 35rem;
   }
   .industryCards {
     gap: 2%;
@@ -136,17 +152,17 @@
     padding-left: 1.3333rem;
   }
   .sectionTitle h1 {
-    max-width: 80%;
+    max-width: 100%;
     margin-bottom: 5%;
     // font-size: 2.66667rem;
-    font-size: max(7vw, 2rem);
+    font-size: max(8vw, 1.6rem);
     width: 100%;
   }
 }
 
 @media (max-width: 499px) {
   .card:first-child {
-    margin-left: 1.3333rem;
+    margin-left: 0;
   }
   .sectionTitle h1 {
     // font-size: 7.3vw;

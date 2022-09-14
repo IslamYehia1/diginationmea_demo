@@ -20,8 +20,11 @@ export function useLocoscroll(scrollRef, multiplier) {
       el: scrollRef.current,
       smooth: true,
       multiplier: multiplier,
-      mobile: {
-        smooth: true,
+      getSpeed: true,
+      getDirection: true,
+      reloadOnContextChange: true,
+      smartphone: {
+        smooth: false,
       },
       tablet: {
         smooth: true,
