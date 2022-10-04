@@ -19,14 +19,26 @@
   margin-bottom: 0.8rem;
   font-weight: 500;
 }
+.linkIndicatorWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 2rem 2rem 0;
+  svg {
+    color: $Primary;
+  }
+}
 .imgContainer {
   width: 100%;
   // max-height: 400px;
   margin-bottom: 1.6rem;
   position: relative;
-  aspect-ratio: auto 632 / 471;
+  // aspect-ratio: auto 632 / 471;
+  aspect-ratio: auto 5 / 3;
+
   .image {
     overflow: hidden;
+    // height: 24rem;
     height: 24rem;
     // aspect-ratio: auto 632 / 632;
     width: 100%;
@@ -125,9 +137,10 @@
   border: 2px solid rgb(235, 235, 235);
   border-radius: 2rem;
   overflow: hidden;
-  min-width: 35%;
+  // min-width: 32%;
+  min-width: 32%;
   transition: box-shadow 0.3s ease-in-out, translate 0.3s ease-in-out;
-
+  position: relative;
   &:hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     translate: 0 -1rem;
@@ -136,8 +149,8 @@
 }
 
 .card {
-  min-height: 400px;
-  position: relative;
+  // min-height: 400px;
+  // position: relative;
   cursor: pointer;
 
   &:hover {
@@ -191,7 +204,7 @@
   .card {
     min-width: 100%;
     .textContainer {
-      padding: 1rem 1rem 0rem 2rem;
+      padding: 1rem 1rem 2rem 2rem;
       width: 100%;
       p {
         height: unset;
@@ -209,6 +222,11 @@
     .cardButtonContainer {
       width: 50%;
     }
+  }
+  .linkIndicatorWrapper {
+    position: absolute;
+    bottom: 10px;
+    padding-bottom: 20px;
   }
 }
 

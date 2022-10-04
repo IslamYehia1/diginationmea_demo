@@ -74,6 +74,17 @@ body {
   animation: dotTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
     infinite;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @keyframes pathTriangle {
   33% {
     stroke-dashoffset: 74;

@@ -76,11 +76,9 @@ function App() {
       pageTransitionOut.current.progress(0).restart();
     });
   }, []);
+
   useEffect(() => {
-    console.log(playPageTransitionOut);
-  }, [playPageTransitionOut]);
-  useEffect(() => {
-    if (location !== displayLocation) {
+    if (location.pathname !== displayLocation.pathname) {
       pageTransitionOut.current.kill();
       if (!pageTransitionIn.current.isActive())
         pageTransitionIn.current.play(0);

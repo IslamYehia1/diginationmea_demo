@@ -60,6 +60,7 @@ function HomePage({ onMount }) {
         },
       })
       .to(`.${style.HomePageContainer}`, {
+        // backgroundColor: "#FDFFFC",
         backgroundColor: "#FDFFFC",
         immediateRender: false,
       });

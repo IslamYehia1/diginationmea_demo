@@ -3,6 +3,8 @@ import style from "./Card.module.scss";
 import { ReactComponent as RightArrow } from "../../SVG/right-arrow.svg";
 import { VisibilityContext } from "react-horizontal-scrolling-menu";
 import LinkBtnStyle from "../Button/LinkBtn.module.scss";
+import { ReactComponent as LinkIndicator } from "../../SVG/linkIndicator.svg";
+
 import { Link } from "react-router-dom";
 function IndustryCard({ title, description, img, itemId }) {
   const visibility = React.useContext(VisibilityContext);
@@ -14,7 +16,6 @@ function IndustryCard({ title, description, img, itemId }) {
           <img alt={title} src={img} className={style.img} />
         </div>
       </div>
-
       <div className={style.textContainer}>
         <h1 className={style.cardTitle}>{title}</h1>
         <p>{description}</p>
@@ -28,6 +29,9 @@ function IndustryCard({ title, description, img, itemId }) {
           <RightArrow />
         </span>
       </div> */}
+      <div className={style.linkIndicatorWrapper}>
+        <LinkIndicator />
+      </div>
     </Link>
   );
 }
